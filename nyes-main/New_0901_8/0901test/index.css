@@ -1,0 +1,10 @@
+.calculator {
+  display: flex;
+  flex-direction: column;
+}
+
+.btcss {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+}

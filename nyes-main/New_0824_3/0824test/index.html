@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div
+      style="
+        width: 100%;
+        margin: auto;
+        height: 100%;
+        background-color: whitesmoke;
+        font-size: 20px;
+      "
+    >
+      <div style="height: 100px; text-align: center">
+        <h1>회원가입</h1>
+      </div>
+      <div
+        style="
+          height: 30px;
+          width: 100%;
+          background-color: black;
+          margin-bottom: 50px;
+        "
+      ></div>
+
+      <form action="#" method="get">
+        <div>
+          <label for="id" class="title-leftm">아이디 </label>
+          <input
+            type="text"
+            id="id"
+            name="id"
+            class="inputwin"
+            placeholder="영문/숫자 6~15자"
+            autofocus
+            maxlength="15"
+          />
+        </div>
+
+        <div>
+          <label for="pw" class="title-leftm"
+            >비밀번호
+            <input
+              type="password"
+              id="pw"
+              name="pw"
+              class="inputwin"
+              placeholder="영문/숫자/특수문자 6~20자"
+              maxlength="20"
+            />
+          </label>
+        </div>
+
+        <div>
+          <label for="pwcheck" class="title-leftm">비밀번호 재입력</label>
+          <input type="password" id="pwcheck" name="pw" class="inputwin" placeholder="위에서 입력한 비밀번호를 다시 한번 입력해주세요." maxlength="20" />
+        </div>
+
+        <div>
+          <label for="name" class="title-leftm">이름</label>
+          <input type="text" id="name" name="id" class="inputwin" />
+        </div>
+
+        <div>
+          <label for="yy" class="title-leftm">생년월일</label><br/>
+          <input type="text" id="yy" name="year" maxlength="4" class="inputwin-month" placeholder="년(4자리)" />
+          <select name="month" id="month" class="inputwin-month2">
+            <option value="number">1월</option>
+            <option value="number">2월</option>
+            <option value="number">3월</option>
+            <option value="number">4월</option>
+            <option value="number">5월</option>
+            <option value="number">6월</option>
+            <option value="number">7월</option>
+            <option value="number">8월</option>
+            <option value="number">9월</option>
+            <option value="number">10월</option>
+            <option value="number">11월</option>
+            <option value="number">12월</option>
+
+          <input type="text" id="date" name="date" maxlength="2" class="inputwin-month3" placeholder="일"/>
+
+        </div>
+
+        <div>
+          <div class="title-leftm">성별</div>
+          <select name="gender" id="gender" class="inputwin">
+            <option value="male">남자</option>
+            <option value="male">여자</option>
+            <option value="male">논바이너리</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="email" class="title-leftm"
+            >이메일</label
+          >
+          <input type="email" id="email" name="email" class="inputwin" placeholder="비밀번호 분실 시, 새로운 비밀번호를 발급받는데 사용됩니다" />
+        </div>
+
+        <div>
+          <label for="checkbox" class="title-rightm"
+            >Email 수신 동의 (선택)</label
+          >
+          <input type="checkbox" id="checkbox" checked />
+        </div>
+
+        <div>
+          <label for="phone-number" class="title-leftm">휴대전화</label>
+          <input
+            type="number"
+            id="phone-number"
+            name="phonenumber"
+            class="inputwin"
+            placeholder="'-' 생략하고 입력"
+          />
+        </div>
+
+        <div>
+          <label for="checkbox" class="title-rightm"
+            >SMS 수신 동의 (선택)</label
+          >
+          <input type="checkbox" id="checkbox" checked />
+        </div>
+
+        <div>
+          <label for="marketing" class="title-leftm">
+          <div class="title-leftm">
+            이 사이트를 알게 된 경로를 입력해주세요.
+          </div>
+        </label>
+          <textarea
+            class="inputwin"
+            placeholder="마케팅에 활용됩니다."
+            id="marketing"
+          ></textarea>
+        </div>
+
+        <button class="btn1" type="button">취소하기</button>
+        <button class="btn2" type="submit">가입하기</button>
+        <br />
+        <button class="btn3" type="reset">다시입력하기</button>
+      </form>
+    </div>
+  </body>
+</html>
