@@ -1,8 +1,8 @@
 let firstNum = 0;
 let secondNum = 0;
 let usecal = 0;
-let value = 0;
-let symbol = 0;
+// 카운트를 쓰느냐 안쓰느냐
+// 안쓰면 firstNum가 비었는지, 정의가 되지 않았는지 -> undefined (정의가 되지않은 변수의 값)
 
 function bt(value) {
   if (firstNum == 0 && secondNum == 0) {
