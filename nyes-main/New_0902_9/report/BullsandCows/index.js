@@ -5,7 +5,6 @@ let uoverlap = 0;
 let ball_count = 0;
 let strike_count = 0;
 let try_count = 0;
-let sw1;
 let clear = 0;
 
 function c_picknum() {
@@ -32,43 +31,12 @@ function u_picknum() {
   do {
     for (let a = 0; a < 3; a++) {
       let num = prompt(`0~9 사이의 ${a + 1}번째 숫자를 입력해주세요`);
-      switch (num) {
-        case "0":
-          uc[a] = num;
-          break;
-        case "1":
-          uc[a] = num;
-          break;
-        case "2":
-          uc[a] = num;
-          break;
-        case "3":
-          uc[a] = num;
-          break;
-        case "4":
-          uc[a] = num;
-          break;
-        case "5":
-          uc[a] = num;
-          break;
-        case "6":
-          uc[a] = num;
-          break;
-        case "7":
-          uc[a] = num;
-          break;
-        case "8":
-          uc[a] = num;
-          break;
-        case "9":
-          uc[a] = num;
-          break;
-        default:
-          console.log("0~9 사이의 숫자만 입력해주세요.");
-          a--;
+      if (num >= 0 && num <= 9) uc[a] = num;
+      else {
+        console.log("0~9 까지의 숫자만 입력해주세요.");
+        a--;
       }
     }
-
     if (uc[0] == uc[1]) {
       uoverlap = 1;
       console.log(`\n당신이 고른 숫자 : ${uc[0]}, ${uc[1]}, ${uc[2]}\n\n`);
@@ -92,7 +60,7 @@ function compare1() {
 
 function compare2() {
   for (i = 0; i < cc.length; i++) {
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < cc.length; j++) {
       if (cc[i] == uc[j]) {
         ball_count++;
       }
