@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(228, 199, 255);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  width: 500px;
+  height: 70px;
+  background-color: rgb(193, 128, 255);
+  color: white;
+}
+
+.inputButton {
+  text-align: center;
+  background-color: white;
+  width: 800px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+.textBox {
+  width: 500px;
+  height: 30px;
+  font-size: 20px;
+  margin: 25px 0px;
+  background-color: white;
+}
+
+.addButton,
+.delButton {
+  width: 50px;
+  border-radius: 5px;
+}
+
+.delButton {
+  background-color: red;
+}
+
+.addButton {
+  background-color: greenyellow;
+}
+
+.list {
+  text-align: center;
+  margin: 5px 0px;
+}
+
+.innerList {
+  display: flex;
+  margin: 5px auto;
+  justify-content: space-between;
+  max-width: 800px;
+  font-size: 2rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}

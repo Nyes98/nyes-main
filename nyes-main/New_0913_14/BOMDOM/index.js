@@ -55,7 +55,9 @@ document.getElementById("test").style.border = "10px solid red";
 console.dir(document.getElementById("test"));
 
 // 상속 : 상속하는 객체의 정보 (프로퍼티, 메서드 모두 포함)를 갖는 다른 객체를 만드는 행위
-// A = {a,b,c} => B가 A를 상속한다. => B = {a,b,c}
+// A = {a,b,c} => B가
+
+// A를 상속한다. => B = {a,b,c}
 //
 // const person = { name: "", age: 0, gender: 0 };
 // const kim = { name: "김성진", age: 27, gender: 1 };
@@ -68,3 +70,8 @@ console.dir(document.getElementById("test"));
 // Node를 이용하여 Element, document 등을 생성한다.
 // 프로토타입은 상식적으로 생각했을 때 테스트를 위한 임시 기계
 // 프로토타입을 업그레이드, 즉 기능을 추가하거나 필요치 않은 기능을 삭제하거나 등등 더 좋게 만들어서 다음 것을 만든다.
+
+// 객체 : 키와 값으로 이루어진 것, 값 = 데이터 키 = 데이터의 이름, 태그 : html에서 사용하는 명령어, div : 영역,
+// 함수 : 작업을 수행하도록 설계된 독립적인 블록, 매개변수, 링크 : 파일 가져오는 명령어, src : source의 약자,
+// document : html 파일 구조에 대해서 객체로서 저장
+// alt : 이미지 못띄울때 나오는 텍스트 position : css속성중 하나이며, 영역을 어디에 위치시킬지에대한 어떻게 할건지
