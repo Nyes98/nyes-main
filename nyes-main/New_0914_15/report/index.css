@@ -17,6 +17,7 @@
   height: 70px;
   background-color: rgb(193, 128, 255);
   color: white;
+  border-radius: 10px;
 }
 
 .inputButton {

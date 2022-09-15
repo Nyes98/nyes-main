@@ -1,7 +1,7 @@
 let temp = [];
 let divnum = 0;
 
-function button() {
+function addButton() {
   let text = document.getElementById("inputText").value;
   temp.push(text);
   console.log(temp);
