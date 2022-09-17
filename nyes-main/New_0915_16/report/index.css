@@ -5,7 +5,80 @@
 }
 
 .header {
+  display: flex;
   width: 400px;
   height: 100px;
   background-color: black;
+  color: white;
+  align-items: center;
+}
+
+.middle {
+  width: 400px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.bottom {
+  width: 400px;
+  height: 150px;
+  border: 1px solid black;
+}
+
+.userBtn {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.userBtn1,
+.userBtn2,
+.userBtn3 {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+}
+
+#comDisplay {
+  background-color: black;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  position: absolute;
+  margin: 100px 100px;
+}
+
+#roulette {
+  position: absolute;
+  background: repeating-conic-gradient(pink 0deg 22.5deg, yellow 22.5deg 45deg);
+  margin: 50px 50px;
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+}
+
+.windiv,
+.drawdiv,
+.losediv {
+  width: 100px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.windiv {
+  background-color: green;
+}
+.drawdiv {
+  background-color: yellow;
+}
+.losediv {
+  background-color: red;
+}
+
+.result {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
 }
