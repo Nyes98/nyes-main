@@ -4,6 +4,12 @@
   padding: 0;
 }
 
+#myCoin {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
 .header {
   display: flex;
   width: 400px;
@@ -39,13 +45,69 @@
   border-radius: 100%;
 }
 
+.userBtn1 {
+  background-image: url("rsp1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.userBtn1:hover,
+.userBtn2:hover,
+.userBtn3:hover {
+  border: 2px solid red;
+}
+
+.userBtn2 {
+  background-image: url("rsp2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.userBtn3 {
+  background-image: url("rsp3.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.userBtn4 {
+  background-image: url("coinsert.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 50px;
+  height: 49;
+  border: none;
+}
 #comDisplay {
-  background-color: black;
   width: 200px;
   height: 200px;
   border-radius: 100px;
   position: absolute;
   margin: 100px 100px;
+}
+
+.comDisplay {
+  animation: comSel 3s infinite;
+  animation-play-state: running;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#comResult {
+  position: absolute;
+  margin: 100px 100px;
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  background-image: url("rsp1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+}
+
+#rspimg {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
 #roulette {
@@ -57,6 +119,19 @@
   border-radius: 150px;
 }
 
+#roulette {
+  /* animation: rouletteSpin 10s linear infinite; */
+  transform: rotate(12deg);
+}
+
+/* .roulette {
+  transform: rotate(12deg);
+  animation-name: rouletteSpin;
+  animation: rouletteSpin 5s ease;
+  animation-play-state: paused;
+  animation-direction: normal;
+} */
+
 .windiv,
 .drawdiv,
 .losediv {
@@ -64,16 +139,17 @@
   height: 75px;
   display: flex;
   justify-content: center;
+  border-radius: 20px;
   align-items: center;
 }
 
-.windiv {
+#windiv {
   background-color: green;
 }
-.drawdiv {
+#drawdiv {
   background-color: yellow;
 }
-.losediv {
+#losediv {
   background-color: red;
 }
 
@@ -81,4 +157,156 @@
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
+}
+
+@keyframes comSel {
+  0% {
+    background-image: url("rsp1.png");
+  }
+  32.9% {
+    background-image: url("rsp1.png");
+  }
+  33% {
+    background-image: url("rsp2.png");
+  }
+  65.9% {
+    background-image: url("rsp2.png");
+  }
+  66% {
+    background-image: url("rsp3.png");
+  }
+  100% {
+    background-image: url("rsp3.png");
+  }
+}
+
+@keyframes rouletteSpin {
+  100% {
+    transform: rotate(1452deg);
+  }
+}
+
+.rrdiv {
+  width: 30px;
+  position: relative;
+  height: 30px;
+  font-size: 1.5rem;
+}
+
+#rrdiv1 {
+  left: 120px;
+  top: 15px;
+  transform: rotate(-10deg);
+}
+
+#rrdiv2 {
+  left: 170px;
+  bottom: 10px;
+  transform: rotate(12.5deg);
+}
+
+#rrdiv3 {
+  left: 215px;
+  bottom: 20px;
+  transform: rotate(35deg);
+}
+
+#rrdiv4 {
+  left: 240px;
+  bottom: 15px;
+  transform: rotate(57.5deg);
+}
+
+#rrdiv5 {
+  left: 255px;
+  top: 5px;
+  transform: rotate(80deg);
+}
+
+#rrdiv6 {
+  left: 250px;
+  top: 20px;
+  transform: rotate(102.5deg);
+}
+
+#rrdiv7 {
+  left: 230px;
+  top: 30px;
+  transform: rotate(125deg);
+}
+
+#rrdiv8 {
+  left: 195px;
+  top: 30px;
+  transform: rotate(147.5deg);
+}
+
+#rrdiv9 {
+  left: 150px;
+  top: 15px;
+  transform: rotate(170deg);
+}
+
+#rrdiv10 {
+  left: 100px;
+  bottom: 15px;
+  transform: rotate(192.5deg);
+}
+
+#rrdiv11 {
+  left: 55px;
+  bottom: 67px;
+  transform: rotate(215deg);
+}
+
+#rrdiv12 {
+  left: 30px;
+  bottom: 135px;
+  transform: rotate(237.5deg);
+}
+
+#rrdiv13 {
+  left: 15px;
+  bottom: 210px;
+  transform: rotate(260deg);
+}
+
+#rrdiv14 {
+  left: 20px;
+  bottom: 290px;
+  transform: rotate(282.5deg);
+}
+
+#rrdiv15 {
+  left: 40px;
+  bottom: 360px;
+  transform: rotate(305deg);
+}
+
+#rrdiv16 {
+  left: 75px;
+  bottom: 420px;
+  transform: rotate(327.5deg);
+}
+
+.here {
+  display: inline;
+  height: 25px;
+  width: 5px;
+  background-color: red;
+  position: absolute;
+  left: 200px;
+  top: 210px;
+  transform: rotate(20deg);
+}
+
+.here2 {
+  display: inline;
+  height: 25px;
+  width: 5px;
+  background-color: red;
+  position: absolute;
+  left: 193px;
+  top: 210px;
+  transform: rotate(160deg);
 }
