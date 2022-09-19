@@ -37,46 +37,46 @@
   margin-top: 30px;
 }
 
-.userBtn1,
-.userBtn2,
-.userBtn3 {
+.userBtn-child {
   width: 80px;
   height: 80px;
   border-radius: 100%;
-}
-
-.userBtn1 {
-  background-image: url("rsp1.png");
   background-repeat: no-repeat;
   background-size: cover;
+  border: 2px solid black;
 }
 
-.userBtn1:hover,
-.userBtn2:hover,
-.userBtn3:hover {
+.userBtn-child:nth-child(1) {
+  background-image: url("rsp1.png");
+}
+
+.userBtn-child:nth-child(2) {
+  background-image: url("rsp2.png");
+}
+
+.userBtn-child:nth-child(3) {
+  background-image: url("rsp3.png");
+}
+
+.userBtn-child:not(.on):hover {
   border: 2px solid red;
 }
 
-.userBtn2 {
-  background-image: url("rsp2.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+.on .userBtn-child:not(.on):hover {
+  border: 2px solid black;
 }
 
-.userBtn3 {
-  background-image: url("rsp3.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+.userBtn-child.on {
+  border: 2px solid blue !important;
 }
 
-.userBtn4 {
+.start-btn {
   background-image: url("coinsert.png");
-  background-repeat: no-repeat;
-  background-size: contain;
   width: 50px;
-  height: 49;
-  border: none;
+  height: 50px;
+  border: none !important;
 }
+
 #comDisplay {
   width: 200px;
   height: 200px;
@@ -92,6 +92,14 @@
   background-size: cover;
 }
 
+.comDisplay.on {
+  animation: comSel 0.3s infinite;
+}
+
+.comDisplay.pause {
+  animation-play-state: paused;
+}
+
 #comResult {
   position: absolute;
   margin: 100px 100px;
@@ -102,6 +110,22 @@
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0;
+}
+
+.comResult.simg {
+  background-image: url("rsp1.png") !important;
+}
+
+.comResult.rimg {
+  background-image: url("rsp2.png");
+}
+
+.comResult.pimg {
+  background-image: url("rsp3.png");
+}
+
+.comResult.on {
+  opacity: 1 !important;
 }
 
 #rspimg {
@@ -120,17 +144,8 @@
 }
 
 #roulette {
-  /* animation: rouletteSpin 10s linear infinite; */
   transform: rotate(12deg);
 }
-
-/* .roulette {
-  transform: rotate(12deg);
-  animation-name: rouletteSpin;
-  animation: rouletteSpin 5s ease;
-  animation-play-state: paused;
-  animation-direction: normal;
-} */
 
 .windiv,
 .drawdiv,
@@ -141,6 +156,12 @@
   justify-content: center;
   border-radius: 20px;
   align-items: center;
+}
+
+.result .windiv.on,
+.result .losediv.on,
+.result .drawdiv.on {
+  border: 3px solid aqua;
 }
 
 #windiv {
@@ -190,7 +211,7 @@
   width: 30px;
   position: relative;
   height: 30px;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 #rrdiv1 {

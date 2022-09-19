@@ -1,11 +1,9 @@
 let userSelv = 0;
-let winexp = 0;
 let pickCount = 0;
 let startCount = 0;
 let rdmcom = 0;
 let mycoin = 1000;
 let result = [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 5, 20];
-let resultrdm = [];
 
 const target = document.getElementById("comDisplay");
 const target1 = document.getElementById("comResult");
@@ -13,6 +11,7 @@ const wineft = document.getElementById("windiv");
 const draweft = document.getElementById("drawdiv");
 const loseeft = document.getElementById("losediv");
 const spin = document.getElementById("roulette");
+const pickeft = document.getElementById("userBtn");
 const pickeft1 = document.getElementById("userBtn1");
 const pickeft2 = document.getElementById("userBtn2");
 const pickeft3 = document.getElementById("userBtn3");
@@ -36,129 +35,151 @@ function startbtn() {
     alert("돈이 없습니다");
     return;
   }
+  if (startCount >= 1) return;
+  startCount++;
+  pickCount = 0;
   shuffle(result);
   for (let i = 1; i <= result.length; i++) {
     document.getElementById(`rrdiv${i}`).innerHTML = `${result[i - 1]}`;
   }
-  if (startCount >= 1) return;
-  startCount++;
-  pickCount = 0;
 
-  target1.style.opacity = "0";
-  draweft.style.border = "none";
-  wineft.style.border = "none";
-  loseeft.style.border = "none";
-  pickeft1.style.border = "2px solid black";
-  pickeft2.style.border = "2px solid black";
-  pickeft3.style.border = "2px solid black";
+  target.classList.remove("pause");
+
+  pickeft1.classList.remove("on");
+  pickeft2.classList.remove("on");
+  pickeft3.classList.remove("on");
+
+  target1.classList.remove("on");
+
+  draweft.classList.remove("on");
+  wineft.classList.remove("on");
+  loseeft.classList.remove("on");
 
   mycoin -= 100;
   document.getElementById("myCoin").innerHTML = `${mycoin}`;
   target.style.animation = "comSel 0.3s infinite";
-  spin.style.animation = "rouletteSpin 7s linear infinite";
 }
 
 function userPickS() {
   if (pickCount >= 1 || startCount != 1) return;
-  pickeft1.style.border = "2px solid blue";
-  pickeft2.style.border = "2px solid black";
-  pickeft3.style.border = "2px solid black";
+  target1.classList.remove("simg");
+
+  pickeft.classList.add("on");
+  pickeft1.classList.add("on");
+  draweft.classList.remove("on");
   pickCount++;
-  draweft.style.border = "none";
-  target.style.animationPlayState = "paused";
-  spin.style.animation = "rouletteSpin 7s linear infinite";
+  target.classList.add("pause");
   userSelv = 1;
   rdmcom = Math.floor(Math.random() * 3 + 1);
   if (userSelv == rdmcom) {
-    target1.style.backgroundImage = "url('rsp1.png')";
-    target1.style.opacity = "1";
-    draweft.style.border = "3px solid aqua";
+    target1.classList.add("on");
+    target1.classList.add("simg");
+
+    pickeft1.classList.remove("on");
+    draweft.classList.add("on");
     pickCount--;
   } else if (userSelv - rdmcom == -2) {
-    winexp++;
     target1.style.backgroundImage = "url('rsp3.png')";
-    target1.style.opacity = "1";
-    spin.style.animation = "rouletteSpin 5s ease";
-    wineft.style.border = "3px solid aqua";
-    startCount--;
-    let resultx = document.getElementById("rrdiv1").innerText;
+    target1.classList.add("on");
+    spin.style.animation = "rouletteSpin 3s ease";
+    wineft.classList.add("on");
 
-    console.log(resultx);
+    let resultx = document.getElementById("rrdiv1").innerText;
     mycoin += 100 * resultx;
-    document.getElementById("myCoin").innerHTML = `${mycoin}`;
+    setTimeout(() => {
+      spin.style.animation = "none";
+      document.getElementById("myCoin").innerHTML = `${mycoin}`;
+    }, 3500);
+
+    startCount--;
   } else {
     target1.style.backgroundImage = "url('rsp2.png')";
-    target1.style.opacity = "1";
-    loseeft.style.border = "3px solid aqua";
+    target1.classList.add("on");
+    loseeft.classList.add("on");
     startCount--;
   }
 }
 function userPickR() {
   if (pickCount >= 1 || startCount != 1) return;
-  pickeft2.style.border = "2px solid blue";
-  pickeft1.style.border = "2px solid black";
-  pickeft3.style.border = "2px solid black";
+  target1.classList.remove("simg");
+  pickeft.classList.add("on");
+  pickeft2.classList.add("on");
   pickCount++;
-  draweft.style.border = "none";
-  target.style.animationPlayState = "paused";
+  draweft.classList.remove("on");
+
+  target.classList.add("pause");
+
   userSelv = 2;
-  spin.style.animation = "rouletteSpin 7s linear infinite";
   rdmcom = Math.floor(Math.random() * 3 + 1);
   if (userSelv == rdmcom) {
     target1.style.backgroundImage = "url('rsp2.png')";
-    target1.style.opacity = "1";
-    draweft.style.border = "3px solid aqua";
+    target1.classList.add("on");
+
+    pickeft2.classList.remove("on");
+    draweft.classList.add("on");
+
     pickCount--;
   } else if (userSelv - rdmcom == 1) {
+    wineft.classList.add("on");
     target1.style.backgroundImage = "url('rsp1.png')";
-    target1.style.opacity = "1";
-    spin.style.animationPlayState = "running";
-    wineft.style.border = "3px solid aqua";
-    spin.style.animation = "rouletteSpin 5s ease";
-    startCount--;
-    let resultx = document.getElementById("rrdiv1").innerText;
+    target1.classList.add("on");
 
+    spin.style.animationPlayState = "running";
+    spin.style.animation = "rouletteSpin 3s ease";
+    let resultx = document.getElementById("rrdiv1").innerText;
     mycoin += 100 * resultx;
-    document.getElementById("myCoin").innerHTML = `${mycoin}`;
+    setTimeout(() => {
+      spin.style.animation = "none";
+      document.getElementById("myCoin").innerHTML = `${mycoin}`;
+    }, 3500);
+    startCount--;
   } else {
+    loseeft.classList.add("on");
     target1.style.backgroundImage = "url('rsp3.png')";
-    target1.style.opacity = "1";
-    loseeft.style.border = "3px solid aqua";
+    target1.classList.add("on");
+
     startCount--;
   }
 }
 
 function userPickP() {
   if (pickCount >= 1 || startCount != 1) return;
-  pickeft3.style.border = "2px solid blue";
-  pickeft2.style.border = "2px solid black";
-  pickeft1.style.border = "2px solid black";
+  target1.classList.remove("simg");
+  pickeft.classList.add("on");
+  pickeft3.classList.add("on");
+  draweft.classList.remove("on");
+
   pickCount++;
-  draweft.style.border = "none";
-  target.style.animationPlayState = "paused";
+  target.classList.add("pause");
+
   userSelv = 3;
-  spin.style.animation = "rouletteSpin 7s linear infinite";
   rdmcom = Math.floor(Math.random() * 3 + 1);
   if (userSelv == rdmcom) {
     target1.style.backgroundImage = "url('rsp3.png')";
-    target1.style.opacity = "1";
-    draweft.style.border = "3px solid aqua";
+    target1.classList.add("on");
+
+    draweft.classList.add("on");
+    pickeft3.classList.remove("on");
     pickCount--;
   } else if (userSelv - rdmcom == 1) {
+    wineft.classList.add("on");
     target1.style.backgroundImage = "url('rsp2.png')";
-    target1.style.opacity = "1";
-    spin.style.animationPlayState = "running";
-    wineft.style.border = "3px solid aqua";
-    startCount--;
-    spin.style.animation = "rouletteSpin 5s ease";
-    let resultx = document.getElementById("rrdiv1").innerText;
+    target1.classList.add("on");
 
+    spin.style.animationPlayState = "running";
+    startCount--;
+    spin.style.animation = "rouletteSpin 3s ease";
+    let resultx = document.getElementById("rrdiv1").innerText;
     mycoin += 100 * resultx;
-    document.getElementById("myCoin").innerHTML = `${mycoin}`;
+    setTimeout(() => {
+      spin.style.animation = "none";
+      document.getElementById("myCoin").innerHTML = `${mycoin}`;
+    }, 3500);
   } else {
+    loseeft.classList.add("on");
     target1.style.backgroundImage = "url('rsp1.png')";
-    target1.style.opacity = "1";
-    loseeft.style.border = "3px solid aqua";
+    target1.classList.add("on");
+
     startCount--;
   }
 }

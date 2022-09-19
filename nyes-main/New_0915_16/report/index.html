@@ -40,17 +40,33 @@
         <div class="rrdiv" id="rrdiv16"></div>
       </div>
       <div id="comDisplay" class="comDisplay"></div>
-      <div id="comResult"></div>
+      <div id="comResult" class="comResult"></div>
     </div>
     <div class="bottom">
-      <div class="userBtn">
-        <button class="userBtn1" id="userBtn1" onclick="userPickS()"></button>
+      <div class="userBtn" id="userBtn">
+        <button
+          class="userBtn-child"
+          id="userBtn1"
+          onclick="userPickS()"
+        ></button>
 
-        <button class="userBtn2" id="userBtn2" onclick="userPickR()"></button>
+        <button
+          class="userBtn-child"
+          id="userBtn2"
+          onclick="userPickR()"
+        ></button>
 
-        <button class="userBtn3" id="userBtn3" onclick="userPickP()"></button>
+        <button
+          class="userBtn-child"
+          id="userBtn3"
+          onclick="userPickP()"
+        ></button>
 
-        <button class="userBtn4" id="userBtn4" onclick="startbtn()"></button>
+        <button
+          class="userBtn-child start-btn"
+          id="userBtn4"
+          onclick="startbtn()"
+        ></button>
       </div>
     </div>
     <script src="index.js"></script>
