@@ -112,19 +112,19 @@
   opacity: 0;
 }
 
-.comResult.simg {
+.simg {
   background-image: url("rsp1.png") !important;
 }
 
-.comResult.rimg {
-  background-image: url("rsp2.png");
+.rimg {
+  background-image: url("rsp2.png") !important;
 }
 
-.comResult.pimg {
-  background-image: url("rsp3.png");
+.pimg {
+  background-image: url("rsp3.png") !important;
 }
 
-.comResult.on {
+.onOpacity {
   opacity: 1 !important;
 }
 
@@ -147,6 +147,14 @@
   transform: rotate(12deg);
 }
 
+.onSpin {
+  animation: rouletteSpin 3s ease;
+}
+
+.onSpinreset {
+  animation: none;
+}
+
 .windiv,
 .drawdiv,
 .losediv {
@@ -158,9 +166,7 @@
   align-items: center;
 }
 
-.result .windiv.on,
-.result .losediv.on,
-.result .drawdiv.on {
+.onBorder {
   border: 3px solid aqua;
 }
 

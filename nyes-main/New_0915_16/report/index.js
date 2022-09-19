@@ -18,6 +18,42 @@ const pickeft3 = document.getElementById("userBtn3");
 
 document.getElementById("myCoin").innerHTML = `${mycoin}`;
 
+function reset() {
+  target1.classList.remove("simg");
+  target1.classList.remove("rimg");
+  target1.classList.remove("pimg");
+  pickeft.classList.add("on");
+  draweft.classList.remove("onBorder");
+  target.classList.add("pause");
+  pickCount++;
+  rdmcom = Math.floor(Math.random() * 3 + 1);
+}
+
+function drawSitu() {
+  pickCount--;
+  target1.classList.add("onOpacity");
+  draweft.classList.add("onBorder");
+}
+
+function loseSitu() {
+  startCount--;
+  target1.classList.add("onOpacity");
+  loseeft.classList.add("onBorder");
+}
+
+function winSitu() {
+  target1.classList.add("onOpacity");
+  wineft.classList.add("onBorder");
+  spin.classList.add("onSpin");
+  startCount--;
+  let resultx = document.getElementById("rrdiv1").innerText;
+  mycoin += 100 * resultx;
+  setTimeout(() => {
+    spin.classList.remove("onSpin");
+    document.getElementById("myCoin").innerHTML = `${mycoin}`;
+  }, 3500);
+}
+
 function shuffle(arr) {
   for (let i = 0; i < 100; i++) {
     const first = parseInt(Math.random() * arr.length);
@@ -35,9 +71,11 @@ function startbtn() {
     alert("돈이 없습니다");
     return;
   }
+
   if (startCount >= 1) return;
   startCount++;
   pickCount = 0;
+
   shuffle(result);
   for (let i = 1; i <= result.length; i++) {
     document.getElementById(`rrdiv${i}`).innerHTML = `${result[i - 1]}`;
@@ -49,148 +87,75 @@ function startbtn() {
   pickeft2.classList.remove("on");
   pickeft3.classList.remove("on");
 
-  target1.classList.remove("on");
+  target1.classList.remove("onOpacity");
 
-  draweft.classList.remove("on");
-  wineft.classList.remove("on");
-  loseeft.classList.remove("on");
+  draweft.classList.remove("onBorder");
+  wineft.classList.remove("onBorder");
+  loseeft.classList.remove("onBorder");
 
   mycoin -= 100;
   document.getElementById("myCoin").innerHTML = `${mycoin}`;
-  target.style.animation = "comSel 0.3s infinite";
+  target.classList.add("on");
 }
 
 function userPickS() {
   if (pickCount >= 1 || startCount != 1) return;
-  target1.classList.remove("simg");
-
-  pickeft.classList.add("on");
   pickeft1.classList.add("on");
-  draweft.classList.remove("on");
-  pickCount++;
-  target.classList.add("pause");
+  reset();
   userSelv = 1;
-  rdmcom = Math.floor(Math.random() * 3 + 1);
+
   if (userSelv == rdmcom) {
-    target1.classList.add("on");
+    drawSitu();
     target1.classList.add("simg");
-
     pickeft1.classList.remove("on");
-    draweft.classList.add("on");
-    pickCount--;
   } else if (userSelv - rdmcom == -2) {
-    target1.style.backgroundImage = "url('rsp3.png')";
-    target1.classList.add("on");
-    spin.style.animation = "rouletteSpin 3s ease";
-    wineft.classList.add("on");
+    winSitu();
 
-    let resultx = document.getElementById("rrdiv1").innerText;
-    mycoin += 100 * resultx;
-    setTimeout(() => {
-      spin.style.animation = "none";
-      document.getElementById("myCoin").innerHTML = `${mycoin}`;
-    }, 3500);
-
-    startCount--;
+    target1.classList.add("pimg");
   } else {
-    target1.style.backgroundImage = "url('rsp2.png')";
-    target1.classList.add("on");
-    loseeft.classList.add("on");
-    startCount--;
+    loseSitu();
+    target1.classList.add("rimg");
   }
 }
 function userPickR() {
   if (pickCount >= 1 || startCount != 1) return;
-  target1.classList.remove("simg");
-  pickeft.classList.add("on");
   pickeft2.classList.add("on");
-  pickCount++;
-  draweft.classList.remove("on");
-
-  target.classList.add("pause");
-
+  reset();
   userSelv = 2;
-  rdmcom = Math.floor(Math.random() * 3 + 1);
+
   if (userSelv == rdmcom) {
-    target1.style.backgroundImage = "url('rsp2.png')";
-    target1.classList.add("on");
+    drawSitu();
 
+    target1.classList.add("rimg");
     pickeft2.classList.remove("on");
-    draweft.classList.add("on");
-
-    pickCount--;
   } else if (userSelv - rdmcom == 1) {
-    wineft.classList.add("on");
-    target1.style.backgroundImage = "url('rsp1.png')";
-    target1.classList.add("on");
-
-    spin.style.animationPlayState = "running";
-    spin.style.animation = "rouletteSpin 3s ease";
-    let resultx = document.getElementById("rrdiv1").innerText;
-    mycoin += 100 * resultx;
-    setTimeout(() => {
-      spin.style.animation = "none";
-      document.getElementById("myCoin").innerHTML = `${mycoin}`;
-    }, 3500);
-    startCount--;
+    winSitu();
+    target1.classList.add("simg");
   } else {
-    loseeft.classList.add("on");
-    target1.style.backgroundImage = "url('rsp3.png')";
-    target1.classList.add("on");
+    loseSitu();
 
-    startCount--;
+    target1.classList.add("pimg");
   }
 }
 
 function userPickP() {
   if (pickCount >= 1 || startCount != 1) return;
-  target1.classList.remove("simg");
-  pickeft.classList.add("on");
   pickeft3.classList.add("on");
-  draweft.classList.remove("on");
-
-  pickCount++;
-  target.classList.add("pause");
-
+  reset();
   userSelv = 3;
-  rdmcom = Math.floor(Math.random() * 3 + 1);
+
   if (userSelv == rdmcom) {
-    target1.style.backgroundImage = "url('rsp3.png')";
-    target1.classList.add("on");
+    drawSitu();
 
-    draweft.classList.add("on");
+    target1.classList.add("pimg");
     pickeft3.classList.remove("on");
-    pickCount--;
   } else if (userSelv - rdmcom == 1) {
-    wineft.classList.add("on");
-    target1.style.backgroundImage = "url('rsp2.png')";
-    target1.classList.add("on");
+    winSitu();
 
-    spin.style.animationPlayState = "running";
-    startCount--;
-    spin.style.animation = "rouletteSpin 3s ease";
-    let resultx = document.getElementById("rrdiv1").innerText;
-    mycoin += 100 * resultx;
-    setTimeout(() => {
-      spin.style.animation = "none";
-      document.getElementById("myCoin").innerHTML = `${mycoin}`;
-    }, 3500);
+    target1.classList.add("rimg");
   } else {
-    loseeft.classList.add("on");
-    target1.style.backgroundImage = "url('rsp1.png')";
-    target1.classList.add("on");
+    loseSitu();
 
-    startCount--;
+    target1.classList.add("simg");
   }
 }
-
-// ==========================
-
-// window.onload = function () {
-//   let i = 1;
-//   setInterval(function () {
-//     let pic = document.getElementById("rspimg");
-//     pic.setAttribute("src", "rsp" + ((i % 3) + 1) + ".png");
-//     i++;
-//   }, chgtime);
-// };
