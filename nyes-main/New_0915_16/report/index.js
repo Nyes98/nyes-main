@@ -8,6 +8,8 @@ let result = [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 5, 20];
 const target = document.getElementById("comDisplay");
 const target1 = document.getElementById("comResult");
 const wineft = document.getElementById("windiv");
+const wineft1 = document.getElementById("windiv1");
+
 const draweft = document.getElementById("drawdiv");
 const loseeft = document.getElementById("losediv");
 const spin = document.getElementById("roulette");
@@ -44,6 +46,7 @@ function loseSitu() {
 function winSitu() {
   target1.classList.add("onOpacity");
   wineft.classList.add("onBorder");
+  wineft1.classList.add("onBorder");
   spin.classList.add("onSpin");
   startCount--;
   let resultx = document.getElementById("rrdiv1").innerText;
@@ -91,6 +94,7 @@ function startbtn() {
 
   draweft.classList.remove("onBorder");
   wineft.classList.remove("onBorder");
+  wineft1.classList.remove("onBorder");
   loseeft.classList.remove("onBorder");
 
   mycoin -= 100;

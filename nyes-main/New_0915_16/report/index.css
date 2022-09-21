@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+.wrap {
+  margin: auto;
+}
+
 #myCoin {
   color: white;
   font-size: 2rem;
@@ -23,12 +27,16 @@
   width: 400px;
   height: 500px;
   border: 1px solid black;
+  background-color: rgb(243, 175, 50);
+  overflow: hidden;
+  position: relative;
 }
 
 .bottom {
   width: 400px;
   height: 150px;
   border: 1px solid black;
+  background-color: rgba(165, 42, 42, 0.363);
 }
 
 .userBtn {
@@ -47,15 +55,15 @@
 }
 
 .userBtn-child:nth-child(1) {
-  background-image: url("rsp1.png");
+  background-image: url("./rsp1.png");
 }
 
 .userBtn-child:nth-child(2) {
-  background-image: url("rsp2.png");
+  background-image: url("./rsp2.png");
 }
 
 .userBtn-child:nth-child(3) {
-  background-image: url("rsp3.png");
+  background-image: url("./rsp3.png");
 }
 
 .userBtn-child:not(.on):hover {
@@ -71,18 +79,19 @@
 }
 
 .start-btn {
-  background-image: url("coinsert.png");
+  background-image: url("./coinsert.png");
   width: 50px;
   height: 50px;
   border: none !important;
 }
 
 #comDisplay {
+  z-index: 2;
   width: 200px;
   height: 200px;
   border-radius: 100px;
   position: absolute;
-  margin: 100px 100px;
+  margin: 72px 100px;
 }
 
 .comDisplay {
@@ -102,26 +111,27 @@
 
 #comResult {
   position: absolute;
-  margin: 100px 100px;
+  margin: 72px 100px;
   border-radius: 100px;
   width: 200px;
   height: 200px;
-  background-image: url("rsp1.png");
+  background-image: url("./rsp1.png");
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 2;
   opacity: 0;
 }
 
 .simg {
-  background-image: url("rsp1.png") !important;
+  background-image: url("./rsp1.png") !important;
 }
 
 .rimg {
-  background-image: url("rsp2.png") !important;
+  background-image: url("./rsp2.png") !important;
 }
 
 .pimg {
-  background-image: url("rsp3.png") !important;
+  background-image: url("./rsp3.png") !important;
 }
 
 .onOpacity {
@@ -134,13 +144,36 @@
   border-radius: 50%;
 }
 
+.mainBar1 {
+  width: 25px;
+  height: 500px;
+  position: absolute;
+  right: 200px;
+  bottom: 10px;
+  transform: rotate(70deg);
+  background-color: rgb(179, 116, 35);
+  border: 2px solid rgb(216, 138, 37);
+}
+
+.mainBar2 {
+  width: 25px;
+  height: 500px;
+  position: absolute;
+  bottom: 10px;
+  right: 200px;
+  background-color: rgb(179, 116, 35);
+  border: 2px solid rgb(216, 138, 37);
+  transform: rotate(-70deg);
+}
+
 #roulette {
   position: absolute;
   background: repeating-conic-gradient(pink 0deg 22.5deg, yellow 22.5deg 45deg);
-  margin: 50px 50px;
+  margin: 20px 50px;
   width: 300px;
   height: 300px;
   border-radius: 150px;
+  z-index: 2;
 }
 
 #roulette {
@@ -158,12 +191,14 @@
 .windiv,
 .drawdiv,
 .losediv {
-  width: 100px;
+  width: 150px;
   height: 75px;
   display: flex;
   justify-content: center;
   border-radius: 20px;
   align-items: center;
+  font-weight: 800;
+  font-size: 1.5rem;
 }
 
 .onBorder {
@@ -171,39 +206,49 @@
 }
 
 #windiv {
-  background-color: green;
+  background-color: greenyellow;
+}
+#windiv1 {
+  background-color: greenyellow;
 }
 #drawdiv {
   background-color: yellow;
+  top: 500px;
 }
 #losediv {
   background-color: red;
 }
 
-.result {
+.resultTop {
   margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.resultBottom {
+  margin-top: 330px;
   display: flex;
   justify-content: space-around;
 }
 
 @keyframes comSel {
   0% {
-    background-image: url("rsp1.png");
+    background-image: url("./rsp1.png");
   }
   32.9% {
-    background-image: url("rsp1.png");
+    background-image: url("./rsp1.png");
   }
   33% {
-    background-image: url("rsp2.png");
+    background-image: url("./rsp2.png");
   }
   65.9% {
-    background-image: url("rsp2.png");
+    background-image: url("./rsp2.png");
   }
   66% {
-    background-image: url("rsp3.png");
+    background-image: url("./rsp3.png");
   }
   100% {
-    background-image: url("rsp3.png");
+    background-image: url("./rsp3.png");
   }
 }
 
@@ -323,8 +368,9 @@
   background-color: red;
   position: absolute;
   left: 200px;
-  top: 210px;
+  top: 90px;
   transform: rotate(20deg);
+  z-index: 3;
 }
 
 .here2 {
@@ -334,6 +380,7 @@
   background-color: red;
   position: absolute;
   left: 193px;
-  top: 210px;
+  top: 90px;
   transform: rotate(160deg);
+  z-index: 3;
 }
