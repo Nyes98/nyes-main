@@ -94,7 +94,7 @@ function startbtn() {
 
   draweft.classList.remove("onBorder");
   wineft.classList.remove("onBorder");
-  wineft1.classList.remove("onBorder");
+  wineft.classList.remove("onBorder");
   loseeft.classList.remove("onBorder");
 
   mycoin -= 100;
