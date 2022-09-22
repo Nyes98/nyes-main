@@ -22,37 +22,46 @@
           // head는 다음 데이터이다.
           super(data);
           // 부모 노드(기본 노드)의 생성자를 호출한다, 실행한다.
-          this.head = head;
+          this.head;
           // head를 생성한다.
         }
 
         push(data) {
           // 넣다, data 매개변수를
           if (!this.data) this.data = data;
-          // 만약 data가 없으면 현재 노드의 data에 전달받은 매개변수 data를 정의한다.
+          // 만약에 data가 없으면 현재 노드의 data에 전달받은 매개변서 data를 정의한다.
           // pop을 하다보면 전부 없앨 수 있기 때문에 현재 노드의 data 또한 삭제될 수 있기 때문이다.
           else if (this.head) {
             // head가 있다는 얘기는 마지막 노드가 아니다. 즉, 마지막 순서가 아니다.
             this.head.push(data);
             // 마지막 순서가 아니기 때문에 다음 노드에 데이터를 넣도록 한다.
           } else {
-            // 다음 데이터가 없음이 확인되었고, 현재 데이터도 있을 떄 head에 새 노드를 추가한다.
+            // 다음 데이터가 없음이 확인되었고, 현재 데이터도 있을 때 head에 새 노드를 추가한다.
             this.head = new StackNode(data);
           }
         }
 
         pop() {
-          if (this?.head?.head)
-            return this.head.pop(); // head가 있을 수 있는가?
+          if (this?.head?.head) return this.head.pop();
+          // 만약에 this의 head의 head가 있으면 this의 head의 pop 메서드 호출
           else if (!this?.head) {
+            // 만약에 this의 head가 없으면
             const temp = this.data;
+            // temp 변수에 현재 data를 정의한다.
             this.data = undefined;
+            // 현재 data를 삭제한다.
             return temp;
+            // temp를 return한다.
           } else {
+            // this의 head의 head가 없고 this의 head가 없으면
             const temp = this.head.data;
+            // temp 변수에 this의 head의 data를 정의
             delete this.head;
+            // this의 head를 삭제(클래스 객체는 delete가 필요)
             this.head = undefined;
+            // this의 head를 빈값으로 정의한다.
             return temp;
+            // temp를 return한다.
           }
         }
       }
