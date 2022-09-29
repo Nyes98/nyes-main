@@ -39,7 +39,7 @@
       }
 
       class BinarySearchTree {
-        // 이진 검색 트리
+        // 이진 탐색 트리
         constructor() {
           this.root = null;
         }
@@ -81,7 +81,7 @@
             // 지우려는 데이터가 현재 노드의 데이터보다 크다
             if (node.right) {
               // 현재 노드의 오른쪽 노드가 있으면
-              node.left = this.remove(data, node.right);
+              node.right = this.remove(data, node.right);
               // 현재 노드가 바뀌면서 바뀐 노드로 다시 remove 시작
             }
           } else {
@@ -114,16 +114,7 @@
           // 재귀 함수를 위해서
           // 이게 없으면 한쪽 전체가 사라져버린다.
         }
-
-        // 자식이 없는경우, 자식이 하나인경우(밑에 더 있을 수 있음), 자식이 두개인경우
-        // 삭제를 해도 트리의 왼쪽은 작고 오른쪽은 큰 속성을 유지시켜줘야함
-
-        // remove(data, node = this.root) {
-        //   if (!node) node = this.root;
-        // } // 위와 같다
       }
-
-      // 어떤 수를 찾는데 빨라서(대소비교) 사용
       const testSearch = new BinarySearchTree();
       testSearch.insert(8);
       testSearch.insert(4);
