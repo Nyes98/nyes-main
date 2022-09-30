@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function hanoi(n, start, end) {
+        // 고리수, 시작, 도착
+        // n 번째 고리를 3번째 고리로 이동시켜야 한다.
+        // n-1개 모든 고리를 2번째 고리로 이동시켜야 한다.
+        // n-2개 모든 고리를 1번째 고리로 이동시켜야 한다.
+
+        // 1. 나머지 원판을 출발지와 도착지가 아닌 곳으로 옮긴다.
+        // 2. 제일 큰 원판을 도착지로 옮긴다.
+        // 3. 나머지 원판들을 도착지로 옮긴다.
+
+        hanoi(n-1, 1, 2); // 1단계
+
+
+        hanoi(n-1, A, B);
+        console.log(`${n}번째 원반을 C로 이동합니다.`);
+        hanoi(n-1, B, C);
+
+        hanoi(n-1, A, B){
+        hhhanoi(n-2,A,C);
+        console.log(`${n}번째 원반을 B로 이동합니다.`);
+        hanoi(n-1, C, B);
+
+        }
+        return;
+      }
+      console.log(hanoi(3));
+    </script>
+  </body>
+</html>

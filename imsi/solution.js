@@ -1,65 +1,11 @@
-function solution(dartResult) {
-  let result = 0;
-  let arr = [...dartResult];
+function solution(board, moves) {
+  var answer = 0;
+  let tempArr = [];
 
-  console.log(arr);
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == 1 && arr[i + 1] == 0) {
-      arr[i] = 10;
-      arr.splice(i + 1, 1);
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      tempArr[j][i] = board[i][j];
     }
   }
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == "S" || arr[i] == "D" || arr[i] == "T") {
-      arr[i - 1] = parseInt(arr[i - 1]);
-    }
-
-    console.log(arr);
-
-    if (arr[i] === "S" || arr[i] === "D" || arr[i] === "T") {
-      if (arr[i] === "D") {
-        arr[i - 1] = Math.pow(arr[i - 1], 2);
-      } else if (arr[i] === "T") {
-        arr[i - 1] = Math.pow(arr[i - 1], 3);
-      }
-    } else if (arr[i] == "*" || arr[i] == "#") {
-      arr[i - 2] = arr[i - 2] * 2;
-      if (typeof arr[i - 4] == "number") {
-        arr[i - 4] = arr[i - 4] * 2;
-      } else {
-        arr[i - 5] = arr[i - 5] * 2;
-      }
-    }
-    // if(arr[i] ==="*" && arr.length >=8) {
-    //   arr[i-2] = arr[i-2] * 2;
-    //   arr[i-5] = arr[i-5] * 2;
-    // }
-    // else if (arr[i] === "*" && arr.indexOf("*") >= 4) {
-    //   arr[i-2] = arr[i-2] * 2;
-    //   arr[i-4] = arr[i-4] * 2;
-    // }
-    //   else if (arr[i] === "*" && arr.indexOf("*") < 4) {
-    //   arr[i - 2] = arr[i - 2] * 2;
-    // }
-    else if (arr[i] === "#") {
-      arr[i - 2] = arr[i - 2] * -1;
-    }
-  }
-
-  console.log(arr);
-
-  for (let i = 0; i < arr.length; i++) {
-    console.log(arr);
-
-    if (typeof arr[i] == "number") {
-      result += arr[i];
-      console.log(result);
-    }
-  }
-  console.log(result);
-  return result;
+  return answer;
 }
-let dartResult = "2T*3T4T*";
-solution(dartResult);
