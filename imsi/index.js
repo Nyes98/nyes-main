@@ -1,34 +1,56 @@
 function solution(n) {
   let share = parseInt(n / 3);
   let remainder = n % 3;
-  let resultArr = [];
+  let answerArr = [];
 
-  for (i = 0; i < parseInt(n / 3) + 1; i++) {
+  console.log("n = " + n);
+  console.log("share = " + share);
+  console.log("remainder = " + remainder);
+
+  if (n <= 3) answerArr.push(n);
+  else {
+    // debugger;
+
     if (remainder == 0) {
-      share - 1;
+      share--;
       remainder += 3;
-      resultArr.push(share);
-      resultArr.push(remainder);
-      remainder = 0;
-      if (resultArr[0] >= 4) {
-        share = parseInt(share / 3);
-        resultArr.unshift(share);
-        resultArr[1] = parseInt(resultArr[1] / 3);
-      } else break;
     }
-    if (remainder == 1) {
-      resultArr.push(1);
-      console.log(resultArr);
 
-      continue;
-    }
-    if (remainder == 2) {
-      resultArr.push(2);
-      console.log(resultArr);
+    answerArr.push(share);
+    answerArr.push(remainder);
 
-      continue;
+    if (n > 12) {
+      console.log(answerArr[0]);
+      console.log(solution(answerArr[0]));
+
+      answerArr.unshift(solution(answerArr[0]));
     }
+
+    // if (share >= 4) {
+    //   if (remainder == 0) {
+    //     share--;
+    //     remainder += 3;
+    //     answerArr.push(share);
+    //     answerArr.push(remainder);
+    //   }
+    //   if (remainder == 1) {
+    //     share--;
+    //     remainder += 3;
+    //     answerArr.push(share);
+    //     answerArr.push(remainder);
+    //   }
+    //   if (remainder == 2) {
+    //     share--;
+    //     remainder += 3;
+    //     answerArr.push(share);
+    //     answerArr.push(remainder);
+    //   }
+    // }
   }
+
+  console.log(answerArr);
+  return answerArr;
 }
 
-solution(3);
+solution(13);
+// console.log(solution(2));
