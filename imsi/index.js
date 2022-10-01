@@ -1,89 +1,34 @@
-function solution(dartResult) {
-  let result = 0;
-  let arr = [...dartResult];
+function solution(n) {
+  let share = parseInt(n / 3);
+  let remainder = n % 3;
+  let resultArr = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == 1 && arr[i + 1] == 0) {
-      arr[i] = 10;
-      arr.splice(i + 1, 1);
+  for (i = 0; i < parseInt(n / 3) + 1; i++) {
+    if (remainder == 0) {
+      share - 1;
+      remainder += 3;
+      resultArr.push(share);
+      resultArr.push(remainder);
+      remainder = 0;
+      if (resultArr[0] >= 4) {
+        share = parseInt(share / 3);
+        resultArr.unshift(share);
+        resultArr[1] = parseInt(resultArr[1] / 3);
+      } else break;
     }
-  }
+    if (remainder == 1) {
+      resultArr.push(1);
+      console.log(resultArr);
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == "S" || arr[i] == "D" || arr[i] == "T") {
-      arr[i - 1] = parseInt(arr[i - 1]);
+      continue;
     }
+    if (remainder == 2) {
+      resultArr.push(2);
+      console.log(resultArr);
 
-    if (arr[i] === "S" || arr[i] === "D" || arr[i] === "T") {
-      if (arr[i] === "D") {
-        arr[i - 1] = Math.pow(arr[i - 1], 2);
-      } else if (arr[i] === "T") {
-        arr[i - 1] = Math.pow(arr[i - 1], 3);
-      }
-    } else if (arr[i] == "*" || arr[i] == "#") {
-      // 문제 코드
-      arr[i - 2] = arr[i - 2] * 2;
-
-      if (typeof arr[i - 4] == "number") {
-        arr[i - 4] = arr[i - 4] * 2;
-      } else {
-        arr[i - 5] = arr[i - 5] * 2;
-      }
-    } else if (arr[i] === "#") {
-      arr[i - 2] = arr[i - 2] * -1;
+      continue;
     }
-  }
-
-  for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] == "number") {
-      result += arr[i];
-    }
-    return result;
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
-
-function solution(dartResult) {
-  let result = 0;
-  let arr = [...dartResult];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == 1 && arr[i + 1] == 0) {
-      arr[i] = 10;
-      arr.splice(i + 1, 1);
-    }
-  }
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == "S" || arr[i] == "D" || arr[i] == "T") {
-      arr[i - 1] = parseInt(arr[i - 1]);
-    }
-
-    if (arr[i] === "S" || arr[i] === "D" || arr[i] === "T") {
-      if (arr[i] === "D") {
-        arr[i - 1] = Math.pow(arr[i - 1], 2);
-      } else if (arr[i] === "T") {
-        arr[i - 1] = Math.pow(arr[i - 1], 3);
-      }
-    } else if (arr[i] == "*") {
-      arr[i - 2] = arr[i - 2] * 2;
-
-      if (typeof arr[i - 4] == "number") {
-        arr[i - 4] = arr[i - 4] * 2;
-      } else {
-        arr[i - 5] = arr[i - 5] * 2;
-      }
-    } else if (arr[i] === "#") {
-      arr[i - 2] = arr[i - 2] * -1;
-    }
-  }
-
-  for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] == "number") {
-      result += arr[i];
-    }
-  }
-
-  return result;
-}
+solution(3);
