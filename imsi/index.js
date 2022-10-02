@@ -11,46 +11,53 @@ function solution(n) {
   else {
     // debugger;
 
-    if (remainder == 0) {
-      share--;
-      remainder += 3;
-    }
+    do {
+      if (remainder == 0) {
+        share--;
+        remainder += 3;
+      }
 
-    answerArr.push(share);
-    answerArr.push(remainder);
+      answerArr.push(share);
+      answerArr.push(remainder);
 
-    if (n > 12) {
-      console.log(answerArr[0]);
-      console.log(solution(answerArr[0]));
-
-      answerArr.unshift(solution(answerArr[0]));
-    }
-
-    // if (share >= 4) {
-    //   if (remainder == 0) {
-    //     share--;
-    //     remainder += 3;
-    //     answerArr.push(share);
-    //     answerArr.push(remainder);
-    //   }
-    //   if (remainder == 1) {
-    //     share--;
-    //     remainder += 3;
-    //     answerArr.push(share);
-    //     answerArr.push(remainder);
-    //   }
-    //   if (remainder == 2) {
-    //     share--;
-    //     remainder += 3;
-    //     answerArr.push(share);
-    //     answerArr.push(remainder);
-    //   }
-    // }
+      if (share > 3) {
+        // answerArr.unshift(solution(answerArr[0]));
+        let a = parseInt(answerArr[0] / 3);
+        let b = answerArr[0] % 3;
+        answerArr.unshift(b);
+        answerArr.unshift(a);
+        answerArr.splice(2, 1);
+      }
+    } while (answerArr[0] >= 4);
   }
 
+  // if (share >= 4) {
+  //   if (remainder == 0) {
+  //     share--;
+  //     remainder += 3;
+  //     answerArr.push(share);
+  //     answerArr.push(remainder);
+  //   }
+  //   if (remainder == 1) {
+  //     share--;
+  //     remainder += 3;
+  //     answerArr.push(share);
+  //     answerArr.push(remainder);
+  //   }
+  //   if (remainder == 2) {
+  //     share--;
+  //     remainder += 3;
+  //     answerArr.push(share);
+  //     answerArr.push(remainder);
+  //   }
+  // }
+
   console.log(answerArr);
+  for (let i = 0; i < answerArr.length; i++) {
+    if (answerArr[i] == 3) answerArr[i] = 4;
+  }
   return answerArr;
 }
 
-solution(13);
+solution(39);
 // console.log(solution(2));
