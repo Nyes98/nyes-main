@@ -7,30 +7,13 @@
   </head>
   <body>
     <script>
-      function hanoi(n, start, end) {
-        // 고리수, 시작, 도착
-        // n 번째 고리를 3번째 고리로 이동시켜야 한다.
-        // n-1개 모든 고리를 2번째 고리로 이동시켜야 한다.
-        // n-2개 모든 고리를 1번째 고리로 이동시켜야 한다.
-
-        // 1. 나머지 원판을 출발지와 도착지가 아닌 곳으로 옮긴다.
-        // 2. 제일 큰 원판을 도착지로 옮긴다.
-        // 3. 나머지 원판들을 도착지로 옮긴다.
-
-        hanoi(n-1, 1, 2); // 1단계
-
-
-        hanoi(n-1, A, B);
-        console.log(`${n}번째 원반을 C로 이동합니다.`);
-        hanoi(n-1, B, C);
-
-        hanoi(n-1, A, B){
-        hhhanoi(n-2,A,C);
-        console.log(`${n}번째 원반을 B로 이동합니다.`);
-        hanoi(n-1, C, B);
-
-        }
-        return;
+      function hanoi(n, start = 1, mid = 2, end = 3) {
+        if (n == 1) return [[start, end]];
+        return [
+          ...hanoi(n - 1, start, end, mid),
+          [start, end],
+          ...hanoi(n - 1, mid, start, end),
+        ];
       }
       console.log(hanoi(3));
     </script>
