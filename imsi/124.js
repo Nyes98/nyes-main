@@ -4,14 +4,8 @@ function solution(n) {
   let answerArr = [];
   let result = 0;
 
-  console.log("n = " + n);
-  console.log("share = " + share);
-  console.log("remainder = " + remainder);
-
   if (n <= 3) answerArr.push(n);
   else {
-    debugger;
-
     do {
       if (remainder == 0) {
         share--;
@@ -34,14 +28,10 @@ function solution(n) {
     } while (answerArr[0] >= 4 || answerArr[1] == 0);
   }
 
-  console.log(answerArr);
   for (let i = 0; i < answerArr.length; i++) {
     if (answerArr[i] == 3) answerArr[i] = 4;
   }
 
   result = answerArr.join("");
-  console.log(result);
   return result;
 }
-
-solution(58);
