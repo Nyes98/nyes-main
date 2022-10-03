@@ -35,3 +35,5 @@ function solution(n) {
   result = answerArr.join("");
   return result;
 }
+
+solution(6);
