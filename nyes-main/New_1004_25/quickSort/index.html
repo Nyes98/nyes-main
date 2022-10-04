@@ -7,26 +7,38 @@
   </head>
   <body>
     <script>
-      function quickSortHelper(arr, right, left) {
+      function quickSortHelper(arr, left, right) {
+        // 퀵정렬을 도와주는 함수
         const pivotIdx = left++;
         while (left <= right) {
           while (arr[pivotIdx] > arr[left]) left++;
           while (arr[pivotIdx] < arr[right]) right--;
           if (left <= right) {
-            const temp = arr[pivotIdx];
-            arr[pivotIdx] = arr[right];
+            const temp = arr[left];
+            arr[left] = arr[right];
             arr[right] = temp;
-            return right;
+            left++;
+            right--;
           }
         }
-
-        function quickSort(arr, left, right) {
-          // 퀵정렬 함수
-          let idx = quickSortHelper(arr, left, right);
-          if (left < idx - 1) quickSort(arr, left, idx - 1);
-          if (idx + 1 < right) quickSort(arr, idx + 1, right);
-        }
+        const temp = arr[pivotIdx];
+        arr[pivotIdx] = arr[right];
+        arr[right] = temp;
+        return right;
       }
+
+      function quickSort(arr, left, right) {
+        // 퀵정렬 함수
+        let idx = quickSortHelper(arr, left, right);
+        if (left < idx - 1) quickSort(arr, left, idx - 1);
+        if (idx + 1 < right) quickSort(arr, idx + 1, right);
+        return arr;
+      }
+
+      const dataArr = [
+        727, 129, 621, 333, 100, 708, 1112, 1121, 1229, 214, 1818, 500, 6, 8282,
+        119, 3838,
+      ];
 
       console.log(dataArr);
       // console.log(dataArr.sort((a,b) => a-b));
