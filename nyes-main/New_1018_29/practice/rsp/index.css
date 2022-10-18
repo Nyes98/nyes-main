@@ -1,0 +1,390 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.wrap {
+  margin: auto;
+}
+
+#myCoin {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+  color: white;
+}
+
+.header {
+  display: flex;
+  width: 400px;
+  height: 100px;
+  background-color: lavender;
+  color: white;
+  align-items: center;
+}
+
+.middle {
+  width: 400px;
+  height: 500px;
+  border: 1px solid black;
+  background-color: rgb(243, 175, 50);
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom {
+  width: 400px;
+  height: 150px;
+  border: 1px solid black;
+  background-color: rgba(165, 42, 42, 0.363);
+}
+
+.userBtn {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.userBtn-child {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid black;
+}
+
+.userBtn-child:nth-child(1) {
+  background-image: url("./rsp1.png");
+}
+
+.userBtn-child:nth-child(2) {
+  background-image: url("./rsp2.png");
+}
+
+.userBtn-child:nth-child(3) {
+  background-image: url("./rsp3.png");
+}
+
+.userBtn-child:not(.on):hover {
+  border: 2px solid red;
+}
+
+.on .userBtn-child:not(.on):hover {
+  border: 2px solid black;
+}
+
+.userBtn-child.on {
+  border: 2px solid blue !important;
+}
+
+.start-btn {
+  background-image: url("./coinsert.png");
+  width: 50px;
+  height: 50px;
+  border: none !important;
+}
+
+#comDisplay {
+  z-index: 2;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  position: absolute;
+  margin: 72px 100px;
+}
+
+.comDisplay {
+  animation: comSel 3s infinite;
+  animation-play-state: running;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.comDisplay.on {
+  animation: comSel 0.3s infinite;
+}
+
+.comDisplay.pause {
+  animation-play-state: paused;
+}
+
+#comResult {
+  position: absolute;
+  margin: 72px 100px;
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  background-image: url("./rsp1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 2;
+  opacity: 0;
+}
+
+.simg {
+  background-image: url("./rsp1.png") !important;
+}
+
+.rimg {
+  background-image: url("./rsp2.png") !important;
+}
+
+.pimg {
+  background-image: url("./rsp3.png") !important;
+}
+
+.onOpacity {
+  opacity: 1 !important;
+}
+
+#rspimg {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.mainBar1 {
+  width: 25px;
+  height: 500px;
+  position: absolute;
+  right: 200px;
+  bottom: 10px;
+  transform: rotate(70deg);
+  background-color: rgb(179, 116, 35);
+  border: 2px solid rgb(216, 138, 37);
+}
+
+.mainBar2 {
+  width: 25px;
+  height: 500px;
+  position: absolute;
+  bottom: 10px;
+  right: 200px;
+  background-color: rgb(179, 116, 35);
+  border: 2px solid rgb(216, 138, 37);
+  transform: rotate(-70deg);
+}
+
+#roulette {
+  position: absolute;
+  background: repeating-conic-gradient(pink 0deg 22.5deg, yellow 22.5deg 45deg);
+  margin: 20px 50px;
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  z-index: 2;
+}
+
+#roulette {
+  transform: rotate(12deg);
+}
+
+.onSpin {
+  animation: rouletteSpin 3s ease;
+}
+
+.onSpinreset {
+  animation: none;
+}
+
+.windiv,
+.drawdiv,
+.losediv {
+  width: 150px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+  color: white;
+}
+
+.onBorder {
+  border: 3px solid aqua;
+}
+
+#windiv {
+  background-color: greenyellow;
+}
+#windiv1 {
+  background-color: greenyellow;
+}
+#drawdiv {
+  background-color: yellow;
+  top: 500px;
+}
+#losediv {
+  background-color: red;
+}
+
+.resultTop {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.resultBottom {
+  margin-top: 330px;
+  display: flex;
+  justify-content: space-around;
+}
+
+@keyframes comSel {
+  0% {
+    background-image: url("./rsp1.png");
+  }
+  32.9% {
+    background-image: url("./rsp1.png");
+  }
+  33% {
+    background-image: url("./rsp2.png");
+  }
+  65.9% {
+    background-image: url("./rsp2.png");
+  }
+  66% {
+    background-image: url("./rsp3.png");
+  }
+  100% {
+    background-image: url("./rsp3.png");
+  }
+}
+
+@keyframes rouletteSpin {
+  100% {
+    transform: rotate(1452deg);
+  }
+}
+
+.rrdiv {
+  width: 30px;
+  position: relative;
+  height: 30px;
+  font-size: 1rem;
+}
+
+#rrdiv1 {
+  left: 120px;
+  top: 15px;
+  transform: rotate(-10deg);
+}
+
+#rrdiv2 {
+  left: 170px;
+  bottom: 10px;
+  transform: rotate(12.5deg);
+}
+
+#rrdiv3 {
+  left: 215px;
+  bottom: 20px;
+  transform: rotate(35deg);
+}
+
+#rrdiv4 {
+  left: 240px;
+  bottom: 15px;
+  transform: rotate(57.5deg);
+}
+
+#rrdiv5 {
+  left: 255px;
+  top: 5px;
+  transform: rotate(80deg);
+}
+
+#rrdiv6 {
+  left: 250px;
+  top: 20px;
+  transform: rotate(102.5deg);
+}
+
+#rrdiv7 {
+  left: 230px;
+  top: 30px;
+  transform: rotate(125deg);
+}
+
+#rrdiv8 {
+  left: 195px;
+  top: 30px;
+  transform: rotate(147.5deg);
+}
+
+#rrdiv9 {
+  left: 150px;
+  top: 15px;
+  transform: rotate(170deg);
+}
+
+#rrdiv10 {
+  left: 100px;
+  bottom: 15px;
+  transform: rotate(192.5deg);
+}
+
+#rrdiv11 {
+  left: 55px;
+  bottom: 67px;
+  transform: rotate(215deg);
+}
+
+#rrdiv12 {
+  left: 30px;
+  bottom: 135px;
+  transform: rotate(237.5deg);
+}
+
+#rrdiv13 {
+  left: 15px;
+  bottom: 210px;
+  transform: rotate(260deg);
+}
+
+#rrdiv14 {
+  left: 20px;
+  bottom: 290px;
+  transform: rotate(282.5deg);
+}
+
+#rrdiv15 {
+  left: 40px;
+  bottom: 360px;
+  transform: rotate(305deg);
+}
+
+#rrdiv16 {
+  left: 75px;
+  bottom: 420px;
+  transform: rotate(327.5deg);
+}
+
+.here {
+  display: inline;
+  height: 25px;
+  width: 5px;
+  background-color: red;
+  position: absolute;
+  left: 200px;
+  top: 90px;
+  transform: rotate(20deg);
+  z-index: 3;
+}
+
+.here2 {
+  display: inline;
+  height: 25px;
+  width: 5px;
+  background-color: red;
+  position: absolute;
+  left: 193px;
+  top: 90px;
+  transform: rotate(160deg);
+  z-index: 3;
+}
