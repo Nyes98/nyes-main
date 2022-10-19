@@ -52,7 +52,7 @@ app.use(express.urlencoded({ extended: false }));
 // querystring을 파싱할 때 사용한 방법을 설정
 // 모듈을 사용하지 않겠다.
 
-app.use(cookieParser(process.env.COOKIE_SECERET));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use(
   session({
@@ -61,7 +61,7 @@ app.use(
     // 요청마다 세션을 재설정 할것인가?
     saveUninitialized: false,
     // 요청에 대해 세션에 작업할 것인가?
-    secret: process.env.COOKIE_SECERET,
+    secret: process.env.COOKIE_SECRET,
     // 암호화
     cookie: {
       // 쿠키는 어떻게 저장할 것인가?
