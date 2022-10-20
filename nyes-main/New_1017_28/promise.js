@@ -1,10 +1,10 @@
 const { resolve } = require("path");
 
-function testFunc(num, time, func) {
-  setTimeout(() => {
-    console.log(num);
-  }, timeout);
-}
+// function testFunc(num, time, func) {
+//   setTimeout(() => {
+//     console.log(num);
+//   }, timeout);
+// }
 
 // testFunc(1, 1000, () => {
 //   testFunc(2, 2000, () => {
@@ -20,7 +20,7 @@ function testPromise(num) {
     // reject : 에러 발생 시
     try {
       if (num > 10) reject({ data: "숫자가 너무 커" });
-      console.log(num);
+      console.log("num : " + num);
       setTimeout(() => {
         resolve(num + 1);
       }, num * 100);
@@ -30,7 +30,7 @@ function testPromise(num) {
   });
 }
 
-// testPromise(9)
+// testPromises(1)
 //   .then((data) => {
 //     return testPromise(data);
 //   })
@@ -39,12 +39,12 @@ function testPromise(num) {
 //   })
 //   .then((data) => {
 //     // then : 완료했을 때
-//     // 34번째 줄의 resolve의 매개변수(num+1)이 data에 정의된다.
+//     // 25번째 줄의 resolve의 매개변수(num+1)이 data에 정의된다.
 //     console.log("data : " + data);
 //   })
 //   .catch((err) => {
 //     // catch : 에러 발생 시
-//     // 31번, 37번째 줄의 reject 매개변수가 err에 정의된다.
+//     // 22번, 28번째 줄의 reject 매개변수가 err에 정의된다.
 //     console.log(err);
 //   });
 
@@ -66,7 +66,7 @@ async function asyncFunc() {
     // await + promise : promise를 기다려서 resolve 값을 반환받는다.
     console.log("temp : " + temp);
   } catch (err) {
-    console.log(err);
+    console.log("err : " + err);
   }
 }
 asyncFunc();

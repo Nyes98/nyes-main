@@ -3,7 +3,8 @@
 console.log("로그 남기기");
 // Javascript가 갖고있는 객체 -> 내장개체
 console.log(global);
-// global => 전역 객체, js 파일에서 변수를 초기화하면 그 js파일 내에서만 사용이 가능한데 전역으로 쓰고 싶으면 global의 프로퍼티로 추가해라
+// global => 전역 객체, js 파일에서 변수를 초기화하면 그 js파일 내에서만 사용이 가능한데
+// 전역으로 쓰고 싶으면 global의 프로퍼티로 추가해라
 // Node.js에 DOM 있을까?
 // HTML 파일의 구조를 저장한 객체 => DOM 즉, document
 // Node.js에 HTML 구조는 없다 => document가 없다.
