@@ -2,6 +2,7 @@ import { Router } from "express";
 
 const router = Router();
 const boardList = [];
+const contentsList = [];
 
 router
   .route("/list")
@@ -9,13 +10,16 @@ router
   .get((req, res) => {
     res.send({
       list: boardList,
+      // list2: contentsList,
     });
   })
   .post((req, res) => {
     boardList.push({
       text: req.body["title"],
-      // contents: req.body["contents"]
     });
+    // contentsList.push({
+    //   contents: req.body["contents"],
+    // });
     res.end();
   })
 
