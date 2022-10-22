@@ -1,13 +1,9 @@
-// 내일 수!업! : 게시판 등록/수정/삭제, 목록 페이징, 아이디 생성/삭제/로그인/로그아웃
-
 const express = require("express");
 const session = require("express-session");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
-
-// const routes = require("./routes/index.js");
 
 const boardList = [
   { title: "arvserv1", text: "9baresrsearvstb" },
