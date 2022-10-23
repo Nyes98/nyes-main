@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const e = require("express");
 
 const boardList = [];
 
@@ -33,16 +34,24 @@ app.use(
   })
 );
 
-app.post("/api/signup", (req, res) => {
-  boardList.push(req.body);
-  let overlap = new Set(boardList).size != boardList.length;
-  if (!overlap) res.send({ status: 200, data: "회원가입 완료" });
+app.post("/api/signup", (req, res, next) => {
+  let overlap = 0;
+  if (!boardList.length) boardList.push(req.body);
+  else {
+    for (let i = 0; i < boardList.length; i++) {
+      if (boardList[i].id == req.body.id) overlap++;
+    }
+    if (overlap > 0) next();
+    else boardList.push(req.body);
+  }
+  res.send({ status: 200, data: "회원가입 완료" });
 });
 
-app.post("/api/login", (req, res) => {
+app.post("/api/login", (req, res, next) => {
   for (let i = 0; i < boardList.length; i++) {
     if (boardList[i].id == req.body.id && boardList[i].pw == req.body.pw)
       res.send({ status: 200, data: "로그인 완료" });
+    next();
   }
 });
 

@@ -1,0 +1,13 @@
+#login-btnbox {
+  display: inline;
+}
+
+#logout-btn,
+#login-btn {
+  display: none;
+}
+
+#logout-btn.on,
+#login-btn.on {
+  display: inline-block;
+}
