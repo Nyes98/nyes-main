@@ -4,7 +4,10 @@ document.getElementById("menu-btn").onclick = function (e) {
 
 document.getElementById("board-add").onsubmit = async function (e) {
   e.preventDefault();
+  // 1. a 태그를 눌렀을때도 href 링크로 이동하지 않게 할 경우
+  // 2. form 안에 submit 역할을 하는 버튼을 눌렀어도 새로 실행하지 않게 하고싶을 경우 (submit은 작동됨)
   if (!e.target["board-title"].value) {
+    // target : 이벤트가 일어난 객체, 여기선 form에서 submit한 제목과 내용
     e.target["board-title"].focus();
     return;
   }
@@ -12,15 +15,15 @@ document.getElementById("board-add").onsubmit = async function (e) {
     e.target["board-text"].focus();
     return;
   }
-  //   console.log(e.target["board-title"].value);
-  //   console.log(e.target["board-text"].value);
   try {
+    // 진행 중 오류가 나는 순간 바로 catch로 에러 출력
     const data = await axios.post("/api/board/add", {
+      // axios : 클라이언트(프론트) 와 서버(백)와의 통신을 쉽게 하기위해 사용하는 라이브러리
       title: e.target["board-title"].value,
       text: e.target["board-text"].value,
       uptime: Date.now(),
     });
-    // console.log(data.data);
+    // console.log(data);
     if (data.data.status == 200) {
       e.target["board-title"].value = e.target["board-text"].value = "";
     }
@@ -57,16 +60,19 @@ async function getList() {
   try {
     const data = await axios.get("/api/board?count=" + count);
     // count = 0 => /api/board?count=0
-    // console.log(data.data.maxCount);
+    // console.log(data.data);
 
     pageElem.innerHTML = "";
     maxCount = data.data.maxCount;
     for (let i = 0; i < maxCount; ++i) {
       const tempLi = document.createElement("li");
+      // <li></li>
       tempLi.innerText = i + 1;
+      // <li>1</li>
       tempLi.onclick = function (e) {
         count = i;
         pageElem.getElementsByClassName("now")[0].classList.remove("now");
+        // now = css background
         tempLi.classList.add("now");
         getList();
       };
@@ -74,9 +80,14 @@ async function getList() {
         tempLi.classList.add("now");
       }
       pageElem.append(tempLi);
+      // <ul id = "page">
+      //   <li>1</li>
+      //   <li>2</li>
+      //   <li>3</li>
+      // </ul>
     }
 
-    listElem.innerHTML = "";
+    listElem.innerHTML = ""; // list 전체 초기화
     data.data.list.forEach((data, index) => {
       // tempData[count].forEach((data) => {
       const tempLi = document.createElement("li");
@@ -115,7 +126,7 @@ async function getList() {
             num: index,
           });
           getList();
-          console.log(data.data);
+          // console.log(data.data);
         } catch (err) {
           console.log(err);
         }
@@ -132,7 +143,6 @@ async function getList() {
               time: Date.now(),
             });
             getList();
-            console.log(data.data);
           } catch (err) {
             console.log(err);
           }

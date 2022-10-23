@@ -41,15 +41,14 @@ app.use(
   })
 );
 
-// app.use("/api", routes);
-
 app.post("/api/board/add", (req, res) => {
+  // console.log(req.body);
   boardList.unshift(req.body);
   res.send({ status: 200, data: "정상 입력 완료" });
 });
 
 app.post("/api/board/delete", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   boardList.splice(+req.body.count * 5 + +req.body.num, 1);
   res.send({ status: 200, data: "delete" });
 });
@@ -57,10 +56,12 @@ app.post("/api/board/delete", (req, res) => {
 app.post("/api/board/update", (req, res) => {
   boardList[+req.body.count * 5 + +req.body.num].text = req.body.text;
   boardList[+req.body.count * 5 + +req.body.num].uptime = req.body.time;
+
   res.send({ status: 200, data: "update" });
 });
 
 app.get("/api/board", (req, res) => {
+  console.log(req.query.count);
   res.send({
     status: 200,
     list: boardList.slice(+req.query.count * 5, (+req.query.count + 1) * 5), // 0~5 => 5~10
