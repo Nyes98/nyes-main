@@ -24,6 +24,11 @@ document.getElementById("board-add").onsubmit = async function (e) {
       uptime: Date.now(),
     });
     // console.log(data);
+    const data1 = await axios.post("/api/user/login", {
+      id: document.forms["user-info"].id.value,
+      pw: document.forms["user-info"].pw.value,
+    });
+    console.log(data1.data.username);
     if (data.data.status == 200) {
       e.target["board-title"].value = e.target["board-text"].value = "";
     }
@@ -89,6 +94,8 @@ async function getList() {
 
     listElem.innerHTML = ""; // list 전체 초기화
     data.data.list.forEach((data, index) => {
+      console.log(data.username);
+
       // tempData[count].forEach((data) => {
       const tempLi = document.createElement("li");
       const tempTitle = document.createElement("div");
@@ -177,6 +184,72 @@ async function getList() {
   }
 }
 getList();
+
+document.getElementById("user-info").onsubmit = async function (e) {
+  e.preventDefault();
+
+  if (!e.target["id"].value) {
+    // target : 이벤트가 일어난 객체, 여기선 form에서 submit한 제목과 내용
+    e.target["id"].focus();
+    return;
+  }
+  if (!e.target["pw"].value) {
+    e.target["pw"].focus();
+    return;
+  }
+
+  const logoutBtn = document.getElementById("sign-out");
+  const loginBtn = document.getElementById("sign-in");
+  const registBtn = document.getElementById("sign-up");
+
+  // 로그인
+  document.getElementById("sign-in").onclick = async function (e) {
+    e.preventDefault();
+    const data = await axios.post("/api/user/login", {
+      id: document.forms["user-info"].id.value,
+      pw: document.forms["user-info"].pw.value,
+    });
+    console.log(data.data);
+    if (data.data.status == 200) {
+      logoutBtn.classList.add("on");
+      loginBtn.classList.add("on");
+      registBtn.classList.add("on");
+      document.getElementById("user-name").innerText =
+        data.data.username + " 님 입장";
+      document.getElementById("board-add").classList.add("on");
+      document.getElementById("id").classList.add("on");
+      document.getElementById("pw").classList.add("on");
+    }
+
+    // console.log(document.cookie);
+    // if (data.data.name) {
+    //
+    // }
+  };
+
+  // 회원가입
+  document.getElementById("sign-up").onclick = async function (e) {
+    e.preventDefault();
+    const data = await axios.post("/api/user/regist", {
+      id: document.forms["user-info"].id.value,
+      pw: document.forms["user-info"].pw.value,
+      // document.forms["user-info"].name.value,
+    });
+    console.log(data.data);
+  };
+
+  // 로그아웃
+  document.getElementById("sign-out").onclick = async function (e) {
+    e.preventDefault();
+    logoutBtn.classList.remove("on");
+    loginBtn.classList.remove("on");
+    registBtn.classList.remove("on");
+    document.getElementById("board-add").classList.remove("on");
+    document.getElementById("id").classList.remove("on");
+    document.getElementById("pw").classList.remove("on");
+    document.getElementById("user-name").innerText = "";
+  };
+};
 
 // axios.post("/api/board/add").then((data) => {
 //   console.log(data);

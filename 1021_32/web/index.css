@@ -161,6 +161,67 @@ html {
   overflow: hidden;
 }
 
+#user-info {
+  width: 280px;
+}
+.sign-input,
+.btn-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-box {
+  justify-content: space-evenly;
+}
+
+#name {
+  display: none;
+}
+
+#name.on {
+  display: block;
+}
+
+#sign-in,
+#sign-up {
+  display: block;
+}
+
+#sign-in.on,
+#sign-up.on {
+  display: none;
+}
+
+#sign-out {
+  display: none;
+}
+
+#sign-out.on {
+  display: block;
+}
+#user-info input {
+  padding: 5px;
+  margin: 0 5px;
+  width: 100%;
+}
+#user-info button {
+  padding: 5px 10px;
+  margin: 20px 15px 15px;
+}
+
+#user-name {
+  margin-bottom: 5px;
+}
+
+#id,
+#pw {
+  display: block;
+}
+
+#id.on,
+#pw.on {
+  display: none;
+}
 #user-input-container.on {
   width: 300px;
 }
@@ -177,6 +238,11 @@ html {
   width: 280px;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+  display: none;
+}
+
+#board-add.on {
+  display: block;
 }
 
 #user-input-container.on #board-add {
