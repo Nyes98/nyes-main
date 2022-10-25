@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
 
+const routes = require("./routes/index.js");
+
 const app = express();
 dotenv.config();
 
@@ -28,6 +30,8 @@ app.use(
     name: "session",
   })
 );
+
+app.use("/api", routes);
 
 app.listen(8080, () => {
   console.log("http://localhost:8080");

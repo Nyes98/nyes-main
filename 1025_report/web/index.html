@@ -3,15 +3,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="index.css" />
     <title>회원가입</title>
   </head>
   <body>
     <div class="root">
-      <div class="Signbtnbox">
-        <button id="logIn">로그인</button>
-        <button id="signUp">회원가입</button>
-      </div>
-      <div class="Loginwindow"
+      <form id="userinfo">
+        <div class="Idpw">
+          <input type="text" id="id" placeholder="ID" />
+          <input type="password" id="pw" placeholder="PASSWORD" />
+        </div>
+        <div class="Info">
+          <input type="text" id="name" placeholder="NAME" />
+          <select name="gender" id="gender">
+            <option value="man">Man</option>
+            <option value="woman">Woman</option>
+            <option value="nonb">Non-binary</option>
+          </select>
+          <input type="text" id="age" placeholder="AGE" />
+        </div>
+
+        <div class="Signbtnbox">
+          <button id="login" class="login">로그인</button>
+          <button id="logout" class="logout on">로그아웃</button>
+          <button id="signup">회원가입</button>
+        </div>
+      </form>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>

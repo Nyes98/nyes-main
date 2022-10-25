@@ -1,0 +1,9 @@
+.logout,
+.login {
+  display: block;
+}
+
+.logout.on,
+.login.on {
+  display: none;
+}
