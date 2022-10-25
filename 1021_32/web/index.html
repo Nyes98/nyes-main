@@ -6,31 +6,40 @@
     <title>게시판?</title>
     <link rel="stylesheet" href="index.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- axios 라이브러리 설치 -->
   </head>
   <body>
     <div id="root">
       <div id="board">
-        <ul id="list"></ul>
+        <ul id="list">
+          <!-- <li>
+            <div class="title">
+              <h3>23423142v34v</h3>
+              <img src="./imgs/angle-up-solid.svg" alt="list-item-btn" />
+            </div>
+            <div class="text">
+              <p>avswerasvr</p>
+            </div>
+          </li> -->
+        </ul>
         <ul id="page"></ul>
       </div>
       <div id="user-input-container">
+        <div id="menu-btn-box">
+          <img id="menu-btn" src="./imgs/bars-solid.svg" alt="menu button" />
+        </div>
         <div id="user-box">
           <form id="user-info">
-            <div id="user-name"></div>
+            <!-- <div id="user-name"></div> -->
             <div class="sign-input">
               <input type="text" id="id" placeholder="ID" />
               <input type="password" id="pw" placeholder="Password" />
+              <input type="text" id="name" placeholder="Name" />
             </div>
             <div class="btn-box">
-              <button id="sign-in">Log in</button>
-              <button id="sign-up">Regist</button>
-              <button id="sign-out">Log out</button>
+              <button id="sign-in">Sign In</button>
+              <button id="sign-up">Sign Up</button>
             </div>
           </form>
-        </div>
-        <div id="menu-btn-box">
-          <img id="menu-btn" src="./imgs/bars-solid.svg" alt="menu button" />
         </div>
         <form id="board-add">
           <label for="board-title"
