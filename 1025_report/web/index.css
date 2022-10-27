@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .logout,
 .login {
   display: block;
@@ -6,4 +12,47 @@
 .logout.on,
 .login.on {
   display: none;
+}
+
+.Signbtnbox {
+  display: flex;
+}
+
+.Signbtnbox button {
+  margin: 10px;
+}
+
+#inputcontents {
+  resize: none;
+}
+
+#boardlist {
+  display: flex;
+}
+
+#list {
+  list-style: none;
+  width: 100%;
+  margin-top: 20px;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  background-color: deeppink;
+  border: 1px solid black;
+}
+
+#boardwrite {
+  display: block;
+}
+
+#boardwrite.on {
+  display: none;
+}
+
+#list img {
+  width: 40px;
 }

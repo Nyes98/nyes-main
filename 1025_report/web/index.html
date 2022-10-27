@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="root">
-      <form id="userinfo">
+      <form id="signupform">
         <div class="Idpw">
           <input type="text" id="id" placeholder="ID" />
           <input type="password" id="pw" placeholder="PASSWORD" />
@@ -25,11 +25,36 @@
         </div>
 
         <div class="Signbtnbox">
-          <button id="login" class="login">로그인</button>
-          <button id="logout" class="logout on">로그아웃</button>
           <button id="signup">회원가입</button>
         </div>
       </form>
+      <form id="loginform">
+        <div class="Idpw">
+          <input type="text" id="logid" placeholder="ID" />
+          <input type="password" id="logpw" placeholder="PASSWORD" />
+        </div>
+        <div class="Signbtnbox">
+          <button id="login" class="login">로그인</button>
+          <button id="logout" class="logout on">로그아웃</button>
+          <div id="username"></div>
+        </div>
+      </form>
+      <form id="boardadd">
+        <div id="boardwrite" class="o">
+          <input type="text" id="inputtitle" placeholder="Title" />
+          <textarea
+            name="inputcontents"
+            id="inputcontents"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <button>글 쓰기</button>
+        </div>
+      </form>
+      <div id="boardlist">
+        <ul id="list"></ul>
+        <ul id="page"></ul>
+      </div>
     </div>
     <script src="index.js"></script>
   </body>
