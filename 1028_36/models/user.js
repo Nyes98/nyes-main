@@ -52,5 +52,6 @@ module.exports = class User extends Sequelize.Model {
     //   as: "to",
     //   through: "tableName",
     // });
+    // db
   }
 };
