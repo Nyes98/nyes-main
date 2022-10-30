@@ -2,6 +2,7 @@ async function getList() {
   try {
     const result = (await axios.get("/api/board")).data;
     boardList.innerHTML = "";
+    console.log(result.list);
     result?.list?.forEach((item) => {
       console.log(item);
       const boardItem = document.createElement("div");
