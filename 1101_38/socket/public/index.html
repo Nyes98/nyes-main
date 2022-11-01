@@ -1,0 +1,35 @@
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="send-msg">보내기</button>
+    <button id="end-msg">끊기</button>
+    <script>
+      const sendBtn = document.getElementById("send-msg");
+      const endBtn = document.getElementById("end-msg");
+
+      function socket() {
+        const webSocket = new WebSocket("ws://localhost:8080");
+        webSocket.onopen = () => {
+          console.log("socket link");
+        };
+        webSocket.onmessage = (data) => {
+          // 소켓 서버에서 보낸 데이터를 받는 이벤트 함수다.
+          console.log(data);
+        };
+        sendBtn.onclick = () => {
+          webSocket.send("sendbtn");
+          //   서버에 데이터를 보내는 메서드
+        };
+        endBtn.onclick = () => {
+          webSocket.close();
+        };
+      }
+      socket();
+    </script>
+  </body>
+</html>
