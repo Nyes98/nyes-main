@@ -6,6 +6,7 @@ const { User } = require("../models/index.js");
 
 router.post("/regist", async (req, res) => {
   try {
+    console.log(req.body.id);
     const tempUser = await User.findOne({ where: { userId: req.body.id } });
     if (tempUser) {
       res.status(500);
