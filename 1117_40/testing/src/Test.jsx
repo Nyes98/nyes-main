@@ -70,7 +70,6 @@ export default function Test({ test1, children }) {
             },
           ]);
           console.log(tempList);
-          // console.log(tempList[0].title, tempList[0].contents);
         }}
       >
         등록하기
