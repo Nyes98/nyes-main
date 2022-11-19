@@ -12,11 +12,11 @@ React
         - React는 Virtual DOM을 수정하고 수정된 부분만을 실제 DOM에 적용한다.
         - let, var 등등은 변화하더라도 React에서 감지하지 못한다.
         - 변화를 감지했을 때만 그 부분만을 리랜더링(다시 그리기) 하기 떄문에 let을 사용하는 경우 변화가 없다.
-    - state라는 단위 << 현재 React의 상태를 확인하고 변경되었을 떄 그 변경 사항을 React에 알려준다. << 리 랜더링이 발생한다.
+    - state라느 단위 << 현재 React의 상태를 확인하고 변경되었을 떄 그 변경 사항을 React에 알려준다. << 리 랜더링이 발생한다.
 
  npm i -g create-react-app
  -D << 개발 시에만 사용하는 디팬던시
  -g << global : 전역에서 사용하는 라이브러리
 
- npm list -g : 전역에 설치된 라이브러리를 확인한다.
+ npm list -g : 전역에 설치된 라이브러리를 확인한다
  npx create-react-app testing : testing 이라는 폴더를 만들고 그 안에 react를 기본 세팅한다.
