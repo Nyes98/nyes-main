@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
-import List from "./component/list";
+import List from "./component/AddList";
 
 function App() {
   const [boomup, setBoomup] = useState("0");
