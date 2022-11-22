@@ -8,8 +8,13 @@ function App() {
   const [user, setUser] = useState("");
   return (
     <AppBox>
-      <UserBox users={users} setUsers={setUsers} />
-      <BoardBox users={users} setUsers={setUsers} />
+      <UserBox
+        users={users}
+        setUsers={setUsers}
+        user={user}
+        setUser={setUser}
+      />
+      <BoardBox users={users} user={user} />
     </AppBox>
   );
 }

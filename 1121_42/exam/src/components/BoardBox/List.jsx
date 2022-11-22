@@ -1,19 +1,23 @@
 import styled from "styled-components";
-import AddBoard from "./AddBoard";
-import UserBox from "../UserBox";
 
-export default function List({ addinfo, user }) {
+export default function List({ addinfo }) {
   console.log(addinfo);
-  console.log(user);
   return (
     <ListBox>
       {addinfo.map((item, index) => (
         <div key={index}>
-          제목 : {item.title} 내용 : {item.contents}
+          작성자 : {item.user} 제목 : {item.title} 내용 : {item.contents}
         </div>
       ))}
     </ListBox>
   );
 }
 
-const ListBox = styled.div``;
+const ListBox = styled.div`
+  div {
+    height: 50px;
+    width: 100%;
+    border: 2px solid black;
+    margin: 5px;
+  }
+`;

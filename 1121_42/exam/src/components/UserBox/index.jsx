@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Regist from "./Regist";
 import LogIn from "./LogIn";
 import LogOut from "./LogOut";
-import List from "../BoardBox/List";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function UserBox({ users, setUsers, user, setUser }) {
   useEffect(() => {

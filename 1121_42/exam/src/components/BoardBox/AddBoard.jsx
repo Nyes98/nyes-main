@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import List from "./List";
-import UserBox from "../UserBox";
+import { useState } from "react";
 
-export default function AddBoard({ addinfo, setAddinfo, user, setUser }) {
+export default function AddBoard({ addinfo, setAddinfo, user }) {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
   function AddList() {
-    setAddinfo([...addinfo, { title, contents }]);
+    console.log(user);
+    setAddinfo([...addinfo, { title, contents, user }]);
   }
 
   return (
@@ -37,7 +36,6 @@ export default function AddBoard({ addinfo, setAddinfo, user, setUser }) {
       >
         등록
       </button>
-      <List addinfo={addinfo} user={user}></List>
     </AddBoardBox>
   );
 }
