@@ -5,9 +5,14 @@ export default function Slider() {
 
   return (
     <SliderBox>
-      <div></div>;
+      <div>이거슨 슬라이더</div>
     </SliderBox>
   );
 }
 
-const SliderBox = styled.div``;
+const SliderBox = styled.div`
+  width: 100%;
+  border: 5px solid black;
+  height: 300px;
+  margin-bottom: 20px;
+`;
