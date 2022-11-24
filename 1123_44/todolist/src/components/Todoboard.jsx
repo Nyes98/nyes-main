@@ -25,6 +25,7 @@ const TodoboardBox = styled.div`
   & > div:first-child {
     display: flex;
     justify-content: space-between;
-    background-color: black;
+    width: 60%;
+    margin: auto;
   }
 `;
