@@ -7,7 +7,7 @@ import { useState } from "react";
 
 // export시 default를 쓰지 않으면 {}를 사용해 구조분해할당 형식으로 가져와야한다.
 
-export default function Todo({ user, users }) {
+export default function Todo({ user }) {
   const [list, setList] = useState([
     {
       taskName: "11",
@@ -33,7 +33,7 @@ export default function Todo({ user, users }) {
           <TodoBtn className="sky">Add Task </TodoBtn>
         </Link>
       </AddBtnBox>
-      <List list={list} setList={setList} users={users} user={user} />
+      <List list={list} setList={setList} user={user} />
       <Routes>
         <Route
           path={"add"}

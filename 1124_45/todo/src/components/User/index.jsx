@@ -59,7 +59,7 @@ export default function ReRiRo({ user, setUser, users, setUsers }) {
           회원가입
         </button>
       </RLLBtnBox>
-      <WelcomeBox>{!user || `${user}`}</WelcomeBox>
+      <WelcomeBox>{!user || `${user} 등장`}</WelcomeBox>
     </ReRiRoBox>
   );
 }

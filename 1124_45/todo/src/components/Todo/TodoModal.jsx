@@ -5,7 +5,7 @@ import { STATUSLIST, STATUS } from "../setting";
 import { useState } from "react";
 
 export default function TodoModal({ setList, func, user, list }) {
-  console.log(useLocation().state);
+  // console.log(useLocation().state);
   const index = useLocation().state?.index;
   const item = useLocation().state?.item;
   const [taskName, setTaskName] = useState(item ? item.taskName : "");
@@ -55,7 +55,6 @@ export default function TodoModal({ setList, func, user, list }) {
                   console.log(list);
                 } else if (func === "Edit") {
                   setList((list) => {
-                    console.log(list);
                     const before = list.slice(0, index);
                     const after = list.slice(index + 1);
                     return [

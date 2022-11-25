@@ -3,12 +3,11 @@ import { TodoBtn } from "../../setting";
 import penImg from "./pen-solid.svg";
 import trashImg from "./trash-solid.svg";
 import { STATUSLIST } from "../../setting";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Item({ item, index, list, setList, users, user }) {
-  console.log(users);
+export default function Item({ item, index, setList, user, list }) {
   console.log(user);
-
+  console.log(list);
   return (
     <ItemTr>
       <td>{index + 1}</td>
@@ -22,8 +21,15 @@ export default function Item({ item, index, list, setList, users, user }) {
         </TodoBtn>
       </td>
       <td>
-        <Link to={"/edit"} state={{ index, item }}>
-          <TodoBtn>
+        <Link
+          to={user !== list[index].writer ? "/" : "/edit"}
+          state={{ index, item }}
+        >
+          <TodoBtn
+            onClick={() => {
+              if (user !== list[index].writer) console.log("내가아니야");
+            }}
+          >
             <img
               src={penImg}
               alt="penImg"
@@ -38,6 +44,7 @@ export default function Item({ item, index, list, setList, users, user }) {
       <td>
         <TodoBtn
           onClick={() => {
+            if (user !== list[index].writer) return;
             setList((list) => {
               const before = list.slice(0, index);
               const after = list.slice(index + 1);

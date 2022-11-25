@@ -15,7 +15,7 @@ export default function App() {
         user={user}
         setUser={setUser}
       ></ReLiLo>
-      <Todo users={users} user={user}></Todo>
+      <Todo user={user}></Todo>
     </Appbox>
   );
 }

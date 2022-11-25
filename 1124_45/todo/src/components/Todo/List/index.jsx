@@ -1,8 +1,7 @@
 import Item from "./item";
 import styled from "styled-components";
 
-export default function List({ list, setList, user, users }) {
-  console.log(list);
+export default function List({ list, setList, user }) {
   return (
     <ListTable>
       <thead>
@@ -21,10 +20,9 @@ export default function List({ list, setList, user, users }) {
             key={`Item-${index}`}
             item={item}
             index={index}
-            list={list}
             setList={setList}
             user={user}
-            users={users}
+            list={list}
           />
         ))}
       </tbody>
