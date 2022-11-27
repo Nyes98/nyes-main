@@ -1,0 +1,21 @@
+Redux 사용 이유
+1. props 문법 없이 하위 컴포넌트에서 상위 컴포넌트의 변수를 사용할 수 있다.
+2. state 관리가 편하다. 컴포넌트가 많아지면 모든 컴포넌트를 일일이 다 확인해야하는데 store안에 있는 state만 확인해서 수정하면 되기 때문이다. 그래서 큰 프로젝트를 진행할 때 필수이다.
+
+
+<button onClick={() => { dispatch({type: '증가'}) }}>더하기</button>  
+컴포넌트들이 reducer를 부른다, 요청한다.
+컴포넌트에서 state 수정요청하려면? dispatch를 사용한다.
+
+function reducer(state = 체중, action){
+    if(action.type === '증가') {
+        state++;
+        return state
+    } else if (action.type === '감소'){
+        state--;
+        return state
+    } else {
+        return state
+    }
+}
+
