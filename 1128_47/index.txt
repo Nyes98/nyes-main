@@ -1,0 +1,32 @@
+Redux란?
+- 정의 : 상태 관리 라이브러리
+- 상태(state)를 관리해주는 라이브러리. 전역 상태값이라고 생각하면 된다.
+- Redux 개발 이유
+    - FLUX 모델을 사용한다.
+    - FLUX 모델 : 기존에 많이 사용했던 MVC 모델의 단점을 보완하기위해 개발된 모델
+    - MVC(Model View Controller) 모델 : Controller -> Model <-> View 
+    - Action -> Dispatch -> Reducer -> Store -> View -> Action
+- 용어 정리
+    - store : 저장소, state들을 모아둔 객체
+    - action : 요청, 요청 내용에 대해 목적(type)과 필요한 내용(payload)을 담은 객체
+    - dispatch : 요청을 받아 reducer에게 전달하는 함수
+    - reducer : 요청을 실행하는 함수
+- Redux의 3가지 원칙
+    - Single Source Of Truth(진실은 하나의 근원으로부터) : state를 담고있는 store(저장소)는 하나만 있어야한다.
+    - State is read-only(상태는 읽기 전용) : state를 변경(재정의)하는 방법은 action 을 dispatch로 전달하는 것 뿐이다.
+    - Changes are made with pure functions(변화는 순수 함수로 작성되어야한다) : reducer는 순수 함수로 작성되어야한다.
+        - 순수 함수 : 같은 매개변수가 전달되었을 때 항상 같은 값을 반환하는 함수이다.
+        - 함수 외부의 변수를 변경하지 않고 외부의 변수에 의존하지 않고 매개변수 또한 변경하지 않는다.
+
+let a = 1;
+let b = 2;
+
+function add() {
+  a += b;
+  //   a는 외부의 값이다. 그런 a를 수정했기 때문에 순수 함수가 아니다.
+}
+
+function add1(a,b) {
+  return a + b;
+}
+// 외부의 값을 변경시키지 않고 쓰기만 했기때문에 순수함수이다.
