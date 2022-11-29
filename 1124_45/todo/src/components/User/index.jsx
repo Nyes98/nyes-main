@@ -53,6 +53,7 @@ export default function ReRiRo({ user, setUser, users, setUsers }) {
         </button>
         <button
           onClick={() => {
+            console.log(users);
             onRegist();
           }}
         >
