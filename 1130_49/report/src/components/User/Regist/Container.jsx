@@ -1,4 +1,5 @@
 import store from "../../../modules/store";
+import axios from "axios";
 
 import RegistComponent from "./Component";
 import { action } from "../../../modules/userDB";
@@ -15,6 +16,12 @@ const RegistContainer = () => {
     store.dispatch(action.regist(userId, userPw, userName));
     // store에 요청을 보낸다 (action.regist) 라고
   };
+
+  axios.post("http://localhost:8080/api/user/regist", {
+    userId,
+    userPw,
+    userName,
+  });
 
   console.log("RegistContainer", onClick);
   // 2. onClick을 RegistComponent에 props로 전달한다.
