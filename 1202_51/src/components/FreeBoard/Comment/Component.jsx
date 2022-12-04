@@ -40,6 +40,7 @@ const CommentItemComponent = ({ item, edit, remove }) => {
 
   return (
     <div>
+      {item.id} -{" "}
       {isEdit ? (
         <input
           type={"text"}
@@ -58,7 +59,7 @@ const CommentItemComponent = ({ item, edit, remove }) => {
             edit(item.id, editText);
             setIsEdit(false);
           } else {
-            setEditText(item.text);
+            // setEditText(item.text);
             setIsEdit(true);
           }
         }}
@@ -72,7 +73,7 @@ const CommentItemComponent = ({ item, edit, remove }) => {
       >
         {isEdit ? "Cancle" : "Remove"}
       </button>{" "}
-      ]
+      ] {item.createdAt}
     </div>
   );
 };
