@@ -1,7 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
 import VerticalMode from "./Carousel/Carousel";
+import BasicExample from "./Dropdowns/Components";
 
 const HeaderComponent = ({}) => {
+  const [isOver, setIsOver] = useState(false);
+
   return (
     <>
       <HeaderBox>
@@ -16,13 +20,39 @@ const HeaderComponent = ({}) => {
         <div>
           <div>
             <div>
-              <img src="img/3bar.svg" />
+              <BasicExample></BasicExample>
+              <img src="/img/3bar.svg" />
             </div>
-            <div>홈</div>
-            <div>공고등록</div>
-            <div>공고지원자 관리</div>
-            <div>인재검색</div>
-            <div>헤드헌팅 의뢰</div>
+            <div
+              onMouseEnter={() => setIsOver(true)}
+              onMouseLeave={() => setIsOver(false)}
+            >
+              홈
+            </div>
+            <div
+              onMouseEnter={() => setIsOver(true)}
+              onMouseLeave={() => setIsOver(false)}
+            >
+              공고등록
+            </div>
+            <div
+              onMouseEnter={() => setIsOver(true)}
+              onMouseLeave={() => setIsOver(false)}
+            >
+              공고지원자 관리
+            </div>
+            <div
+              onMouseEnter={() => setIsOver(true)}
+              onMouseLeave={() => setIsOver(false)}
+            >
+              인재검색
+            </div>
+            <div
+              onMouseEnter={() => setIsOver(true)}
+              onMouseLeave={() => setIsOver(false)}
+            >
+              헤드헌팅 의뢰
+            </div>
           </div>
           <div>
             <div>기업라운지</div>
@@ -82,7 +112,6 @@ const HeaderBox = styled.div`
     width: 18px;
     filter: invert(100%) sepia(3%) saturate(12%) hue-rotate(103deg)
       brightness(105%) contrast(105%);
-    margin-top: 5px;
   }
 
   & > div:nth-child(2) > div:nth-child(2) {
@@ -95,7 +124,7 @@ const HeaderBox = styled.div`
 `;
 
 const LowHeaderBox = styled.div`
-  height: 65px;
+  height: 52px;
   overflow: hidden;
 `;
 
