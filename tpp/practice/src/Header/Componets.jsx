@@ -20,7 +20,7 @@ const HeaderComponent = ({}) => {
         <div>
           <div>
             <div>
-              <BasicExample></BasicExample>
+              {/* <BasicExample></BasicExample> */}
               <img src="/img/3bar.svg" />
             </div>
             <div
@@ -106,6 +106,7 @@ const HeaderBox = styled.div`
 
   & > div:nth-child(2) > div:nth-child(1) > div:first-child {
     padding: 0 20px 0 0;
+    margin-bottom: 2px;
   }
 
   & > div:nth-child(2) > div:nth-child(1) > div:first-child > img {
