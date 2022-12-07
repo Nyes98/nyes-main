@@ -1,14 +1,19 @@
 import styled from "styled-components";
+import MordalContainer from "./LoginMordal/Container";
 import MainLoginBoardComponent from "./MainLogin/Component";
 import SolutionComponent from "./MainSolution/Component";
-import ServiceComponent from "./ServiceQ/Component";
+import ServiceQComponent from "./ServiceQ";
 
-const MainComponent = ({}) => {
+const MainComponent = ({ isClick, setIsClick }) => {
   return (
     <MainBox>
-      <MainLoginBoardComponent></MainLoginBoardComponent>
+      <MainLoginBoardComponent
+        setIsClick={setIsClick}
+        isClick={isClick}
+      ></MainLoginBoardComponent>
+      {isClick ? <MordalContainer setIsClick={setIsClick} /> : <></>}
       <SolutionComponent></SolutionComponent>
-      <ServiceComponent></ServiceComponent>
+      <ServiceQComponent></ServiceQComponent>
     </MainBox>
   );
 };

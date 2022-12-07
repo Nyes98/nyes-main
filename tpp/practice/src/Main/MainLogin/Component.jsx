@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MainLoginBoardComponent = ({}) => {
+const MainLoginBoardComponent = ({ setIsClick, isClick }) => {
   return (
     <MainLoginBoardBox>
       <div className="temp"></div>
@@ -14,7 +14,13 @@ const MainLoginBoardComponent = ({}) => {
             시작해 보세요
           </div>
           <div className="flex button-box">
-            <div>로그인</div>
+            <div
+              onClick={() => {
+                setIsClick(!isClick);
+              }}
+            >
+              로그인
+            </div>
             <div>회원가입</div>
           </div>
         </div>
@@ -90,6 +96,7 @@ const MainLoginBoardBox = styled.div`
     align-items: center;
     margin-right: 10px;
     border: 0.7px solid #cccccc;
+    cursor: pointer;
   }
 
   .whiteDiv {

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import VerticalMode from "./Carousel/Carousel";
-import BasicExample from "./Dropdowns/Components";
+import DropDown from "./Dropdown/Components";
 
-const HeaderComponent = ({}) => {
+const HeaderComponent = ({ onClick }) => {
   const [isOver, setIsOver] = useState(false);
+  const [isDropdown, setIsDropdown] = useState(false);
 
   return (
     <>
@@ -14,13 +15,16 @@ const HeaderComponent = ({}) => {
           <div>
             <div>회원가입</div>
             <div>고객센터</div>
-            <div>로그인</div>
+            <div onClick={onClick}>로그인</div>
           </div>
         </div>
         <div>
           <div>
-            <div>
-              {/* <BasicExample></BasicExample> */}
+            <div
+              onClick={() => {
+                setIsDropdown(!isDropdown);
+              }}
+            >
               <img src="/img/3bar.svg" />
             </div>
             <div
@@ -60,6 +64,7 @@ const HeaderComponent = ({}) => {
           </div>
         </div>
       </HeaderBox>
+      {isDropdown ? <DropDown></DropDown> : <></>}
       <LowHeaderBox>
         <VerticalMode />
       </LowHeaderBox>
@@ -93,6 +98,7 @@ const HeaderBox = styled.div`
   & > div > div:nth-child(2) > div {
     margin: 0 10px;
     font-size: 13px;
+    cursor: pointer;
   }
 
   & > div:nth-child(2) > div:nth-child(1) {
@@ -113,6 +119,7 @@ const HeaderBox = styled.div`
     width: 18px;
     filter: invert(100%) sepia(3%) saturate(12%) hue-rotate(103deg)
       brightness(105%) contrast(105%);
+    margin-top: 9px;
   }
 
   & > div:nth-child(2) > div:nth-child(2) {

@@ -1,6 +1,39 @@
 import styled from "styled-components";
+import ListComponent from "./SolutionLIst/Component";
 
 const SolutionComponent = () => {
+  const onList = [
+    {
+      img: "img/icon_start_1.png",
+      title: "간편한 ",
+      titlebold: "채용공고 등록",
+      text1: "쉽고 빠른 채용공고 등록하기 ",
+      text2: "다양한 직군, 인턴/신입 경력까지 폭넓은 채용",
+    },
+    {
+      img: "img/icon_start_2.png",
+      title: "쉽고 정확한 ",
+      titlebold: "지원자 관리",
+      text1: "한눈에 보는 지원자 현황 ",
+      text2: "서류합격, 면접제의 관리하기",
+    },
+    {},
+    {},
+    {
+      img: "img/icon_start_3.png",
+      title: "인턴/신입부터 경력까지 ",
+      titlebold: "인재검색",
+      text1: "우리기업과 잘 맞는 인재추천 ",
+      text2: "원하는 인재 찾기 / 입사제의 포지션 제안",
+    },
+    {
+      img: "img/icon_start_4.png",
+      title: "믿고 맡기는 ",
+      titlebold: "헤드헌팅",
+      text1: "엄선된 헤드헌팅을 통한 인재추천 ",
+      text2: "",
+    },
+  ];
   return (
     <SolutionBox>
       <div className="flex">
@@ -12,7 +45,11 @@ const SolutionComponent = () => {
           을<br /> 소개합니다.
         </div>
         <div className="flex wrap">
-          <div className="solutionList">
+          {onList.map((item, index) => (
+            <ListComponent key={`onList-${index}`} item={item}></ListComponent>
+          ))}
+
+          {/* <div className="solutionList">
             <img src="img/icon_start_1.png" />
             <div className="imgtitle">
               간편한
@@ -55,7 +92,7 @@ const SolutionComponent = () => {
               <br /> <span>헤드헌팅</span>
             </div>
             <div className="imgtext">엄선된 헤드헌팅을 통한 인재추천</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </SolutionBox>
@@ -65,17 +102,14 @@ const SolutionComponent = () => {
 export default SolutionComponent;
 
 const SolutionBox = styled.div`
-  width: 70%;
+  width: 67%;
   margin: auto;
   background: url("img/background_solution.png") no-repeat 120px 61px;
 
   .title {
-    width: 700px;
+    width: 450px;
     font-size: 36px;
-    position: relative;
-    top: 30px;
-    left: 90px;
-
+    padding: 40px 0 0 41px;
     color: #333333;
   }
 
@@ -89,13 +123,12 @@ const SolutionBox = styled.div`
 
   .wrap {
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-end;
   }
   .solutionList {
     width: 300px;
     height: 280px;
     background-color: white;
-    margin: 10px;
     border-radius: 15px;
   }
 

@@ -13,12 +13,6 @@ export default class VerticalMode extends Component {
       vertical: true,
       autoplay: true,
       arrows: false,
-      beforeChange: function (currentSlide, nextSlide) {
-        console.log("before change", currentSlide, nextSlide);
-      },
-      afterChange: function (currentSlide) {
-        console.log("after change", currentSlide);
-      },
     };
     return (
       <CarouselBox>
