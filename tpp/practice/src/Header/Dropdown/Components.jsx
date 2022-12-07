@@ -14,21 +14,70 @@ function DropDown() {
         </div>
         <div>
           <div>인재검색</div>
+          <ul>
+            <li>인재검색</li>
+            <li>인재관리</li>
+            <ul>
+              <li>스크랩 인재</li>
+              <li>오늘 본 인재</li>
+              <li>연락처 확인 인재</li>
+              <li>우리기업관심인재</li>
+              <li>포지션 제안 인재</li>
+            </ul>
+            <li>SMS 발송 내역</li>
+          </ul>
         </div>
         <div>
           <div>헤드헌팅 의뢰</div>
+          <ul>
+            <li>헤드헌팅 의뢰</li>
+            <li>헤드헌팅 의뢰하기</li>
+          </ul>
         </div>
         <div>
           <div>유료서비스 내역</div>
+          <ul>
+            <li>유료서비스 이용내역</li>
+            <li>전자세금계산서</li>
+            <li>쿠폰</li>
+            <li>e-머니/충전금</li>
+          </ul>
         </div>
         <div>
           <div>기업정보</div>
+          <ul>
+            <li>기업정보관리</li>
+            <li>슈퍼기업관신청</li>
+            <li>회원정보관리</li>
+            <li>로그인 관리</li>
+            <li>광고성 정보 설정</li>
+            <li>2단계 인증 내역</li>
+          </ul>
         </div>
         <div>
           <div>기업라운지</div>
+          <ul>
+            <li>HR/연봉자료</li>
+            <li>HR포럼/세미나</li>
+            <li>기업 문서서식</li>
+            <li>잡코리아 기업러닝</li>
+            <li>서비스제안/문의</li>
+            <li>FAQ</li>
+            <li>공지사항</li>
+            <li>이벤트</li>
+          </ul>
         </div>
         <div>
           <div>기업서비스 안내</div>
+          <ul>
+            <li>유료채용광고서비스</li>
+            <li>인재검색 서칭서비스</li>
+            <li>잡코리아 기업러닝</li>
+            <li>스마트A 직정전문검사</li>
+            <li>JAT 기업용 인적성 검사</li>
+            <li>채용대행 솔루션</li>
+            <li>배너광고</li>
+          </ul>
         </div>
       </div>
     </DropdownBox>
@@ -43,15 +92,16 @@ const DropdownBox = styled.div`
   background-color: white;
   position: absolute;
   z-index: 1;
-  padding: 0 300px;
   box-shadow: 0 1px 3px black;
 
   .flex {
     display: flex;
+    width: 68%;
+    margin: auto;
   }
 
   .flex > div {
-    width: 10%;
+    width: 14%;
   }
 
   ul {
