@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const ServiceQCardComponent = ({ item, index }) => {
+const ServiceQCardComponent = ({ item, index, onClick }) => {
   return (
-    <ServiceQCardBox>
+    <ServiceQCardBox onClick={onClick}>
       <div>{index + 1}</div>
       <div>{item.text1}</div>
       <div>{item.text2}</div>
@@ -13,7 +13,7 @@ const ServiceQCardComponent = ({ item, index }) => {
 export default ServiceQCardComponent;
 
 const ServiceQCardBox = styled.div`
-  width: 313px;
+  width: 24.8%;
   height: 205px;
   font-size: 16px;
   display: flex;

@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import ServiceQCardContainer from "./ServiceQCard/Container";
 
-const ServiceQComponent = () => {
+const ServiceQComponent = ({ mordalC, setMordalC }) => {
+  const onClick = () => {
+    setMordalC(!mordalC);
+  };
   return (
     <ServiceQBox>
       <div>잡코리아 채용 서비스가 궁금해요!</div>
-      <ServiceQCardContainer></ServiceQCardContainer>
+      <ServiceQCardContainer onClick={onClick}></ServiceQCardContainer>
     </ServiceQBox>
   );
 };

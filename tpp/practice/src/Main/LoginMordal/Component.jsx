@@ -68,17 +68,17 @@ const MordalBox = styled.div`
   }
 
   .login {
-    width: 120px;
-    height: 96px;
+    width: 100px;
+    height: 100px;
     background-color: #3399ff;
     color: white;
     border: none;
   }
   input {
     width: 280px;
-    height: 48px;
+    height: 28px;
     border: solid 1px #e1e1e2;
-    padding: 15px;
+    padding: 10px;
   }
 
   & > div:first-child {

@@ -1,10 +1,14 @@
+import { useState } from "react";
 import styled from "styled-components";
 import MordalContainer from "./LoginMordal/Container";
 import MainLoginBoardComponent from "./MainLogin/Component";
 import SolutionComponent from "./MainSolution/Component";
 import ServiceQComponent from "./ServiceQ";
+import ServiceModalContainer from "./ServiceQ/ServiceMordal/Container";
 
 const MainComponent = ({ isClick, setIsClick }) => {
+  const [mordalC, setMordalC] = useState(false);
+
   return (
     <MainBox>
       <MainLoginBoardComponent
@@ -13,7 +17,15 @@ const MainComponent = ({ isClick, setIsClick }) => {
       ></MainLoginBoardComponent>
       {isClick ? <MordalContainer setIsClick={setIsClick} /> : <></>}
       <SolutionComponent></SolutionComponent>
-      <ServiceQComponent></ServiceQComponent>
+      {mordalC ? (
+        <ServiceModalContainer setMordalC={setMordalC}></ServiceModalContainer>
+      ) : (
+        <></>
+      )}
+      <ServiceQComponent
+        mordalC={mordalC}
+        setMordalC={setMordalC}
+      ></ServiceQComponent>
     </MainBox>
   );
 };

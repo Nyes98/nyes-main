@@ -10,6 +10,12 @@ function DropDown() {
             <li>전체 채용공고</li>
             <li>지원자관리</li>
             <li>차단내역</li>
+            <li>
+              <div className="addButton">
+                <img src="img/icon_add.png"></img>
+                공고등록
+              </div>
+            </li>
           </ul>
         </div>
         <div>
@@ -17,7 +23,7 @@ function DropDown() {
           <ul>
             <li>인재검색</li>
             <li>인재관리</li>
-            <ul>
+            <ul className="telent">
               <li>스크랩 인재</li>
               <li>오늘 본 인재</li>
               <li>연락처 확인 인재</li>
@@ -94,6 +100,13 @@ const DropdownBox = styled.div`
   z-index: 1;
   box-shadow: 0 1px 3px black;
 
+  .telent {
+    list-style: disc;
+  }
+  li::marker {
+    font-size: 1px;
+  }
+
   .flex {
     display: flex;
     width: 68%;
@@ -104,8 +117,32 @@ const DropdownBox = styled.div`
     width: 14%;
   }
 
+  .flex > div > div:first-child {
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 0;
+  }
+
   ul {
     list-style: none;
     padding-left: 0px;
+    font-size: 13px;
+  }
+
+  li {
+    padding: 5px 0;
+  }
+
+  .addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3399ff;
+    color: white;
+    margin-top: 120px;
+    border-radius: 10px;
+    width: 160px;
+    height: 45px;
   }
 `;

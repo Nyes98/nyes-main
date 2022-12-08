@@ -1,7 +1,7 @@
 import ServiceQCardComponent from "./Component";
 import styled from "styled-components";
 
-const ServiceQCardContainer = () => {
+const ServiceQCardContainer = ({ onClick }) => {
   const list = [
     {
       text1: "채용공고를 내고 싶은데",
@@ -45,6 +45,7 @@ const ServiceQCardContainer = () => {
             key={`list-${index}`}
             item={item}
             index={index}
+            onClick={onClick}
           ></ServiceQCardComponent>
         );
       })}
