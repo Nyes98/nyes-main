@@ -44,7 +44,7 @@ const ServiceModalBox = styled.div`
     width: 90%;
     justify-content: space-between;
     font-size: 20px;
-    padding: 20px;
+    padding: 30px 0;
     margin: auto;
     font-weight: 700;
   }
