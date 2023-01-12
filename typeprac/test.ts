@@ -7,7 +7,7 @@ type Add = {
 //   return "김성진";
 // }
 
-const add: Add = (a, b) => {
+const add: Add = (a, b, c?) => {
   console.log(a);
   console.log(b);
   return "hi";
@@ -17,7 +17,7 @@ const add: Add = (a, b) => {
 //   return a + a;
 // };
 
-console.log(add(1, 2));
+console.log(add("1", 2, 2));
 // console.log(test(1));
 // console.log(add2(1));
 // test(7);
