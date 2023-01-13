@@ -3,24 +3,24 @@ function solution(n, k, enemy) {
   let undead = [];
   let temp = 0;
 
-  if (k > enemy.length) k = enemy.length;
+  if (k >= enemy.length) return enemy.length;
 
   for (let i = 0; i < k; i++) {
     undead.push(enemy[i]);
   }
   console.log(undead);
+  console.log("최소 인덱스", undead.indexOf(Math.min(...undead)));
 
-  undead.sort(function (a, b) {
-    return a - b;
-  });
+  // undead.sort(function (a, b) {
+  //   return a - b;
+  // });
+
   for (let i = k; i < enemy.length; i++) {
-    for (let j = 0; j < k; j++) {
-      if (enemy[i] > undead[j]) {
-        temp = undead[j];
-        undead[j] = enemy[i];
-        enemy[i] = temp;
-        // enemy[j] = undead[j];
-      }
+    if (enemy[i] > undead[undead.indexOf(Math.min(...undead))]) {
+      temp = undead[undead.indexOf(Math.min(...undead))];
+      undead[undead.indexOf(Math.min(...undead))] = enemy[i];
+      enemy[i] = temp;
+      // enemy[j] = undead[j];
     }
     console.log("무적권", undead);
     console.log("적숫자", enemy);
@@ -33,5 +33,5 @@ function solution(n, k, enemy) {
   return answer + k;
 }
 
-solution(5, 2, [1, 2, 3, 4, 6, 1, 2, 3]);
+solution(6, 3, [3, 1, 7, 9, 4, 5]);
 // console.log(solution(5, 4, [1, 2, 3, 4, 6, 1, 2, 3]));
