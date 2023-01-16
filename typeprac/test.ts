@@ -1,23 +1,12 @@
-type Add = {
-  //   (a: number): number;
-  (a: string, b: number): string;
-  (a: string, b: number, c: number): string;
-};
-// function test(a: number): string {
-//   return "김성진";
-// }
-
-const add: Add = (a, b, c?) => {
-  console.log(a);
-  console.log(b);
-  return "hi";
+type SuperPrint = {
+  <TypePlaceholder>(arr: TypePlaceholder[]): void;
 };
 
-// const add2: Add = (a) => {
-//   return a + a;
-// };
+const superPrint: SuperPrint = (arr) => {
+  arr.forEach((i) => console.log(i));
+};
 
-console.log(add("1", 2, 2));
-// console.log(test(1));
-// console.log(add2(1));
-// test(7);
+superPrint([1, 2, 3, 4]);
+superPrint([true, false, true]);
+superPrint(["a", "b", "c"]);
+superPrint([1, 2, true, false, "hello"]);
