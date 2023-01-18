@@ -17,4 +17,4 @@ function solution(storey) {
   return answer;
 }
 
-solution(16);
+solution(166);
