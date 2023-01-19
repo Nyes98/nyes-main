@@ -1,14 +1,39 @@
-let test1 = new Array(3).fill(1, 1, 2);
-let test5 = new Array(10).fill().map((_, index) => Array(index + 1).fill());
-let test2 = new Array(3, 3);
-let test3 = new Array(3, 0, 5);
+function solution(dartResult) {
+  let result = 0;
+  let arr = [...dartResult];
 
-console.log(test1[3]);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == 1 && arr[i + 1] == 0) {
+      arr[i] = 10;
+      arr.splice(i + 1, 1);
+    }
+  }
 
-// console.log(test1.length);
-for (let i = 0; i < test5.length; i++) {
-  console.log(test5[i].length);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "S" || arr[i] === "D" || arr[i] === "T") {
+      if (arr[i] === "D") {
+        arr[i - 1] = Math.pow(arr[i - 1], 2);
+      } else if (arr[i] === "T") {
+        arr[i - 1] = Math.pow(arr[i - 1], 3);
+      }
+    } else if (arr[i] == "*") {
+      arr[i - 2] = arr[i - 2] * 2;
+
+      if (typeof arr[i - 4] == "number") {
+        arr[i - 4] = arr[i - 4] * 2;
+      } else {
+        arr[i - 5] = arr[i - 5] * 2;
+      }
+    } else if (arr[i] === "#") {
+      arr[i - 2] = arr[i - 2] * -1;
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] == "number") {
+      result += arr[i];
+    }
+  }
+
+  return result;
 }
-
-// console.log(test2);
-// console.log(test2.length);
