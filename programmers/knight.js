@@ -7,12 +7,17 @@ function solution(number, limit, power) {
 
     for (let j = 1; j <= i; j++) {
       if (i % j == 0) cnt++;
-      if (j == i - 1) arr.push(cnt);
+      if (j == i) arr.push(cnt);
     }
   }
-  console.log(arr);
 
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > limit) answer += power;
+    else answer += arr[i];
+  }
+
+  console.log(answer);
   return answer;
 }
 
-solution(5);
+solution(100000, 3, 2);
