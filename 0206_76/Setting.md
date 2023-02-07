@@ -9,7 +9,7 @@
 - 설치
 
 ```sh
-sudo apt-get intall golang
+sudo apt-get install golang
 ```
 
 - 버전 확인
@@ -38,10 +38,14 @@ git clone https://github.com/ethereum/go-ethereum
 ```
 
 - 빌드
+
   - go-ethereum 폴더에서 실행
+
   ```sh
   make geth
+
   ```
+
 - geth 실행
   - go-ethereum/build/bin 폴더 내의 geth 실행
 
@@ -52,7 +56,7 @@ git clone https://github.com/ethereum/go-ethereum
 # 생성한 geth를 위치에 상관없이 명령어로 사용할 수 있도록 하자
 
 - pwd로 확인한 geth의 경로
-  - /root/geth/go0ethereum/build/bin
+  - /root/geth/go-ethereum/build/bin
 - 파일 하나를 만들자
 
   - 이름은 .bash_profile
@@ -65,7 +69,7 @@ git clone https://github.com/ethereum/go-ethereum
   - 내용은 아래와 같다.
 
     ```sh
-    export PATH=$Path:/root/geth/go-ethereum/build/bin
+    export PATH=$Path:/home/nyes/geth/go-ethereum/build/bin
     ```
 
 - 아래의 명령어를 입력하면 완료

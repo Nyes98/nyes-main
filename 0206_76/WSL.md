@@ -138,8 +138,17 @@ sudo apt-get upgrade
 11. WSL에서 삭제하고 싶을 때
 
 ```sh
-wsl -unregister Ubuntu
+wsl --unregister Ubuntu
 ```
 
+12. 기본적으로 WSL 2를 사용하도록 설정
+
+```sh
+wsl --set-default-version 2
+```
+
+- 우분투 삭제 후 기본 설정 설정 후 다시 설치해야 버전이 바뀐다.
+
 # Mac OS에서 프로그램 설치
+
 - homebrew
