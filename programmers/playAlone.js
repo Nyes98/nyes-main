@@ -1,44 +1,61 @@
 function solution(cards) {
-  var answer = 0;
+  let answer = 0;
   let group1 = [];
-  let group2 = [];
+  let trycnt = 0;
+  let answerArr = [];
+  let same = 0;
+  let real = [];
 
-  group1.push(cards[0]);
-  for (let i = 0; i < cards.length; i++) {
-    if (cards[group1[i] - 1] == group1[0]) {
-      group2.push(cards[group1[i]]);
-      break;
+  while (trycnt < cards.length) {
+    group1.push(cards[trycnt]);
+    for (let i = trycnt; i < cards.length; i++) {
+      if (cards[group1[i - trycnt] - 1] == group1[0]) {
+        break;
+      }
+      group1.push(cards[group1[i - trycnt] - 1]);
     }
-    group1.push(cards[group1[i] - 1]);
-  }
 
-  console.log(group1);
-  if (group1.length == cards.length) return 0;
-
-  for (let i = 0; i < cards.length; i++) {
-    if (cards[group2[i] - 1] == group2[0] && i != 0) {
-      console.log("가타요");
-      break;
+    console.log("그룹1", group1);
+    if (group1.length == cards.length) {
+      console.log("빵점");
+      return 0;
     }
-    for (let j = 0; j < group1.length; j++) {
-      console.log("비교", cards[group2[i] - 1], group1[j]);
-      if (cards[group2[i] - 1] == group1[j]) {
-        console.log("걸렸을때 그룹2", group2);
-        return group1.length * group2.length;
+
+    for (let i = 0; i < answerArr.length; i++) {
+      for (let j = 0; j < group1.length; j++) {
+        for (let z = 0; z < answerArr[i][1].length; z++) {
+          if (answerArr[i][1][z] == group1[j]) {
+            console.log(i, z, j);
+            console.log("담긴 답", answerArr[i][1][z]);
+            console.log("같은거있으면 안돼", group1[j]);
+            console.log("너 같잖아");
+            same++;
+          }
+        }
       }
     }
-    group2.push(cards[group2[i] - 1]);
-    console.log(group2);
+
+    if (same == 0) {
+      answerArr.push([group1.length, group1]);
+    }
+    same = 0;
+    console.log("장답", answerArr);
+
+    answer = 0;
+    group1 = [];
+
+    trycnt++;
   }
 
-  answer = group1.length * group2.length;
-  console.log(answer);
-  return answer;
+  for (let i = 0; i < answerArr.length; i++) {
+    real.push(answerArr[i][0]);
+  }
+
+  real.sort((a, b) => {
+    return b - a;
+  });
+
+  return real[0] * real[1];
 }
 
-// solution([8, 6, 3, 7, 2, 5, 1, 4]);
-// solution([2, 5, 4, 1, 3]);
-solution([3, 2, 4, 1, 6, 5]);
-// solution([5, 3, 6, 1, 7, 9, 2, 4, 8]);
-
-// 5 7 2 3 6 9 8
+solution([8, 6, 3, 7, 2, 5, 1, 4]);
