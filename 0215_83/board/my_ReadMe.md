@@ -13,7 +13,7 @@ yarn create react-app ./
 ## 3. 라이브러리 설치
 
 ```sh
-yarn add express dotenv express-session cookie-parser morgan styled-components react-router-dom mysql2 sequelize sequelize-cli
+yarn add express dotenv express-session cookie-parser morgan styled-components react-router-dom mysql2 sequelize sequelize-cli axios cors
 yarn add -D npm-run-all nodemon
 ```
 
