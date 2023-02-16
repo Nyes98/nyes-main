@@ -1,6 +1,16 @@
 const router = require("express").Router();
+const Web3 = require("web3");
+const axios = require("axios");
 
 const { Block } = require("../models");
+const request = axios.create({
+  method: "POST",
+  baseURL: "http://localhost:8080",
+  headers: {
+    "content-type": "application/json",
+  },
+});
+const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
 
 // router.post("/", async (req, res) => {
 //   console.log(req.body);
