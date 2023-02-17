@@ -69,7 +69,7 @@ git clone https://github.com/ethereum/go-ethereum
   - 내용은 아래와 같다.
 
     ```sh
-    export PATH=$Path:/home/nyes/geth/go-ethereum/build/bin
+    export PATH=$PATH:/home/nyes/geth/go-ethereum/build/bin
     ```
 
 - 아래의 명령어를 입력하면 완료

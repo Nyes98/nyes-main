@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const MainComp = ({}) => {
+const MainComp = ({
+  blockInfo,
+  shortWords,
+  transactionInfo,
+  veryshortWords,
+}) => {
   return (
     <MainRoot>
       <MainBackgroud></MainBackgroud>
@@ -17,34 +22,68 @@ const MainComp = ({}) => {
         <InfoViewBox>
           <LatestBlocksBox>
             <InfoTitleBox>Latest Blocks</InfoTitleBox>
-            <InfoContentsBox>
-              <BlockHeight>
-                <Icon>BK</Icon>
-                <HeightTime>
-                  <div>32090256</div>
-                  <div>21 secs ago</div>
-                </HeightTime>
-              </BlockHeight>
-              <ValidInfo>
-                <MinerBox>
-                  <div>Validated By</div>
-                  <div>miner...</div>
-                </MinerBox>
-                <TxnsTime>
-                  <div>2 txns</div>
-                  <div>in 6 secs</div>
-                </TxnsTime>
-              </ValidInfo>
-              <GasInfo>
-                <div>UsedGas</div>
-                <div>232323</div>
-              </GasInfo>
-            </InfoContentsBox>
+            {blockInfo.map((item, index) => (
+              <InfoContentsBox key={`InfoContentsBox-${index}`}>
+                <BlockHeight>
+                  <Icon>BK</Icon>
+                  <HeightTime>
+                    <div>{item.number}</div>
+                    <div>21 secs ago</div>
+                  </HeightTime>
+                </BlockHeight>
+                <ValidInfo>
+                  <MinerBox>
+                    <div>Validated By</div>
+                    <div>{shortWords(item.miner)}</div>
+                  </MinerBox>
+                  <TxnsTime>
+                    <div>{item.transactions.length} txns</div>
+                    <div>in 6 secs</div>
+                  </TxnsTime>
+                </ValidInfo>
+                <GasInfo>
+                  <div>UsedGas</div>
+                  <div>{item.gasUsed}</div>
+                </GasInfo>
+              </InfoContentsBox>
+            ))}
+
             <InfoBtnBox>
               <div>Veiw All</div>
             </InfoBtnBox>
           </LatestBlocksBox>
-          <LatestTransactionsBox></LatestTransactionsBox>
+          <LatestTransactionsBox>
+            <InfoTitleBox>Latest Transactions</InfoTitleBox>
+            {transactionInfo.map((item, index) => (
+              <InfoContentsBox key={`TInfoContentsBox-${index}`}>
+                <BlockHeight>
+                  <Ticon>Tx</Ticon>
+                  <HeightTime>
+                    <div>{veryshortWords(item.hash)}</div>
+                    <div>21 secs ago</div>
+                  </HeightTime>
+                </BlockHeight>
+                <ValidInfo>
+                  <MinerBox>
+                    <div>From</div>
+                    <div>{shortWords(item.from)}</div>
+                  </MinerBox>
+                  <MinerBox>
+                    <div>To</div>
+                    <div>{shortWords(item.to)}</div>
+                  </MinerBox>
+                </ValidInfo>
+                <ValueInfo>
+                  <div>{item.value / Math.pow(10, 18)}</div>
+                  <div>ETH</div>
+                </ValueInfo>
+              </InfoContentsBox>
+            ))}
+
+            <InfoBtnBox>
+              <div>Veiw All</div>
+            </InfoBtnBox>
+          </LatestTransactionsBox>
         </InfoViewBox>
       </ContentsBox>
     </MainRoot>
@@ -54,23 +93,24 @@ const MainComp = ({}) => {
 export default MainComp;
 
 const MainRoot = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
 `;
 
 const MainBackgroud = styled.div`
   position: absolute;
+  top: 0;
   background-color: purple;
-  padding: 7rem;
-  z-index: 0;
+  padding: 9rem 0;
+  z-index: -1;
   width: 100%;
 `;
 
 const ContentsBox = styled.div`
   max-width: 1400px;
   width: 100%;
-  position: absolute;
-  top: 180px;
+  margin-top: 100px;
 `;
 
 const SearchBox = styled.div`
@@ -94,6 +134,22 @@ const SearchBtnBox = styled.div`
   }
 `;
 
+const ValueInfo = styled.div`
+  margin-top: 10px;
+  width: 50px;
+  height: 25px;
+  background-color: #f1f2f4;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  color: gray;
+
+  & > div:nth-child(2) {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+`;
+
 const SearchLine = styled.div`
   z-index: 2;
   display: flex;
@@ -109,16 +165,23 @@ const SearchLine = styled.div`
 
 const InfoViewBox = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const LatestBlocksBox = styled.div`
   background-color: white;
   border-radius: 10px;
-  width: 45%;
+  width: 48%;
   margin-top: 50px;
   border: 1px solid #e7eaf3;
 `;
-const LatestTransactionsBox = styled.div``;
+const LatestTransactionsBox = styled.div`
+  background-color: white;
+  border-radius: 10px;
+  width: 48%;
+  margin-top: 50px;
+  border: 1px solid #e7eaf3;
+`;
 
 const InfoTitleBox = styled.div`
   border-bottom: 1px solid #e7eaf3;
@@ -129,6 +192,7 @@ const InfoContentsBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  border-bottom: 1px solid #e7eaf3;
 `;
 const InfoBtnBox = styled.div`
   border-top: 1px solid #e7eaf3;
@@ -156,6 +220,17 @@ const Icon = styled.div`
   width: 44px;
   height: 44px;
   border-radius: 10px;
+  background-color: #f1f2f4;
+  margin-right: 5px;
+`;
+
+const Ticon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
   background-color: #f1f2f4;
   margin-right: 5px;
 `;

@@ -20,9 +20,7 @@ const HeaderComp = ({}) => {
 
 export default HeaderComp;
 
-const HeaderLine = styled.div`
-  background-color: purple;
-`;
+const HeaderLine = styled.div``;
 const LogoBox = styled.div`
   img {
     width: 150px;

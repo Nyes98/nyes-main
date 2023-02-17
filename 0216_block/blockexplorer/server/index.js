@@ -50,3 +50,6 @@ db.sequelize
 app.listen(8081, () => {
   console.log("8081 server start");
 });
+app.listen(8082, () => {
+  console.log("8082 ws server start");
+});

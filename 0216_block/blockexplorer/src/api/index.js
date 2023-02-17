@@ -4,8 +4,12 @@ const request = axios.create({
   baseURL: "http://localhost:8081/api",
 });
 
-export const newBlock = async (blockData) => {
-  return await request.post("/block/new", blockData);
+export const callAllBlock = async () => {
+  return await request.post("/block/all", 1);
+};
+
+export const callRecentBlock = async () => {
+  return await request.post("/block/recent", 1);
 };
 
 // export const board = async (options) => {
