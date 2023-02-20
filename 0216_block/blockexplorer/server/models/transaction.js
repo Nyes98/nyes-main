@@ -13,9 +13,9 @@ module.exports = class Transaction extends Sequelize.Model {
         blockHash: {
           type: Sequelize.STRING(66),
         },
-        blockNumber: {
-          type: Sequelize.STRING(64),
-        },
+        // blockNumber: {
+        //   type: Sequelize.STRING(64),
+        // },
         transactionIndex: {
           type: Sequelize.STRING(64),
         },
@@ -63,7 +63,10 @@ module.exports = class Transaction extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   db.Board.belongsTo(db.User);
-  // }
+  static associate(db) {
+    db.Transaction.belongsTo(db.Block, {
+      targetKey: "number",
+      foreignKey: "BlockNumber",
+    });
+  }
 };

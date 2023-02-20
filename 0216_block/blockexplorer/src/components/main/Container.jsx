@@ -1,10 +1,29 @@
 import { useEffect, useState } from "react";
 import { callAllBlock, callRecentBlock } from "../../api";
+import { useNavigate } from "react-router-dom";
+
 import MainComp from "./Component";
 
 const MainContainer = () => {
   const [blockInfo, setBlockInfo] = useState([]);
-  const [transactionInfo, setTransactionInfo] = useState([]);
+  const [txInfo, setTxInfo] = useState([]);
+  const navigate = useNavigate();
+
+  const moveBlockInfo = (params) => {
+    navigate(`/blockInfo/${params}`);
+  };
+
+  const moveTransactionInfo = (params) => {
+    navigate(`/txInfo/${params}`);
+  };
+
+  const moveAllBlockInfo = () => {
+    navigate(`/allBlocks`);
+  };
+
+  const moveAllTxInfo = () => {
+    navigate(`/allTxs`);
+  };
 
   const shortWords = (str, length = 30) => {
     let result = "";
@@ -27,21 +46,21 @@ const MainContainer = () => {
   };
   const getAllBlock = async () => {
     const result = await callAllBlock();
-    // console.log(result.data.data);
+    console.log(result.data.data);
     // setBlockInfo(result.data.data);
     // console.log(blockInfo);
   };
 
   const getRecentBlock = async () => {
     const result = await callRecentBlock();
-    console.log(result.data.trans);
+    console.log(result.data);
     setBlockInfo(result.data.data);
-    setTransactionInfo(result.data.trans);
+    setTxInfo(result.data.trans);
   };
 
   useEffect(() => {
-    // console.log(blockInfo);
-    // if (blockInfo.length > 10) return;
+    console.log(blockInfo);
+    if (blockInfo.length > 10) return;
     getAllBlock();
     getRecentBlock();
   }, []);
@@ -49,9 +68,13 @@ const MainContainer = () => {
   return (
     <MainComp
       blockInfo={blockInfo}
+      txInfo={txInfo}
       shortWords={shortWords}
-      transactionInfo={transactionInfo}
       veryshortWords={veryshortWords}
+      moveBlockInfo={moveBlockInfo}
+      moveTransactionInfo={moveTransactionInfo}
+      moveAllBlockInfo={moveAllBlockInfo}
+      moveAllTxInfo={moveAllTxInfo}
     ></MainComp>
   );
 };

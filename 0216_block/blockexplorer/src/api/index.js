@@ -12,14 +12,10 @@ export const callRecentBlock = async () => {
   return await request.post("/block/recent", 1);
 };
 
-// export const board = async (options) => {
-//   return (await request.post("/board", options)).data;
-// };
+export const callBlockInfo = async (blockNumber) => {
+  return await request.post("/block/info", { blockNumber: blockNumber });
+};
 
-// export const signIn = async (registData) => {
-//   return (await request.post("/user/regist", registData)).data;
-// };
-
-// export const logIn = async (logInData) => {
-//   return (await request.post("/user/login", logInData)).data;
-// };
+export const callTxInfo = async (txHash) => {
+  return await request.post("/block/txInfo", { txHash: txHash });
+};

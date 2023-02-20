@@ -15,6 +15,7 @@ module.exports = class Block extends Sequelize.Model {
         },
         number: {
           type: Sequelize.STRING(16),
+          unique: true,
         },
         logsBloom: {
           type: Sequelize.TEXT,
@@ -75,7 +76,10 @@ module.exports = class Block extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   db.Board.belongsTo(db.User);
-  // }
+  static associate(db) {
+    db.Block.hasMany(db.Transaction, {
+      sourceKey: "number",
+      foreignKey: "BlockNumber",
+    });
+  }
 };

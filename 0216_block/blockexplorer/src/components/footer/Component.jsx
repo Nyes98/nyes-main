@@ -56,6 +56,8 @@ const ServiceBox = styled.div`
   div {
     margin: 0 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 
   & > div:last-child {
@@ -66,12 +68,15 @@ const ServiceBox = styled.div`
     cursor: pointer;
     display: flex;
     justify-content: center;
+
+    &:hover {
+      background-color: white;
+    }
   }
 `;
 
 const FooterLine = styled.div`
   background-color: purple;
-  margin-top: 100px;
   width: 100%;
 `;
 
@@ -86,6 +91,7 @@ const HighBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 15px;
+  color: white;
 
   img {
     width: 30px;
@@ -123,9 +129,12 @@ const TextBox = styled.div`
 const LogoBox = styled.div`
   display: flex;
   align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
 `;
 const BtnBox = styled.div`
   display: flex;
+  font-size: 0.8rem;
   & > div {
     border-radius: 10px;
     display: flex;
@@ -133,6 +142,11 @@ const BtnBox = styled.div`
     margin-left: 10px;
     background-color: #39466b;
     padding: 0 5px;
+
+    &:hover {
+      background-color: white;
+      color: black;
+    }
     img {
       width: 20px;
       margin-right: 5px;

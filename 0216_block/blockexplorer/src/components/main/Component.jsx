@@ -3,8 +3,12 @@ import styled from "styled-components";
 const MainComp = ({
   blockInfo,
   shortWords,
-  transactionInfo,
+  txInfo,
   veryshortWords,
+  moveBlockInfo,
+  moveTransactionInfo,
+  moveAllBlockInfo,
+  moveAllTxInfo,
 }) => {
   return (
     <MainRoot>
@@ -22,12 +26,18 @@ const MainComp = ({
         <InfoViewBox>
           <LatestBlocksBox>
             <InfoTitleBox>Latest Blocks</InfoTitleBox>
-            {blockInfo.map((item, index) => (
+            {blockInfo?.map((item, index) => (
               <InfoContentsBox key={`InfoContentsBox-${index}`}>
                 <BlockHeight>
                   <Icon>BK</Icon>
                   <HeightTime>
-                    <div>{item.number}</div>
+                    <div
+                      onClick={() => {
+                        moveBlockInfo(item.number);
+                      }}
+                    >
+                      {item.number}
+                    </div>
                     <div>21 secs ago</div>
                   </HeightTime>
                 </BlockHeight>
@@ -49,17 +59,23 @@ const MainComp = ({
             ))}
 
             <InfoBtnBox>
-              <div>Veiw All</div>
+              <div onClick={moveAllBlockInfo}>Veiw All</div>
             </InfoBtnBox>
           </LatestBlocksBox>
           <LatestTransactionsBox>
             <InfoTitleBox>Latest Transactions</InfoTitleBox>
-            {transactionInfo.map((item, index) => (
+            {txInfo?.map((item, index) => (
               <InfoContentsBox key={`TInfoContentsBox-${index}`}>
                 <BlockHeight>
                   <Ticon>Tx</Ticon>
                   <HeightTime>
-                    <div>{veryshortWords(item.hash)}</div>
+                    <div
+                      onClick={() => {
+                        moveTransactionInfo(item.hash);
+                      }}
+                    >
+                      {veryshortWords(item.hash)}
+                    </div>
                     <div>21 secs ago</div>
                   </HeightTime>
                 </BlockHeight>
@@ -81,7 +97,7 @@ const MainComp = ({
             ))}
 
             <InfoBtnBox>
-              <div>Veiw All</div>
+              <div onClick={moveAllTxInfo}>Veiw All</div>
             </InfoBtnBox>
           </LatestTransactionsBox>
         </InfoViewBox>

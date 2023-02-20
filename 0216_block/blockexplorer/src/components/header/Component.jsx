@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const HeaderComp = ({}) => {
+const HeaderComp = ({ moveTo }) => {
   return (
     <HeaderLine>
       <ContentsBox>
-        <LogoBox>
+        <LogoBox onClick={moveTo}>
           <img src="/imgs/logo-ether.svg"></img>{" "}
         </LogoBox>
         <DropContents>
@@ -20,8 +20,12 @@ const HeaderComp = ({}) => {
 
 export default HeaderComp;
 
-const HeaderLine = styled.div``;
+const HeaderLine = styled.div`
+  max-width: 1400px;
+  margin: auto;
+`;
 const LogoBox = styled.div`
+  cursor: pointer;
   img {
     width: 150px;
     margin: 10px 0;
@@ -30,7 +34,7 @@ const LogoBox = styled.div`
 const ContentsBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
   margin: auto;
 `;
 
