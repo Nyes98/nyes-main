@@ -34,16 +34,6 @@ const TxInfoContainer = () => {
     setTs(idate.toString());
   };
 
-  // const nextTx = () => {
-  //   console.log(params);
-  //   navigate(`/txInfo/${+params.txHash + 1}`);
-  // };
-
-  // const prevTx = () => {
-  //   console.log(params);
-  //   navigate(`/txInfo/${+params.txHash - 1}`);
-  // };
-
   const moveTo = (blockNumber) => {
     navigate(`/blockInfo/${blockNumber}`);
   };

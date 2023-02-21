@@ -11,6 +11,8 @@ const AllTxComp = ({
   maxPage,
   handleSelect,
   moveToTxInfo,
+  moveToAddress,
+  moveBlockInfo,
 }) => {
   return (
     <Background>
@@ -67,7 +69,13 @@ const AllTxComp = ({
                 {shortWords(item.hash)}
               </td>
 
-              <td>{item.BlockNumber}</td>
+              <td
+                onClick={() => {
+                  moveBlockInfo(item.BlockNumber);
+                }}
+              >
+                {item.BlockNumber}
+              </td>
 
               {parseInt(
                 (Date.now() - item.Block.timestamp * 1000) /
@@ -110,8 +118,20 @@ const AllTxComp = ({
                   seconds ago
                 </td>
               )}
-              <td>{shortWords(item.from)}</td>
-              <td>{shortWords(item.to)}</td>
+              <td
+                onClick={() => {
+                  moveToAddress(item.from);
+                }}
+              >
+                {shortWords(item.from)}
+              </td>
+              <td
+                onClick={() => {
+                  moveToAddress(item.to);
+                }}
+              >
+                {shortWords(item.to)}
+              </td>
               <td>
                 {(+item.gasPrice / Math.pow(10, 9)).toLocaleString()} Gwei
               </td>
@@ -164,6 +184,18 @@ const InfoLine = styled.tbody`
   padding: 20px 0;
 
   & > tr > td:first-child {
+    color: blue;
+    cursor: pointer;
+  }
+  & > tr > td:nth-child(2) {
+    color: blue;
+    cursor: pointer;
+  }
+  & > tr > td:nth-child(4) {
+    color: blue;
+    cursor: pointer;
+  }
+  & > tr > td:nth-child(5) {
     color: blue;
     cursor: pointer;
   }

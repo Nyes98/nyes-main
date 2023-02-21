@@ -7,6 +7,8 @@ import MainComp from "./Component";
 const MainContainer = () => {
   const [blockInfo, setBlockInfo] = useState([]);
   const [txInfo, setTxInfo] = useState([]);
+  const [search, setSearch] = useState();
+  const [latestBlock, setLatestBlock] = useState();
   const navigate = useNavigate();
 
   const moveToAddress = (address) => {
@@ -31,6 +33,13 @@ const MainContainer = () => {
 
   const moveBlockTxns = (blockNumber) => {
     navigate(`/blockTxs/${blockNumber}`);
+  };
+
+  const doSearch = () => {
+    console.log(latestBlock);
+    console.log(search.length);
+    if (search <= latestBlock) navigate(`/blockInfo/${search}`);
+    else if (search.length == 42) navigate(`/address/${search}`);
   };
 
   const shortWords = (str, length = 30) => {
@@ -60,9 +69,9 @@ const MainContainer = () => {
 
   const getRecentBlock = async () => {
     const result = await callRecentBlock();
-    console.log(result.data);
     setBlockInfo(result.data.data);
     setTxInfo(result.data.trans);
+    setLatestBlock(result.data.data[0].number);
   };
 
   useEffect(() => {
@@ -84,6 +93,9 @@ const MainContainer = () => {
       moveAllTxInfo={moveAllTxInfo}
       moveToAddress={moveToAddress}
       moveBlockTxns={moveBlockTxns}
+      setSearch={setSearch}
+      search={search}
+      doSearch={doSearch}
     ></MainComp>
   );
 };

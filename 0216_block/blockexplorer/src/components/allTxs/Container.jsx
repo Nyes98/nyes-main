@@ -15,9 +15,15 @@ const AllTxsContainer = () => {
     navigate(`/txinfo/${txHash}`);
   };
 
+  const moveToAddress = (address) => {
+    navigate(`/address/${address}`);
+  };
   const handleSelect = (e) => {
     setLimit(+e.target.value);
     setPage(1);
+  };
+  const moveBlockInfo = (params) => {
+    navigate(`/blockInfo/${params}`);
   };
 
   const shortWords = (str, length = 30) => {
@@ -79,6 +85,8 @@ const AllTxsContainer = () => {
       maxPage={maxPage}
       handleSelect={handleSelect}
       moveToTxInfo={moveToTxInfo}
+      moveToAddress={moveToAddress}
+      moveBlockInfo={moveBlockInfo}
     ></AllTxComp>
   );
 };

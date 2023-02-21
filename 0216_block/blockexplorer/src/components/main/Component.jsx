@@ -11,6 +11,9 @@ const MainComp = ({
   moveAllTxInfo,
   moveToAddress,
   moveBlockTxns,
+  setSearch,
+  search,
+  doSearch,
 }) => {
   return (
     <MainRoot>
@@ -19,8 +22,18 @@ const MainComp = ({
         <SearchBox>
           <div>The Optimism Explorer</div>
           <SearchLine>
-            <input type="text" />
-            <SearchBtnBox>
+            <input
+              type="text"
+              placeholder="Search by Address / Txn Hash / Block"
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <SearchBtnBox
+              onClick={() => {
+                doSearch();
+              }}
+            >
               <img src="/imgs/search.svg" alt="" />
             </SearchBtnBox>
           </SearchLine>
