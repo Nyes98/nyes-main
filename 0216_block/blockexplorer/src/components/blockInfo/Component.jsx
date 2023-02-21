@@ -9,6 +9,7 @@ const BlockInfoComp = ({
   day,
   nextBlock,
   prevBlock,
+  moveBlockTxns,
 }) => {
   console.log(blockInfo);
   return (
@@ -51,7 +52,13 @@ const BlockInfoComp = ({
             <InfoBox>
               <InfoTitle>Transactions:</InfoTitle>
               <InfoContents>
-                <div>{blockInfo?.transactions.length} transactions</div>
+                <div
+                  onClick={() => {
+                    moveBlockTxns(blockInfo?.number);
+                  }}
+                >
+                  {blockInfo?.transactions.length} transactions
+                </div>
                 in this block
               </InfoContents>
             </InfoBox>
@@ -174,6 +181,7 @@ const InfoContents = styled.div`
   div {
     margin-right: 5px;
     color: blue;
+    cursor: pointer;
   }
 
   button {
@@ -181,6 +189,7 @@ const InfoContents = styled.div`
     border-radius: 5px;
     padding: 5px 8px;
     margin-left: 3px;
+    cursor: pointer;
   }
 `;
 

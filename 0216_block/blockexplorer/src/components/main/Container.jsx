@@ -9,6 +9,10 @@ const MainContainer = () => {
   const [txInfo, setTxInfo] = useState([]);
   const navigate = useNavigate();
 
+  const moveToAddress = (address) => {
+    navigate(`/address/${address}`);
+  };
+
   const moveBlockInfo = (params) => {
     navigate(`/blockInfo/${params}`);
   };
@@ -23,6 +27,10 @@ const MainContainer = () => {
 
   const moveAllTxInfo = () => {
     navigate(`/allTxs`);
+  };
+
+  const moveBlockTxns = (blockNumber) => {
+    navigate(`/blockTxs/${blockNumber}`);
   };
 
   const shortWords = (str, length = 30) => {
@@ -44,11 +52,10 @@ const MainContainer = () => {
     }
     return result;
   };
+
   const getAllBlock = async () => {
     const result = await callAllBlock();
     console.log(result.data.data);
-    // setBlockInfo(result.data.data);
-    // console.log(blockInfo);
   };
 
   const getRecentBlock = async () => {
@@ -75,6 +82,8 @@ const MainContainer = () => {
       moveTransactionInfo={moveTransactionInfo}
       moveAllBlockInfo={moveAllBlockInfo}
       moveAllTxInfo={moveAllTxInfo}
+      moveToAddress={moveToAddress}
+      moveBlockTxns={moveBlockTxns}
     ></MainComp>
   );
 };

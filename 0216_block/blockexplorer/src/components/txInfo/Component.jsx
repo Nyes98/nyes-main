@@ -10,14 +10,15 @@ const TxInfoComp = ({
   nextBlock,
   prevBlock,
   moveTo,
+  moveToAddress,
 }) => {
   console.log(txInfo);
+  console.log(ts);
+
   return (
     <Background>
       <TitleBox>
         <div>Transaction Details</div>
-        <button onClick={prevBlock}>&lt;</button>
-        <button onClick={nextBlock}>&gt;</button>
       </TitleBox>
       <ContentsBox>
         <InfoWrap>
@@ -62,11 +63,23 @@ const TxInfoComp = ({
           <InfoParagraph>
             <InfoBox>
               <InfoTitle>From:</InfoTitle>
-              <InfoContents>{txInfo?.from}</InfoContents>
+              <InfoContents
+                onClick={() => {
+                  moveToAddress(txInfo.from);
+                }}
+              >
+                <div>{txInfo?.from}</div>
+              </InfoContents>
             </InfoBox>
             <InfoBox>
               <InfoTitle>To:</InfoTitle>
-              <InfoContents>{txInfo?.to}</InfoContents>
+              <InfoContents
+                onClick={() => {
+                  moveToAddress(txInfo.to);
+                }}
+              >
+                <div>{txInfo?.to}</div>
+              </InfoContents>
             </InfoBox>
           </InfoParagraph>
           <InfoParagraph>
@@ -132,12 +145,6 @@ const TitleBox = styled.div`
     font-weight: 600;
     margin-right: 10px;
   }
-
-  & > div:last-child {
-    font-size: 1rem;
-    color: gray;
-    margin-top: 3px;
-  }
 `;
 
 const InfoBox = styled.div`
@@ -159,6 +166,7 @@ const InfoContents = styled.div`
   div {
     margin-right: 5px;
     color: blue;
+    cursor: pointer;
   }
 
   button {

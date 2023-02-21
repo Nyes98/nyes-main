@@ -102,4 +102,30 @@ router.post("/recent", async (req, res) => {
   });
 });
 
+router.post("/page", async (req, res) => {
+  console.log(req.body);
+  try {
+    const info = await Block.findAll({
+      order: [["id", "DESC"]],
+      limit: req.body.limit,
+      offset: (req.body.page - 1) * req.body.limit,
+    });
+    res.send({ isError: false, data: info });
+  } catch (error) {
+    res.send({ isError: true });
+  }
+});
+
+router.post("/latest", async (req, res) => {
+  try {
+    const info = await Block.findOne({
+      order: [["id", "DESC"]],
+      limit: 1,
+    });
+    res.send({ isError: false, data: info });
+  } catch (error) {
+    res.send({ isError: true });
+  }
+});
+
 module.exports = router;

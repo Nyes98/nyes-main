@@ -5,6 +5,9 @@ import MainContainer from "./components/main/Container";
 import { Route, Routes, Link } from "react-router-dom";
 import TxInfoContainer from "./components/txInfo/Container";
 import AllBlocksContainer from "./components/allBlocks/Container";
+import AllTxsContainer from "./components/allTxs/Container";
+import AddressContainer from "./components/address/Container";
+import BlockTxsContainer from "./components/blockTxs/Container";
 
 function App() {
   return (
@@ -24,6 +27,18 @@ function App() {
         <Route
           path="/allBlocks"
           element={<AllBlocksContainer></AllBlocksContainer>}
+        ></Route>
+        <Route
+          path="/allTxs"
+          element={<AllTxsContainer></AllTxsContainer>}
+        ></Route>
+        <Route
+          path="/address/:address"
+          element={<AddressContainer></AddressContainer>}
+        ></Route>
+        <Route
+          path="/blockTxs/:blockNumber"
+          element={<BlockTxsContainer></BlockTxsContainer>}
         ></Route>
       </Routes>
       <FooterContainer></FooterContainer>

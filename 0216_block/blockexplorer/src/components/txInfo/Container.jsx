@@ -22,24 +22,15 @@ const TxInfoContainer = () => {
     console.log();
 
     let agoDate = parseInt(
-      Date.now() -
-        (+result.data.data.Block.timestamp * 1000 +
-          1000 * 60 * 60 * 24 * 3 +
-          1000 * 60 * 60 * 3 +
-          1000 * 60 * 3)
+      Date.now() - +result.data.data.Block.timestamp * 1000
     );
 
     setSecond(parseInt(agoDate / 1000) % 60);
     setMinute(parseInt(agoDate / (60 * 1000)) % 60);
-    setHour(parseInt(agoDate / (60 * 1000 * 60)));
+    setHour(parseInt(agoDate / (60 * 1000 * 60)) % 24);
     setDay(parseInt(agoDate / (60 * 1000 * 60 * 24)));
 
-    let idate = new Date(
-      +result.data.data.timestamp * 1000 +
-        1000 * 60 * 60 * 24 * 3 +
-        1000 * 60 * 60 * 3 +
-        1000 * 60 * 3
-    );
+    let idate = new Date(+result.data.data.Block.timestamp * 1000);
     setTs(idate.toString());
   };
 
@@ -57,6 +48,10 @@ const TxInfoContainer = () => {
     navigate(`/blockInfo/${blockNumber}`);
   };
 
+  const moveToAddress = (address) => {
+    navigate(`/address/${address}`);
+  };
+
   useEffect(() => {
     getTxInfo();
   }, [params.txHash]);
@@ -70,6 +65,7 @@ const TxInfoContainer = () => {
       hour={hour}
       day={day}
       moveTo={moveTo}
+      moveToAddress={moveToAddress}
       // nextBlock={nextBlock}
       // prevBlock={prevBlock}
     ></TxInfoComp>

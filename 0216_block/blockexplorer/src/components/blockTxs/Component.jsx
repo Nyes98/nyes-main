@@ -1,33 +1,39 @@
 import styled from "styled-components";
 
-const AllBlocksComp = ({
-  blockList,
+const BlockTxsComp = ({
+  txList,
   shortWords,
-  latestBlockNum,
+  latestTxNum,
   page,
   limit,
   nextPage,
   prevPage,
   maxPage,
   handleSelect,
+  moveToTxInfo,
+  params,
   moveToBlockInfo,
-  moveBlockTxns,
   moveToAddress,
 }) => {
   return (
     <Background>
       <TitleBox>
-        <div>Blocks</div>
+        <div>Transactions</div>
       </TitleBox>
+      <BlockInfoBox
+        onClick={() => {
+          moveToBlockInfo(params);
+        }}
+      >
+        For Block {params}
+      </BlockInfoBox>
       <SubBox>
         <NumBox>
-          <div>Total of {latestBlockNum} blocks</div>
+          <div>Total of {latestTxNum} Transactions</div>
           <div>
-            (Showing blocks between #
-            {latestBlockNum - page * limit > -1
-              ? latestBlockNum - page * limit
-              : 0}{" "}
-            to #{latestBlockNum - (page - 1) * limit - 1})
+            (Showing Transactions between #
+            {latestTxNum - page * limit > -1 ? latestTxNum - page * limit : 0}{" "}
+            to #{latestTxNum - (page - 1) * limit - 1})
           </div>
         </NumBox>
         <PageBox>
@@ -51,82 +57,93 @@ const AllBlocksComp = ({
       <ContentsBox>
         <TitleLine>
           <tr>
+            <th>Txn Hash</th>
             <th>Block</th>
             <th>Age</th>
-            <th>Txn</th>
-            <th>Fee Recipient</th>
-            <th>Gas Used</th>
-            <th>Gas Limit</th>
-            <th>Total Difficulty</th>
-            <th>Size</th>
-            <th>Hash</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Gas Price</th>
+            <th>Value</th>
           </tr>
         </TitleLine>
-        {blockList?.map((item, index) => (
-          <InfoLine key={`InfoLine-${index}`}>
+        {txList?.map((item, index) => (
+          <InfoLine key={`txInfoLine-${index}`}>
             <tr>
               <td
                 onClick={() => {
-                  moveToBlockInfo(item.number);
+                  moveToTxInfo(item.hash);
                 }}
               >
-                {item.number}
+                {shortWords(item.hash)}
+              </td>
+
+              <td
+                onClick={() => {
+                  moveToBlockInfo(item.BlockNumber);
+                }}
+              >
+                {item.BlockNumber}
               </td>
 
               {parseInt(
-                (Date.now() - item.timestamp * 1000) / (1000 * 60 * 60 * 24)
+                (Date.now() - item.Block.timestamp * 1000) /
+                  (1000 * 60 * 60 * 24)
               ) > 0 ? (
                 <td>
                   {parseInt(
-                    (Date.now() - item.timestamp * 1000) / (1000 * 60 * 60 * 24)
+                    (Date.now() - item.Block.timestamp * 1000) /
+                      (1000 * 60 * 60 * 24)
                   )}{" "}
                   days{" "}
                   {parseInt(
-                    (Date.now() - item.timestamp * 1000) / (1000 * 60 * 60)
+                    (Date.now() - item.Block.timestamp * 1000) /
+                      (1000 * 60 * 60)
                   ) % 24}{" "}
                   hours ago
                 </td>
               ) : parseInt(
-                  (Date.now() - item.timestamp * 1000) / (1000 * 60 * 60)
+                  (Date.now() - item.Block.timestamp * 1000) / (1000 * 60 * 60)
                 ) > 0 ? (
                 <td>
                   {parseInt(
-                    (Date.now() - item.timestamp * 1000) / (1000 * 60 * 60)
+                    (Date.now() - item.Block.timestamp * 1000) /
+                      (1000 * 60 * 60)
                   )}{" "}
                   hours{" "}
                   {parseInt(
-                    (Date.now() - item.timestamp * 1000) / (1000 * 60)
+                    (Date.now() - item.Block.timestamp * 1000) / (1000 * 60)
                   ) % 60}{" "}
                   minutes ago
                 </td>
               ) : (
                 <td>
-                  {parseInt((Date.now() - item.timestamp * 1000) / (1000 * 60))}{" "}
+                  {parseInt(
+                    (Date.now() - item.Block.timestamp * 1000) / (1000 * 60)
+                  )}{" "}
                   minutes{" "}
-                  {parseInt((Date.now() - item.timestamp * 1000) / 1000) % 60}{" "}
+                  {parseInt((Date.now() - item.Block.timestamp * 1000) / 1000) %
+                    60}{" "}
                   seconds ago
                 </td>
               )}
-
               <td
                 onClick={() => {
-                  moveBlockTxns(item.number);
+                  moveToAddress(item.from);
                 }}
               >
-                {item.transactions.length}
+                {shortWords(item.from)}
               </td>
               <td
                 onClick={() => {
-                  moveToAddress(item.miner);
+                  moveToAddress(item.to);
                 }}
               >
-                {shortWords(item.miner)}
+                {shortWords(item.to)}
               </td>
-              <td>{item.gasUsed}</td>
-              <td>{(+item.gasLimit).toLocaleString()}</td>
-              <td>{(+item.totalDifficulty).toLocaleString()}</td>
-              <td>{(+item.size).toLocaleString()} byte</td>
-              <td>{shortWords(item.hash)}</td>
+              <td>
+                {(+item.gasPrice / Math.pow(10, 9)).toLocaleString()} Gwei
+              </td>
+              <td>{+item.value / Math.pow(10, 18)} ETH</td>
             </tr>
           </InfoLine>
         ))}
@@ -135,7 +152,7 @@ const AllBlocksComp = ({
   );
 };
 
-export default AllBlocksComp;
+export default BlockTxsComp;
 
 const SubBox = styled.div`
   display: flex;
@@ -152,7 +169,6 @@ const PageBox = styled.div`
   select {
     border: none;
     margin-top: 4px;
-    cursor: pointer;
   }
 
   div {
@@ -163,13 +179,6 @@ const PageBox = styled.div`
     background-color: white;
     padding: 3px 5px 5px 5px;
     margin: 3px;
-  }
-
-  div:nth-child(2) {
-    cursor: pointer;
-  }
-  div:nth-child(4) {
-    cursor: pointer;
   }
 `;
 
@@ -183,14 +192,6 @@ const InfoLine = styled.tbody`
   padding: 20px 0;
 
   & > tr > td:first-child {
-    color: blue;
-    cursor: pointer;
-  }
-  & > tr > td:nth-child(3) {
-    color: blue;
-    cursor: pointer;
-  }
-  & > tr > td:nth-child(4) {
     color: blue;
     cursor: pointer;
   }
@@ -223,8 +224,7 @@ const TitleBox = styled.div`
   max-width: 1400px;
   margin: auto;
   display: flex;
-  padding: 20px 0;
-  border-bottom: 1px solid gray;
+  padding-top: 20px;
 
   & > div:first-child {
     font-size: 1.2rem;
@@ -238,4 +238,12 @@ const NumBox = styled.div`
     font-size: 0.9rem;
     color: gray;
   }
+`;
+
+const BlockInfoBox = styled.div`
+  max-width: 1400px;
+  margin: auto;
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid gray;
 `;

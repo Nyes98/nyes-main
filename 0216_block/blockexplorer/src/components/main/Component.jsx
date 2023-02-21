@@ -9,6 +9,8 @@ const MainComp = ({
   moveTransactionInfo,
   moveAllBlockInfo,
   moveAllTxInfo,
+  moveToAddress,
+  moveBlockTxns,
 }) => {
   return (
     <MainRoot>
@@ -44,10 +46,22 @@ const MainComp = ({
                 <ValidInfo>
                   <MinerBox>
                     <div>Validated By</div>
-                    <div>{shortWords(item.miner)}</div>
+                    <div
+                      onClick={() => {
+                        moveToAddress(item.miner);
+                      }}
+                    >
+                      {shortWords(item.miner)}
+                    </div>
                   </MinerBox>
                   <TxnsTime>
-                    <div>{item.transactions.length} txns</div>
+                    <div
+                      onClick={() => {
+                        moveBlockTxns(item.number);
+                      }}
+                    >
+                      {item.transactions.length} txns
+                    </div>
                     <div>in 6 secs</div>
                   </TxnsTime>
                 </ValidInfo>
@@ -82,11 +96,23 @@ const MainComp = ({
                 <ValidInfo>
                   <MinerBox>
                     <div>From</div>
-                    <div>{shortWords(item.from)}</div>
+                    <div
+                      onClick={() => {
+                        moveToAddress(item.from);
+                      }}
+                    >
+                      {shortWords(item.from)}
+                    </div>
                   </MinerBox>
                   <MinerBox>
                     <div>To</div>
-                    <div>{shortWords(item.to)}</div>
+                    <div
+                      onClick={() => {
+                        moveToAddress(item.to);
+                      }}
+                    >
+                      {shortWords(item.to)}
+                    </div>
                   </MinerBox>
                 </ValidInfo>
                 <ValueInfo>
@@ -112,6 +138,7 @@ const MainRoot = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  padding-bottom: 30px;
 `;
 
 const MainBackgroud = styled.div`
@@ -223,6 +250,7 @@ const InfoBtnBox = styled.div`
     height: 25px;
     font-size: 11px;
     color: #8247e5;
+    cursor: pointer;
   }
 `;
 
@@ -254,6 +282,7 @@ const HeightTime = styled.div`
   margin-top: 3px;
   & > div:first-child {
     color: #8247e7;
+    cursor: pointer;
   }
 
   & > div:nth-child(2) {
@@ -270,6 +299,7 @@ const MinerBox = styled.div`
   }
   & > :nth-child(2) {
     color: #8247e7;
+    cursor: pointer;
   }
 `;
 const TxnsTime = styled.div`
@@ -277,6 +307,7 @@ const TxnsTime = styled.div`
   & > :first-child {
     margin-right: 5px;
     color: #8247e7;
+    cursor: pointer;
   }
   & > :nth-child(2) {
     font-size: 11px;

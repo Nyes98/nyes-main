@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { callBlockPage, callLatestBlock } from "../../api";
-import AllBlocksComp from "./Component";
-import FooterComp from "./Component";
+import { useNavigate, useParams } from "react-router-dom";
+import { callBlockTxPage, callLatestTx, callTxPage } from "../../api";
+import BlockTxsComp from "./Component";
+import AllTxComp from "./Component";
 
-const AllBlocksContainer = () => {
+const BlockTxsContainer = () => {
   const [page, setPage] = useState(1);
   const [maxPage, setMaxPage] = useState(1);
   const [limit, setLimit] = useState(25);
-  const [blockList, setBlockList] = useState();
-  const [latestBlockNum, setLatestBlockNum] = useState();
+  const [txList, setTxList] = useState();
+  const [latestTxNum, setLatestTxNum] = useState();
   const navigate = useNavigate();
+  const params = useParams();
 
-  const moveToBlockInfo = (blockNumber) => {
-    navigate(`/blockinfo/${blockNumber}`);
+  const moveToTxInfo = (txHash) => {
+    navigate(`/txinfo/${txHash}`);
   };
 
-  const moveBlockTxns = (blockNumber) => {
-    navigate(`/blockTxs/${blockNumber}`);
-  };
   const moveToAddress = (address) => {
     navigate(`/address/${address}`);
+  };
+  const moveToBlockInfo = (blockNumber) => {
+    navigate(`/blockInfo/${blockNumber}`);
   };
 
   const handleSelect = (e) => {
     setLimit(+e.target.value);
     setPage(1);
-    console.log(limit);
   };
 
   const shortWords = (str, length = 30) => {
@@ -50,48 +50,42 @@ const AllBlocksContainer = () => {
   };
 
   const setMaxPageFunc = () => {
-    setMaxPage(parseInt(latestBlockNum / limit) + 1);
+    setMaxPage(parseInt(latestTxNum / limit) + 1);
   };
 
-  const getLatestBlock = async () => {
-    const data = await callLatestBlock();
-    setLatestBlockNum(data.data.data.id);
-  };
+  const getPageTx = async () => {
+    const data = await callBlockTxPage(page, limit, params.blockNumber);
+    setTxList(data.data.data);
+    setLatestTxNum(data.data.data.length);
 
-  const getPageBlock = async () => {
-    const data = await callBlockPage(page, limit);
-    setBlockList(data.data.data);
     console.log(data.data.data);
   };
 
   useEffect(() => {
     setMaxPageFunc();
-  }, [limit, latestBlockNum]);
+  }, [limit, latestTxNum]);
 
   useEffect(() => {
-    getPageBlock();
+    getPageTx();
   }, [page, limit]);
 
-  useEffect(() => {
-    getLatestBlock();
-  }, []);
-
   return (
-    <AllBlocksComp
-      blockList={blockList}
+    <BlockTxsComp
+      txList={txList}
       shortWords={shortWords}
-      latestBlockNum={latestBlockNum}
+      latestTxNum={latestTxNum}
       page={page}
       limit={limit}
       nextPage={nextPage}
       prevPage={prevPage}
       maxPage={maxPage}
       handleSelect={handleSelect}
+      moveToTxInfo={moveToTxInfo}
+      params={params.blockNumber}
       moveToBlockInfo={moveToBlockInfo}
-      moveBlockTxns={moveBlockTxns}
       moveToAddress={moveToAddress}
-    ></AllBlocksComp>
+    ></BlockTxsComp>
   );
 };
 
-export default AllBlocksContainer;
+export default BlockTxsContainer;
