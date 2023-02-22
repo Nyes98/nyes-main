@@ -71,7 +71,6 @@ const AddressContainer = () => {
   const getPageTx = async () => {
     const data = await callAddressPage(params.address, page, limit);
     setTxList(data.data.data);
-    console.log(data.data.data);
   };
 
   useEffect(() => {

@@ -11,7 +11,6 @@ const BlockInfoComp = ({
   prevBlock,
   moveBlockTxns,
 }) => {
-  console.log(blockInfo);
   return (
     <Background>
       <TitleBox>

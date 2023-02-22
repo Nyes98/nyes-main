@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import SearchErrorMordalContainer from "../mordal/searchError/Container";
 
 const MainComp = ({
   blockInfo,
@@ -12,12 +14,22 @@ const MainComp = ({
   moveToAddress,
   moveBlockTxns,
   setSearch,
-  search,
   doSearch,
+  errorMordal,
+  setErrorMordal,
+  enter,
 }) => {
   return (
     <MainRoot>
+      {errorMordal ? (
+        <SearchErrorMordalContainer
+          setErrorMordal={setErrorMordal}
+        ></SearchErrorMordalContainer>
+      ) : (
+        <></>
+      )}
       <MainBackgroud></MainBackgroud>
+
       <ContentsBox>
         <SearchBox>
           <div>The Optimism Explorer</div>
@@ -28,6 +40,7 @@ const MainComp = ({
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
+              onKeyPress={enter}
             />
             <SearchBtnBox
               onClick={() => {
@@ -53,7 +66,47 @@ const MainComp = ({
                     >
                       {item.number}
                     </div>
-                    <div>21 secs ago</div>
+                    {parseInt(
+                      (Date.now() - item.timestamp * 1000) /
+                        (1000 * 60 * 60 * 24)
+                    ) > 0 ? (
+                      <div>
+                        {parseInt(
+                          (Date.now() - item.timestamp * 1000) /
+                            (1000 * 60 * 60 * 24)
+                        )}{" "}
+                        days{" "}
+                        {parseInt(
+                          (Date.now() - item.timestamp * 1000) /
+                            (1000 * 60 * 60)
+                        ) % 24}{" "}
+                        hours ago
+                      </div>
+                    ) : parseInt(
+                        (Date.now() - item.timestamp * 1000) / (1000 * 60 * 60)
+                      ) > 0 ? (
+                      <div>
+                        {parseInt(
+                          (Date.now() - item.timestamp * 1000) /
+                            (1000 * 60 * 60)
+                        )}{" "}
+                        hours{" "}
+                        {parseInt(
+                          (Date.now() - item.timestamp * 1000) / (1000 * 60)
+                        ) % 60}{" "}
+                        minutes ago
+                      </div>
+                    ) : (
+                      <div>
+                        {parseInt(
+                          (Date.now() - item.timestamp * 1000) / (1000 * 60)
+                        )}{" "}
+                        minutes{" "}
+                        {parseInt((Date.now() - item.timestamp * 1000) / 1000) %
+                          60}{" "}
+                        seconds ago
+                      </div>
+                    )}
                   </HeightTime>
                 </BlockHeight>
                 <ValidInfo>
@@ -75,7 +128,6 @@ const MainComp = ({
                     >
                       {item.transactions.length} txns
                     </div>
-                    <div>in 6 secs</div>
                   </TxnsTime>
                 </ValidInfo>
                 <GasInfo>
@@ -103,7 +155,52 @@ const MainComp = ({
                     >
                       {veryshortWords(item.hash)}
                     </div>
-                    <div>21 secs ago</div>
+
+                    {parseInt(
+                      (Date.now() - item.Block.timestamp * 1000) /
+                        (1000 * 60 * 60 * 24)
+                    ) > 0 ? (
+                      <div>
+                        {parseInt(
+                          (Date.now() - item.Block.timestamp * 1000) /
+                            (1000 * 60 * 60 * 24)
+                        )}{" "}
+                        days{" "}
+                        {parseInt(
+                          (Date.now() - item.Block.timestamp * 1000) /
+                            (1000 * 60 * 60)
+                        ) % 24}{" "}
+                        hours ago
+                      </div>
+                    ) : parseInt(
+                        (Date.now() - item.Block.timestamp * 1000) /
+                          (1000 * 60 * 60)
+                      ) > 0 ? (
+                      <div>
+                        {parseInt(
+                          (Date.now() - item.Block.timestamp * 1000) /
+                            (1000 * 60 * 60)
+                        )}{" "}
+                        hours{" "}
+                        {parseInt(
+                          (Date.now() - item.Block.timestamp * 1000) /
+                            (1000 * 60)
+                        ) % 60}{" "}
+                        minutes ago
+                      </div>
+                    ) : (
+                      <div>
+                        {parseInt(
+                          (Date.now() - item.Block.timestamp * 1000) /
+                            (1000 * 60)
+                        )}{" "}
+                        minutes{" "}
+                        {parseInt(
+                          (Date.now() - item.Block.timestamp * 1000) / 1000
+                        ) % 60}{" "}
+                        seconds ago
+                      </div>
+                    )}
                   </HeightTime>
                 </BlockHeight>
                 <ValidInfo>
@@ -157,10 +254,11 @@ const MainRoot = styled.div`
 const MainBackgroud = styled.div`
   position: absolute;
   top: 0;
-  background-color: purple;
+  background-color: #21325b;
   padding: 9rem 0;
   z-index: -1;
   width: 100%;
+  background-image: url(/imgs/background.svg);
 `;
 
 const ContentsBox = styled.div`
@@ -182,7 +280,7 @@ const SearchBtnBox = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 10px;
-
+  cursor: pointer;
   img {
     width: 20px;
     filter: invert(100%) sepia(82%) saturate(48%) hue-rotate(229deg)

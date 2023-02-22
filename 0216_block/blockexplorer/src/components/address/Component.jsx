@@ -16,7 +16,6 @@ const AddressComp = ({
   moveToAddress,
   params,
 }) => {
-  console.log(latestTxNum);
   return (
     <Background>
       <TitleBox>
@@ -131,7 +130,18 @@ const AddressComp = ({
                   seconds ago
                 </td>
               )}
-              <td>{shortWords(item.from)}</td>
+              <td
+                onClick={() => {
+                  moveToAddress(item.from);
+                }}
+              >
+                {shortWords(item.from)}
+                {params == item.from ? (
+                  <div>out</div>
+                ) : (
+                  <div className="in">in</div>
+                )}
+              </td>
               <td
                 onClick={() => {
                   moveToAddress(item.to);
@@ -184,6 +194,7 @@ const PageBox = styled.div`
   div:nth-child(2) {
     cursor: pointer;
   }
+
   div:nth-child(4) {
     cursor: pointer;
   }
@@ -206,6 +217,27 @@ const InfoLine = styled.tbody`
   & > tr > td:nth-child(2) {
     color: blue;
     cursor: pointer;
+  }
+
+  & > tr > td:nth-child(4) {
+    color: blue;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      padding: 0 3px;
+      background-color: #f8ebd5;
+      color: #c87c00;
+      font-weight: 600;
+      border-radius: 5px;
+    }
+
+    div.in {
+      background-color: #d9f5ee;
+      color: #04977e;
+    }
   }
 
   & > tr > td:nth-child(5) {

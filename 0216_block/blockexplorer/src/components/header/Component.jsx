@@ -8,7 +8,7 @@ const HeaderComp = ({ moveTo }) => {
           <img src="/imgs/logo-ether.svg"></img>{" "}
         </LogoBox>
         <DropContents>
-          <div>Home</div>
+          <div onClick={moveTo}>Home</div>
           <div>Blockchain</div>
           <div>Tokens</div>
           <div>Misc</div>
@@ -42,5 +42,9 @@ const DropContents = styled.div`
   display: flex;
   div {
     padding: 17px 15px;
+  }
+
+  div:first-child {
+    cursor: pointer;
   }
 `;

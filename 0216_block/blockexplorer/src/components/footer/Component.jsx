@@ -46,7 +46,7 @@ export default FooterComp;
 
 const ServiceBox = styled.div`
   display: flex;
-  color: blue;
+  color: white;
   font-size: 0.8rem;
 
   img {
@@ -76,7 +76,9 @@ const ServiceBox = styled.div`
 `;
 
 const FooterLine = styled.div`
-  background-color: purple;
+  background-image: url(/imgs/background.svg);
+  background-color: #21325b;
+
   width: 100%;
 `;
 
@@ -142,6 +144,7 @@ const BtnBox = styled.div`
     margin-left: 10px;
     background-color: #39466b;
     padding: 0 5px;
+    cursor: pointer;
 
     &:hover {
       background-color: white;

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { callAllBlock, callRecentBlock } from "../../api";
+import { callAllBlock, callRecentBlock, mainSearch } from "../../api";
 import { useNavigate } from "react-router-dom";
 
 import MainComp from "./Component";
+import { useDispatch, useSelector } from "react-redux";
+import { action } from "../../modules/button";
 
 const MainContainer = () => {
   const [blockInfo, setBlockInfo] = useState([]);
@@ -10,6 +12,8 @@ const MainContainer = () => {
   const [search, setSearch] = useState();
   const [latestBlock, setLatestBlock] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const errorMordal = useSelector((state) => state.button.value);
 
   const moveToAddress = (address) => {
     navigate(`/address/${address}`);
@@ -35,11 +39,28 @@ const MainContainer = () => {
     navigate(`/blockTxs/${blockNumber}`);
   };
 
-  const doSearch = () => {
-    console.log(latestBlock);
-    console.log(search.length);
-    if (search <= latestBlock) navigate(`/blockInfo/${search}`);
-    else if (search.length == 42) navigate(`/address/${search}`);
+  const enter = (e) => {
+    if (e.key === "Enter") {
+      doSearch();
+    }
+  };
+
+  const doSearch = async () => {
+    if (!search) {
+      dispatch(action.openMordal());
+      return;
+    }
+    const searchData = await mainSearch(search);
+
+    if (searchData.data.data.blockNumber)
+      navigate(`/blockInfo/${searchData.data.data.blockNumber}`);
+    else if (searchData.data.data.address)
+      navigate(`/address/${searchData.data.data.address}`);
+    else if (searchData.data.data.txHash)
+      navigate(`/txInfo/${searchData.data.data.txHash}`);
+    else {
+      dispatch(action.openMordal());
+    }
   };
 
   const shortWords = (str, length = 30) => {
@@ -64,7 +85,6 @@ const MainContainer = () => {
 
   const getAllBlock = async () => {
     const result = await callAllBlock();
-    console.log(result.data.data);
   };
 
   const getRecentBlock = async () => {
@@ -75,9 +95,6 @@ const MainContainer = () => {
   };
 
   useEffect(() => {
-    console.log(blockInfo);
-    if (blockInfo.length > 10) return;
-    getAllBlock();
     getRecentBlock();
   }, []);
 
@@ -94,8 +111,9 @@ const MainContainer = () => {
       moveToAddress={moveToAddress}
       moveBlockTxns={moveBlockTxns}
       setSearch={setSearch}
-      search={search}
       doSearch={doSearch}
+      errorMordal={errorMordal}
+      enter={enter}
     ></MainComp>
   );
 };

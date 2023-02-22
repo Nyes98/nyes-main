@@ -26,7 +26,6 @@ const AllBlocksContainer = () => {
   const handleSelect = (e) => {
     setLimit(+e.target.value);
     setPage(1);
-    console.log(limit);
   };
 
   const shortWords = (str, length = 30) => {
@@ -61,7 +60,6 @@ const AllBlocksContainer = () => {
   const getPageBlock = async () => {
     const data = await callBlockPage(page, limit);
     setBlockList(data.data.data);
-    console.log(data.data.data);
   };
 
   useEffect(() => {

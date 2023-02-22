@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const axios = require("axios");
 const db = require("../models/index.js");
 
 const { Block, Transaction } = require("../models");
+const { Op } = require("sequelize");
 
 router.post("/page", async (req, res) => {
   try {
@@ -60,7 +60,7 @@ router.post("/address", async (req, res) => {
   try {
     const info = await Transaction.findAll({
       where: {
-        from: req.body.address,
+        [Op.or]: [{ from: req.body.address }, { to: req.body.address }],
       },
       order: [["id", "DESC"]],
       limit: req.body.limit,
@@ -81,7 +81,7 @@ router.post("/addresslatest", async (req, res) => {
   try {
     const info = await Transaction.findAll({
       where: {
-        from: req.body.address,
+        [Op.or]: [{ from: req.body.address }, { to: req.body.address }],
       },
     });
     res.send({ isError: false, data: info });

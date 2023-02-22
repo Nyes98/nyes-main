@@ -58,7 +58,6 @@ const AllTxsContainer = () => {
   const getPageTx = async () => {
     const data = await callTxPage(page, limit);
     setTxList(data.data.data);
-    console.log(data.data.data);
   };
 
   useEffect(() => {

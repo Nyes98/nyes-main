@@ -12,9 +12,6 @@ const TxInfoComp = ({
   moveTo,
   moveToAddress,
 }) => {
-  console.log(txInfo);
-  console.log(ts);
-
   return (
     <Background>
       <TitleBox>

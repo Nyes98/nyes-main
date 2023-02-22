@@ -55,3 +55,7 @@ export const callLatestTx = async () => {
 export const callAddressLatestTx = async (address) => {
   return await request.post("/tx/addresslatest", address);
 };
+
+export const mainSearch = async (searchWord) => {
+  return await request.post("block/search", { searchWord: searchWord });
+};

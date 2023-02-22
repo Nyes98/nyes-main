@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { callBlockTxPage, callLatestTx, callTxPage } from "../../api";
 import BlockTxsComp from "./Component";
-import AllTxComp from "./Component";
 
 const BlockTxsContainer = () => {
   const [page, setPage] = useState(1);
@@ -12,6 +11,10 @@ const BlockTxsContainer = () => {
   const [latestTxNum, setLatestTxNum] = useState();
   const navigate = useNavigate();
   const params = useParams();
+
+  const moveHome = () => {
+    navigate("/");
+  };
 
   const moveToTxInfo = (txHash) => {
     navigate(`/txinfo/${txHash}`);
@@ -57,8 +60,6 @@ const BlockTxsContainer = () => {
     const data = await callBlockTxPage(page, limit, params.blockNumber);
     setTxList(data.data.data);
     setLatestTxNum(data.data.data.length);
-
-    console.log(data.data.data);
   };
 
   useEffect(() => {
@@ -84,6 +85,7 @@ const BlockTxsContainer = () => {
       params={params.blockNumber}
       moveToBlockInfo={moveToBlockInfo}
       moveToAddress={moveToAddress}
+      moveHome={moveHome}
     ></BlockTxsComp>
   );
 };

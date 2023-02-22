@@ -14,6 +14,7 @@ const BlockTxsComp = ({
   params,
   moveToBlockInfo,
   moveToAddress,
+  moveHome,
 }) => {
   return (
     <Background>
@@ -27,33 +28,41 @@ const BlockTxsComp = ({
       >
         For Block {params}
       </BlockInfoBox>
-      <SubBox>
-        <NumBox>
-          <div>Total of {latestTxNum} Transactions</div>
-          <div>
-            (Showing Transactions between #
-            {latestTxNum - page * limit > -1 ? latestTxNum - page * limit : 0}{" "}
-            to #{latestTxNum - (page - 1) * limit - 1})
-          </div>
-        </NumBox>
-        <PageBox>
-          <div>
-            Show rows:
-            <select onChange={handleSelect} value={limit}>
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-            </select>
-          </div>
 
-          <div onClick={prevPage}>&lt;</div>
-          <div>
-            Page {page} of {maxPage}
-          </div>
-          <div onClick={nextPage}>&gt;</div>
-        </PageBox>
-      </SubBox>
+      {txList?.length == 0 ? (
+        <ErrorBox>
+          This Block does not have any transaction.
+          <button onClick={moveHome}>Go home</button>
+        </ErrorBox>
+      ) : (
+        <SubBox>
+          <NumBox>
+            <div>Total of {latestTxNum} Transactions</div>
+            <div>
+              (Showing Transactions between #
+              {latestTxNum - page * limit > -1 ? latestTxNum - page * limit : 0}{" "}
+              to #{latestTxNum - (page - 1) * limit - 1})
+            </div>
+          </NumBox>
+          <PageBox>
+            <div>
+              Show rows:
+              <select onChange={handleSelect} value={limit}>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+              </select>
+            </div>
+
+            <div onClick={prevPage}>&lt;</div>
+            <div>
+              Page {page} of {maxPage}
+            </div>
+            <div onClick={nextPage}>&gt;</div>
+          </PageBox>
+        </SubBox>
+      )}
       <ContentsBox>
         <TitleLine>
           <tr>
@@ -195,6 +204,18 @@ const InfoLine = styled.tbody`
     color: blue;
     cursor: pointer;
   }
+  & > tr > td:nth-child(2) {
+    color: blue;
+    cursor: pointer;
+  }
+  & > tr > td:nth-child(4) {
+    color: blue;
+    cursor: pointer;
+  }
+  & > tr > td:nth-child(5) {
+    color: blue;
+    cursor: pointer;
+  }
 `;
 
 const Background = styled.div`
@@ -246,4 +267,19 @@ const BlockInfoBox = styled.div`
   padding-bottom: 20px;
 
   border-bottom: 1px solid gray;
+`;
+
+const ErrorBox = styled.div`
+  max-width: 1400px;
+  margin: 20px auto;
+  font-size: 1.2rem;
+  color: gray;
+
+  button {
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: gray;
+    padding: 5px;
+  }
 `;

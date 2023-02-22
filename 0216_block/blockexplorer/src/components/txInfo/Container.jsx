@@ -13,13 +13,9 @@ const TxInfoContainer = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  console.log(params);
-
   const getTxInfo = async () => {
     const result = await callTxInfo(params.txHash);
     setTxInfo(result.data.data);
-
-    console.log();
 
     let agoDate = parseInt(
       Date.now() - +result.data.data.Block.timestamp * 1000
