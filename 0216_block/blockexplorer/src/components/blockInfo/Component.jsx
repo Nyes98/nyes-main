@@ -80,7 +80,7 @@ const BlockInfoComp = ({
             <InfoBox>
               <InfoTitle>Gas Used:</InfoTitle>
               <InfoContents>
-                {blockInfo?.gasUsed}(
+                {(+blockInfo?.gasUsed).toLocaleString()} (
                 {((blockInfo?.gasUsed / blockInfo?.gasLimit) * 100).toFixed(2)}
                 %)
               </InfoContents>

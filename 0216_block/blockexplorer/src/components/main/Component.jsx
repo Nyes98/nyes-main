@@ -149,23 +149,14 @@ const MainComp = ({
                       )
                     ) : (
                       <div>
-                        {((item.gasUsed / item.gasLimit) * 100).toFixed(2)}
+                        {((item.gasUsed / item.gasLimit) * 100).toFixed(2)}%
                       </div>
                     )}
                   </div>
                   <CircularProgressbar
                     value={((item.gasUsed / item.gasLimit) * 100).toFixed(2)}
                     strokeWidth={10}
-                    styles={{
-                      text: {
-                        fill: "#333333",
-                        fontsize: "12px",
-                      },
-                    }}
-                  >
-                    dgdgd
-                    <div>gd</div>
-                  </CircularProgressbar>
+                  ></CircularProgressbar>
                 </GasInfo>
               </InfoContentsBox>
             ))}
@@ -472,6 +463,6 @@ const GasInfo = styled.div`
 
   & > :last-child {
     display: flex;
-    width: 50%;
+    width: 42%;
   }
 `;
