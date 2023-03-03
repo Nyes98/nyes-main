@@ -64,8 +64,6 @@ npm i -D prettier-plugin-solidity
     ```
 
   - 배포 결과에서 CA를 가져오자
-    - 0x0125eeE39BBDe467a604f330CD7EC9587d155983
-    - 0xAbcfa4b547bdf2b9AD063f193e2E6F27e6EF831E
 
 - truffle을 사용해서 확인
 
