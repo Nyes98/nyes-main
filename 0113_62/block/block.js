@@ -49,7 +49,7 @@ class BlockHeader {
     else if (this.height < DAI * 2) {
       this.difficulty = 1;
     }
-    // 20개 이전에는 제네시스 블록 생싱 시 설정하 난이도보다 하나 더 높은 난이도로 설정된다.
+    // 20개 이전에는 제네시스 블록 생성 시 설정한 난이도보다 하나 더 높은 난이도로 설정된다.
     else if (this.height % DAI !== 0) {
       // 높이가 난이도 조절 단위 개수에 맞지 않을 때 이전 블록의 난이도로 설정
       this.difficulty = previousDifficulty;
