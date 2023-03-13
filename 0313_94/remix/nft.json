@@ -1,0 +1,15 @@
+{
+  "name": "Amu NFT",
+  "description": "no Amu think",
+  "image": "https://gateway.pinata.cloud/ipfs/QmQRf6VBVy7mUttSNZ7XcDVXCrbD3p8W6d3UCxFmAkY9nA",
+  "attributes": [
+    {
+      "trait_type": "Rank",
+      "value": 1
+    },
+    {
+      "trait_type": "Type",
+      "value": 1
+    }
+  ]
+}
