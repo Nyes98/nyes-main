@@ -1,0 +1,17 @@
+```bash
+npm init -y
+npm i axios form-data
+```
+
+# Pinata API를 사용해보자
+
+```
+API Key: 52b826d2d010437edd76
+ API Secret: ebe44161c94018b5a6ba565249609c69a992ea17f53cb780d08e916e98cd0b72
+ JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI0ODA3OTM1Zi05ZjllLTQwMjUtOTZlMy1iMTIwMzQ4MDY1ZjEiLCJlbWFpbCI6InB5czk4MzlAbmF2ZXIuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6IjUyYjgyNmQyZDAxMDQzN2VkZDc2Iiwic2NvcGVkS2V5U2VjcmV0IjoiZWJlNDQxNjFjOTQwMThiNWE2YmE1NjUyNDk2MDljNjlhOTkyZWExN2Y1M2NiNzgwZDA4ZTkxNmU5OGNkMGI3MiIsImlhdCI6MTY3ODg0NDIyOH0.-FmiRuHEUpA5lx8gdbrUV9q7B0xIbl-MbH8NNfKvgRk
+```
+
+- Pinata에서 제공하는 API를 사용하여 Pinata 서비스를 사용
+- 위 코드는 Pinata에서 받은 API Key
+  - 보통 API 사용 시 인증 키를 발급받아야 한다.
+- API 예 : 카카오 로그인, 구글 로그인, 구글 맵, 네이버 로그인 등등

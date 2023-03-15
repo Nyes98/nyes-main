@@ -17,6 +17,6 @@ contract Minting is ERC721 {
     uint _tokenId
   ) public pure override returns (string memory) {
     return
-      "https://gateway.pinata.cloud/ipfs/QmP8VdREZtXWwtU8yQHwgMWSCNsqLK9H5tzKznuszKK2XR";
+      "https://gateway.pinata.cloud/ipfs/QmaJqP8KoCZuRbSPTUBcDkqCidLqoQgyb5vA96KQYZ3zPS";
   }
 }

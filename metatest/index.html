@@ -1,0 +1,21 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="a" style="width: 50px">test</button>
+    <script>
+      document.getElementById("a").onclick = async () => {
+        // if (window.ethereum) {
+        //   console.log(window.ethereum);
+        //   console.log("연결됐는데 ㅎ");
+        // }
+        console.log("로기긴");
+        await ethereum.request({ method: "eth_requestAccounts" });
+      };
+    </script>
+  </body>
+</html>
