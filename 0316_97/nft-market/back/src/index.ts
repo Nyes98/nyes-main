@@ -1,0 +1,81 @@
+import express, { Express, Request, Response } from "express";
+import dotenv from "dotenv";
+import multer from "multer";
+import cors from "cors";
+import pinataSDK from "@pinata/sdk";
+import { Readable } from "stream";
+// 데이터를 stream화 해준다
+// npm run start:dev 로 서버실행
+
+const app: Express = express();
+
+dotenv.config();
+
+const pinata = new pinataSDK(process.env.API_Key, process.env.API_Secret);
+
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+const upload = multer();
+
+app.post("/api/list", (req: Request, res: Response) => {
+  const data = [
+    {
+      name: "Amu NFT",
+      description: "no Amu think",
+      image:
+        "https://gateway.pinata.cloud/ipfs/QmQRf6VBVy7mUttSNZ7XcDVXCrbD3p8W6d3UCxFmAkY9nA",
+    },
+  ];
+  res.send({ data: data });
+});
+
+app.post(
+  "/api/mint",
+  upload.single("file"),
+  async (req: Request, res: Response) => {
+    const { name, description }: { name: string; description: string } =
+      req.body;
+
+    const imgResult: {
+      IpfsHash: string;
+      PinSize: number;
+      Timestamp: string;
+      isDuplicate?: boolean;
+    } = await pinata.pinFileToIPFS(Readable.from(req.file.buffer), {
+      pinataMetadata: {
+        name: Date.now().toString(),
+      },
+      pinataOptions: {
+        cidVersion: 0,
+      },
+    });
+    if (imgResult.isDuplicate) {
+      console.log("같은 이미지");
+    }
+
+    const jsonResult = await pinata.pinJSONToIPFS(
+      {
+        name,
+        description,
+        // image: "https://gateway.pinata.cloud/ipfs" + imgResult.IpfsHash,
+        image: `https://gateway.pinata.cloud/ipfs/${imgResult.IpfsHash}`,
+      },
+      {
+        pinataMetadata: {
+          name: Date.now().toString() + ".json",
+        },
+        pinataOptions: {
+          cidVersion: 0,
+        },
+      }
+    );
+    console.log(jsonResult);
+    res.send("mint complete");
+  }
+);
+
+app.listen(8080, () => {
+  console.log("8080 port server open");
+});
