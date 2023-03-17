@@ -7,19 +7,43 @@ interface nftData {
   image: string;
 }
 
-export const List = () => {
+export const List = ({ account }: { account: string }) => {
   const [list, setList] = useState<Array<nftData>>([]);
 
-  const callList = async () => {
-    const listResult = await axios.post("http://localhost:8080/api/list");
-
-    console.log(listResult.data.data);
-    setList(listResult.data.data);
-  };
-
   useEffect(() => {
-    callList();
-  }, []);
+    (async () => {
+      // console.log(
+      //   await axios.get(
+      //     "https://ipfs.io/ipfs/QmaEWT2KqmZa1Vm5UxWwnGbk91vbKUEqWtjDBY9NxHZpu9"
+      //   )
+      // );
+      // console.log(
+      //   await axios.get(
+      //     "https://gateway.pinata.cloud/ipfs/QmQnn438fVZeE4YYRk2A86cChdAZjiZjRwwTX91UgpeVhD"
+      //   )
+      // );
+      setList(
+        (await axios.post("http://localhost:8080/api/list", { from: account }))
+          .data
+      );
+      console.log(list);
+    })();
+  }, [account]);
+
+  // const callList = async () => {
+  //   const listResult = (
+  //     await axios.post("http://localhost:8080/api/list", {
+  //       from: account,
+  //     })
+  //   ).data;
+
+  // console.log(listResult.data.data);
+  // setList(listResult.data.data);
+  // };
+
+  // useEffect(() => {
+  //   callList();
+  // }, [account]);
 
   return (
     <ul>

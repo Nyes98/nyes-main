@@ -3,15 +3,15 @@ import { Mint } from "./components/Mint";
 import { useWeb3 } from "./modules/useWeb3";
 
 function App() {
-  const { chainId, account, logIn } = useWeb3();
+  const { chainId, account, logIn, web3 } = useWeb3();
   return (
     <div>
       <div>
-        {account ? (
+        {account && web3 ? (
           <div>
             <div>ChainId : {chainId}</div>
             <div>Account : {account}</div>
-            <Mint></Mint>
+            <Mint account={account} web3={web3}></Mint>
           </div>
         ) : (
           <div>
@@ -25,7 +25,7 @@ function App() {
           </div>
         )}
       </div>
-      <List />
+      <List account={account} />
     </div>
   );
 }

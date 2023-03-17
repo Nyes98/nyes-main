@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import axios from "axios";
+import Web3 from "web3";
 
-export const Mint = () => {
+export const Mint = ({ account, web3 }: { account: string; web3: Web3 }) => {
   const [NftName, setName] = useState<string>("");
   const [NftDescription, setDescription] = useState<string>("");
   const [file, setFile] = useState<File | undefined>();
@@ -39,15 +40,12 @@ export const Mint = () => {
     formData.append("file", file);
     formData.append("name", NftName);
     formData.append("description", NftDescription);
+    formData.append("from", account);
     const result = (
       await axios.post("http://localhost:8080/api/mint", formData)
     ).data;
     console.log(result);
-    const addList = await axios.post(
-      "http://localhost:8080/api/list",
-      formData
-    );
-    console.log(addList);
+    web3.eth.sendTransaction(result);
   };
   return (
     <div>

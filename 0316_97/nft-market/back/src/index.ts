@@ -5,11 +5,20 @@ import cors from "cors";
 import pinataSDK from "@pinata/sdk";
 import { Readable } from "stream";
 // 데이터를 stream화 해준다
+import Web3 from "web3";
+import { AbiItem } from "web3-utils";
+import axios from "axios";
 // npm run start:dev 로 서버실행
+
+import { abi as NftAbi } from "../contracts/artifacts/NftToken.json";
+import { abi as SaleAbi } from "../contracts/artifacts/SaleToken.json";
+// Artifacts는 단순한 계약(Contract)의 Json 파일이다.
 
 const app: Express = express();
 
 dotenv.config();
+
+const web3 = new Web3("http://ganache.test.errorcode.help:8545");
 
 const pinata = new pinataSDK(process.env.API_Key, process.env.API_Secret);
 
@@ -17,18 +26,73 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const upload = multer();
+const upload: multer.Multer = multer();
 
-app.post("/api/list", (req: Request, res: Response) => {
-  const data = [
-    {
-      name: "Amu NFT",
-      description: "no Amu think",
-      image:
-        "https://gateway.pinata.cloud/ipfs/QmQRf6VBVy7mUttSNZ7XcDVXCrbD3p8W6d3UCxFmAkY9nA",
-    },
-  ];
-  res.send({ data: data });
+app.post("/api/list", async (req: Request, res: Response) => {
+  console.log(req.body.from);
+  const deployed = new web3.eth.Contract(
+    SaleAbi as AbiItem[],
+    process.env.SALE_CA
+  );
+
+  let data: Array<{ [key: string]: string }> = [];
+  if (req.body.from) {
+    try {
+      const tempArr = await deployed.methods
+        .getOwnerTokens(req.body.from)
+        .call();
+      console.log(tempArr);
+      for (let i = 0; i < tempArr.length; i++) {
+        try {
+          const { name, description, image } = (
+            await axios.get(
+              // tempArr[i].replace("gateway.pinata.cloud", "ipfs.io"))
+              tempArr[i].tokenURI.replace(
+                "gateway.pinata.cloud",
+                "block7.mypinata.cloud"
+              )
+            )
+          ).data;
+          data.push({
+            tokenId: tempArr[i].toeknId,
+            price: tempArr[i].price,
+            name,
+            description,
+            image: image.replace(
+              "gateway.pinata.cloud",
+              "block7.mypinata.cloud"
+            ),
+          });
+        } catch (error) {}
+      }
+    } catch (error) {}
+  } else {
+    try {
+      const tempArr = await deployed.methods.getSaleTokenList().call();
+      console.log(tempArr);
+      for (let i = 0; i < tempArr.length; i++) {
+        try {
+          const { name, description, image } = (
+            await axios.get(
+              tempArr[i].tokenURI.replace(
+                "gateway.pinata.cloud",
+                "jkh.mypinata.cloud"
+              )
+            )
+          ).data;
+          data.push({
+            tokenId: tempArr[i].toeknId,
+            price: tempArr[i].price,
+            name,
+            description,
+            image: image.replace("gateway.pinata.cloud", "jkh.mypinata.cloud"),
+          });
+        } catch (error) {}
+      }
+    } catch (error) {}
+  }
+
+  res.send(data);
 });
 
 app.post(
@@ -72,7 +136,24 @@ app.post(
       }
     );
     console.log(jsonResult);
-    res.send("mint complete");
+
+    const deployed = new web3.eth.Contract(
+      NftAbi as AbiItem[],
+      process.env.NFT_CA
+    );
+
+    const obj: { nonce: number; to: string; from: string; data: string } = {
+      nonce: 0,
+      to: "",
+      from: "",
+      data: "",
+    };
+    obj.nonce = await web3.eth.getTransactionCount(req.body.from);
+    obj.to = process.env.NFT_CA;
+    obj.from = req.body.from;
+    obj.data = deployed.methods.safeMint(jsonResult.IpfsHash).encodeABI();
+
+    res.send(obj);
   }
 );
 
